@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Orders</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+
+<div align="center">
+    <table>
+        <tr>
+            <td><a th:href="@{/}">Home</a></td>
+            <td></td>
+            <td><a th:href="@{/orders}">Orders</a></td>
+        </tr>
+    </table>
+</div>
+<div align="center">
+    <form th:action="@{/orders/new-transfer-order}" th:object="${detail}" method="post">
+        <table border="1">
+            <tr>
+                <td>Driver</td>
+                <td><input type="text" th:field="*{driver}"/></td>
+            </tr>
+            <tr>
+                <td>Number of boxes</td>
+                <td><input type="number" th:field="*{numberOfBoxes}"/></td>
+            </tr>
+            <tr>
+                <td>Price</td>
+                <td><input type="number" th:field="*{price}"/></td>
+            </tr>
+        </table>
+        <button type="submit">Save</button>
+    </form>
+</div>
+
+
+</body>
+</html>

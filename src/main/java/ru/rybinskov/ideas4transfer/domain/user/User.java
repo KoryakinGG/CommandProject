@@ -1,4 +1,4 @@
-package ru.rybinskov.ideas4transfer.domain;
+package ru.rybinskov.ideas4transfer.domain.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import ru.rybinskov.ideas4transfer.domain.order.TransferOrder;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -32,6 +33,9 @@ public class User implements UserDetails {
     private String email;
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @OneToMany(mappedBy = "user")
+    private List<TransferOrder> transferOrders;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
