@@ -14,7 +14,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-
+@Entity
+@Table(name = "express_orders_tbl")
 public class ExpressDeliveryOrder implements Order {
     private static final String SEQ_NAME = "express_order_seq";
 
