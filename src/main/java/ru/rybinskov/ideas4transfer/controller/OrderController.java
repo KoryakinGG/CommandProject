@@ -3,21 +3,23 @@ package ru.rybinskov.ideas4transfer.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.rybinskov.ideas4transfer.dao.OrderDao;
 import ru.rybinskov.ideas4transfer.domain.order.TransferOrderDetails;
+import ru.rybinskov.ideas4transfer.service.order_service.OrderNodeService;
 import ru.rybinskov.ideas4transfer.service.order_service.OrderService;
+import ru.rybinskov.ideas4transfer.service.order_service.ProxyOrderServiceImpl;
 
 
 @Controller
 @RequestMapping("/orders")
 public class OrderController {
-
-    private final OrderDao orderDao;
     private final OrderService orderService;
+    private final OrderNodeService orderNodeService;
+    private final ProxyOrderServiceImpl proxyOrderServiceImpl;
 
-    public OrderController(OrderDao orderDao, OrderService orderService) {
-        this.orderDao = orderDao;
+    public OrderController(OrderService orderService, OrderNodeService orderNodeService, ProxyOrderServiceImpl proxyOrderServiceImpl) {
         this.orderService = orderService;
+        this.orderNodeService = orderNodeService;
+        this.proxyOrderServiceImpl = proxyOrderServiceImpl;
     }
 
     @GetMapping("/new-transfer-order")
@@ -32,4 +34,17 @@ public class OrderController {
         //создадим заказ, добавим в него TransferOrderDetails и сохраним
         return "redirect:/orders";
     }
+
+    @GetMapping("/order/{id}")
+    public String getOrder(@PathVariable(name = "id") Long id, Model model) {
+        model.addAttribute("orderInfo", orderService.getOrderById(id).toString());
+        return "orderInfo";
+    }
+
+    @GetMapping("/note/{id}")
+    public String getTransferNote(@PathVariable(name = "id") Long id, Model model) {
+        model.addAttribute("noteInfo", proxyOrderServiceImpl.getTransferNote(orderService.getOrderById(id)));
+        return "NoteInfo";
+    }
+
 }

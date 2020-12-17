@@ -1,37 +1,38 @@
 package ru.rybinskov.ideas4transfer.service.order_service;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
-import ru.rybinskov.ideas4transfer.dao.OrderDao;
-import ru.rybinskov.ideas4transfer.domain.order.Order;
-import ru.rybinskov.ideas4transfer.domain.order.OrderStatus;
-import ru.rybinskov.ideas4transfer.domain.order.OrderType;
-import ru.rybinskov.ideas4transfer.orderFactory.ExpressFactory;
-import ru.rybinskov.ideas4transfer.orderFactory.OrderFactory;
-import ru.rybinskov.ideas4transfer.orderFactory.TransferFactory;
-
-import java.time.LocalDateTime;
+import ru.rybinskov.ideas4transfer.dao.MockBD;
+import ru.rybinskov.ideas4transfer.domain.order.TransferOrder;
+import ru.rybinskov.ideas4transfer.dto.TransferNote;
 
 @Service
-public class OrderServiceImpl implements OrderService {
+@Primary
+public class OrderServiceImpl implements OrderService, OrderNodeService {
 
-    OrderFactory factory;
+//    OrderFactory orderFactory;
 
-    // OrderDao orderDao;
+    public OrderServiceImpl() {
+    }
 
-    public OrderServiceImpl(OrderFactory factory) {
-        this.factory = factory;
-        //     this.orderDao = orderDao;
+    public TransferOrder getOrderById(Long id) {
+        return MockBD.getOrderById(id);
     }
 
     @Override
-    public String getOrderDescription() {
-        return factory.createOrder(3L, LocalDateTime.now(), null,
-                OrderType.BETWEEN_STORES, OrderStatus.NEW, "Работает!").getDescription();
+    public TransferNote getTransferNote(TransferOrder order) {
+        TransferNote transferNote = TransferNote.builder().
+                sender(order.getSender()).
+                receiver(order.getOrderDetails().getReceiver().getName()).
+                numberOfBoxes(order.getOrderDetails().getNumberOfBoxes()).
+                build();
+        return transferNote;
     }
 
-//      Для проверки работоспособности
-//    public static void main(String[] args) {
-//        OrderService orderService = new OrderServiceImpl(new ExpressFactory());
-//        System.out.println(orderService.getOrderDescription());
+
+//    @Override
+//    public String getOrderDescription(String type) {
+//        return expressFactory.createOrder(3L, LocalDateTime.now(), null,
+//                OrderType.BETWEEN_STORES, OrderStatus.NEW, "Работает!").getDescription();
 //    }
 }

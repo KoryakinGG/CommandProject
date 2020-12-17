@@ -4,40 +4,27 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
 
-
-import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
-@Table(name = "express_orders_tbl")
-public class ExpressDeliveryOrder implements Order {
-    private static final String SEQ_NAME = "express_order_seq";
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQ_NAME)
-    @SequenceGenerator(name = SEQ_NAME, sequenceName = SEQ_NAME)
+public class ExpressDeliveryOrder implements Order {
+
     private Long id;
 
-    @CreationTimestamp
+    private String sender;
+
     private LocalDateTime created;
 
-//    @ManyToOne
-//    @JoinColumn(name = "user_id")
-//    private User sender;
 
-    @OneToOne(mappedBy = "transportationOrder")
     private TransferOrderDetails orderDetails;
 
-    @Enumerated(EnumType.STRING)
     private OrderType type;
 
-    @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
      private String comment;

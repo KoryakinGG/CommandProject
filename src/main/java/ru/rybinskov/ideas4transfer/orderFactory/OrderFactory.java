@@ -9,6 +9,6 @@ import ru.rybinskov.ideas4transfer.domain.order.TransferOrderDetails;
 import java.time.LocalDateTime;
 
 public interface OrderFactory {
-    Order createOrder(Long id, LocalDateTime created, TransferOrderDetails orderDetails,
+    Order createOrder(Long id, String sender, LocalDateTime created, TransferOrderDetails orderDetails,
                       OrderType type, OrderStatus orderStatus, String comment);
 }

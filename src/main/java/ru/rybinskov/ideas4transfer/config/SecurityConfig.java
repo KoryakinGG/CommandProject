@@ -11,7 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import ru.rybinskov.ideas4transfer.service.user_service.UserService;
+
 
 
 @Configuration
@@ -22,7 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private ApplicationContext applicationContext;
 
-    private UserService userService;
+//    private UserService userService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -45,23 +45,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable();
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-        return NoOpPasswordEncoder.getInstance();
-    }
-
-    @Bean
-    public DaoAuthenticationProvider authenticationProvider(){
-        initUserService();
-        DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
-        auth.setPasswordEncoder(passwordEncoder());
-        auth.setUserDetailsService(userService);
-        return auth;
-    }
-
-    private void initUserService(){
-        if(userService == null){
-            userService = applicationContext.getBean(UserService.class);
-        }
-    }
+//    @Bean
+//    public PasswordEncoder passwordEncoder(){
+//        return NoOpPasswordEncoder.getInstance();
+//    }
+//
+//    @Bean
+//    public DaoAuthenticationProvider authenticationProvider(){
+//        initUserService();
+//        DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
+//        auth.setPasswordEncoder(passwordEncoder());
+//        auth.setUserDetailsService(userService);
+//        return auth;
+//    }
+//
+//    private void initUserService(){
+//        if(userService == null){
+//            userService = applicationContext.getBean(UserService.class);
+//        }
+//    }
 }
