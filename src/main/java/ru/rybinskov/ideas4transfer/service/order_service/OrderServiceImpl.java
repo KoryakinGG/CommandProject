@@ -6,6 +6,8 @@ import ru.rybinskov.ideas4transfer.dao.MockBD;
 import ru.rybinskov.ideas4transfer.domain.order.TransferOrder;
 import ru.rybinskov.ideas4transfer.dto.TransferNote;
 
+import java.util.List;
+
 @Service
 @Primary
 public class OrderServiceImpl implements OrderService, OrderNodeService {
@@ -15,6 +17,12 @@ public class OrderServiceImpl implements OrderService, OrderNodeService {
     public OrderServiceImpl() {
     }
 
+    @Override
+    public List<TransferOrder> getAll() {
+        return MockBD.getAll();
+    }
+
+    @Override
     public TransferOrder getOrderById(Long id) {
         return MockBD.getOrderById(id);
     }

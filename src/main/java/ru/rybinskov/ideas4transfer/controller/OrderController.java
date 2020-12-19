@@ -3,6 +3,9 @@ package ru.rybinskov.ideas4transfer.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ru.rybinskov.ideas4transfer.dao.MockBD;
+import ru.rybinskov.ideas4transfer.domain.order.OrderStatus;
+import ru.rybinskov.ideas4transfer.domain.order.TransferOrder;
 import ru.rybinskov.ideas4transfer.domain.order.TransferOrderDetails;
 import ru.rybinskov.ideas4transfer.service.order_service.OrderNodeService;
 import ru.rybinskov.ideas4transfer.service.order_service.OrderService;
@@ -20,6 +23,12 @@ public class OrderController {
         this.orderService = orderService;
         this.orderNodeService = orderNodeService;
         this.proxyOrderServiceImpl = proxyOrderServiceImpl;
+    }
+
+    @GetMapping
+    public String getAllOrders(Model model) {
+        model.addAttribute("orders", orderService.getAll());
+        return "orders";
     }
 
     @GetMapping("/new-transfer-order")
@@ -44,7 +53,13 @@ public class OrderController {
     @GetMapping("/note/{id}")
     public String getTransferNote(@PathVariable(name = "id") Long id, Model model) {
         model.addAttribute("noteInfo", proxyOrderServiceImpl.getTransferNote(orderService.getOrderById(id)));
-        return "NoteInfo";
+        return "noteInfo";
     }
 
+    @GetMapping("/change-status/{id}")
+    public String getTransferOrderStatus(@PathVariable(name = "id") Long id, Model model) {
+       // model.addAttribute("order", orderService.getOrderById(id));
+        orderService.getOrderById(id).changeStatus(OrderStatus.APPROVED_BY_MANAGER);
+        return "redirect:/orders";
+    }
 }
