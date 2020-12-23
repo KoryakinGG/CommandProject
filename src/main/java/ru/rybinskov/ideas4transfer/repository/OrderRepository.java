@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.transaction.annotation.Transactional;
 import ru.rybinskov.ideas4transfer.domain.order.OrderStatus;
 
 import ru.rybinskov.ideas4transfer.domain.user.Role;
@@ -96,6 +97,7 @@ public class OrderRepository implements Repository<OrderViewDto> {
                 key);
     }
 
+    @Transactional
     @Override
     public void update(OrderViewDto entity) {
         jdbcTemplate.update("update orders_tbl set receiver = ?, order_status = ? " +
