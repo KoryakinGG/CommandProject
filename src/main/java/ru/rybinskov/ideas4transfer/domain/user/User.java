@@ -18,7 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 
-public class User implements UserDetails{
+public class User implements UserDetails {
 
     private Long id;
     private String name;
@@ -26,8 +26,6 @@ public class User implements UserDetails{
     private String email;
 
     private Role role;
-
-    private List<TransferOrder> transferOrders;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

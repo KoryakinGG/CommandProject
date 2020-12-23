@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
     <title>Orders</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
 </head>
 <body>
-
+<div th:insert="~{fragments/menu :: #nav-menu}"></div>
 <div align="center">
     <table>
         <tr>
@@ -18,19 +20,19 @@
     </table>
 </div>
 <div align="center">
-    <form th:action="@{/orders/new-transfer-order}" th:object="${detail}" method="post">
+    <form th:action="@{/orders/new-transfer-order}" th:object="${order}" method="post">
         <table border="1">
             <tr>
-                <td>Driver</td>
-                <td><input type="text" th:field="*{driver}"/></td>
+                <td>Получатель</td>
+                <td><input type="text" th:field="*{receiver}"/></td>
             </tr>
             <tr>
-                <td>Number of boxes</td>
+                <td>Количество коробов</td>
                 <td><input type="number" th:field="*{numberOfBoxes}"/></td>
             </tr>
             <tr>
-                <td>Price</td>
-                <td><input type="number" th:field="*{price}"/></td>
+                <td>Комментарий</td>
+                <td><input type="text" th:field="*{comment}"/></td>
             </tr>
         </table>
         <button type="submit">Save</button>

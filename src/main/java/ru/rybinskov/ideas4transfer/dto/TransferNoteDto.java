@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class TransferNote {
+public class TransferNoteDto {
     private String sender;
     private String receiver;
-    private Integer numberOfBoxes;
+    private Long numberOfBoxes;
 }

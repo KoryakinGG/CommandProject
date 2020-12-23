@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import ru.rybinskov.ideas4transfer.domain.status_notification.EventManager;
 
 import java.time.LocalDateTime;
@@ -19,15 +20,14 @@ public class TransferOrder extends EventManager implements Order {
 
     private String sender;
 
+    private String receiver;
+
+    @DateTimeFormat
     private LocalDateTime created;
-
-    private TransferOrderDetails orderDetails;
-
-    private OrderType type;
 
     private OrderStatus orderStatus;
 
-    private String comment;
+    private Long userId;
 
     @Override
     public void changeStatus(OrderStatus orderStatus) {
@@ -37,6 +37,6 @@ public class TransferOrder extends EventManager implements Order {
 
     @Override
     public String getDescription() {
-        return "Заявка на перевозку " + id + " с комментарием: " + comment;
+        return "Заявка на перевозку " + id + " с комментарием: ";
     }
 }

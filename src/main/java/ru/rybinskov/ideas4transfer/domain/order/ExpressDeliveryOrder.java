@@ -19,20 +19,17 @@ public class ExpressDeliveryOrder extends EventManager implements Order {
 
     private String sender;
 
+    private String receiver;
+
     private LocalDateTime created;
-
-
-    private TransferOrderDetails orderDetails;
-
-    private OrderType type;
 
     private OrderStatus orderStatus;
 
-    private String comment;
+    private Long userId;
 
     @Override
     public String getDescription() {
-        return "Заявка на курьерскую доставку " + id + " с комментарием: " + comment;
+        return "Заявка на курьерскую доставку " + id + " с комментарием: ";
     }
 
     @Override
