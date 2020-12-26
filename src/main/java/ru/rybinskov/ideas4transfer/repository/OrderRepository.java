@@ -6,7 +6,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.transaction.annotation.Transactional;
 import ru.rybinskov.ideas4transfer.domain.order.OrderStatus;
-
+import ru.rybinskov.ideas4transfer.domain.orderFactory.TransferFactory;
 import ru.rybinskov.ideas4transfer.domain.user.Role;
 import ru.rybinskov.ideas4transfer.dto.OrderViewDto;
 import ru.rybinskov.ideas4transfer.dto.SimpleViewDto;
@@ -22,6 +22,10 @@ public class OrderRepository implements Repository<OrderViewDto> {
 
     private JdbcTemplate jdbcTemplate;
     private UserRepository userRepository;
+    private TransferFactory factory;
+    private final static String INIT_STATUS = OrderStatus.NEW.getStatus();
+    private final static LocalDateTime DEFAULT_TIME = LocalDateTime.of(9999, 9, 9, 9, 9, 9);
+    private final static String DEFAULT_VALUE_FOR_EMPTY_FIELD = "n/a";
 
     @Autowired
     public OrderRepository(JdbcTemplate jdbcTemplate, UserRepository userRepository) {
@@ -65,7 +69,6 @@ public class OrderRepository implements Repository<OrderViewDto> {
 
     @Override
     public void save(OrderViewDto entity) {
-        LocalDateTime time = LocalDateTime.of(9999, 9, 9, 9, 9, 9);
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection
@@ -74,7 +77,7 @@ public class OrderRepository implements Repository<OrderViewDto> {
             ps.setString(1, entity.getSender());
             ps.setString(2, entity.getReceiver());
             ps.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
-            ps.setString(4, OrderStatus.NEW.getStatus());
+            ps.setString(4, INIT_STATUS);
             ps.setLong(5, entity.getUserId());
             return ps;
         }, keyHolder);
@@ -90,10 +93,10 @@ public class OrderRepository implements Repository<OrderViewDto> {
         jdbcTemplate.update(
                 "insert into shipment_details_tbl (driver_name, car_number, shipment_date, delivery_date, order_id) " +
                         "values (?, ?, ?, ?, ?)",
-                "n/a",
-                "n/a",
-                time,
-                time,
+                DEFAULT_VALUE_FOR_EMPTY_FIELD,
+                DEFAULT_VALUE_FOR_EMPTY_FIELD,
+                DEFAULT_TIME,
+                DEFAULT_TIME,
                 key);
     }
 

@@ -3,6 +3,7 @@ package ru.rybinskov.ideas4transfer.service.order_service;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import ru.rybinskov.ideas4transfer.domain.order.TransferOrder;
+import ru.rybinskov.ideas4transfer.domain.orderFactory.OrderFactory;
 import ru.rybinskov.ideas4transfer.domain.user.Role;
 import ru.rybinskov.ideas4transfer.dto.OrderViewDto;
 import ru.rybinskov.ideas4transfer.dto.SimpleViewDto;
@@ -25,7 +26,7 @@ public class OrderServiceImpl implements OrderService, OrderNodeService {
      * Получает все заказы в упрощённом, сжатом виде для отображения в таблице заказов
      */
     public List<SimpleViewDto> getAllSimplifiedViewOrdersByUser(String username) {
-            return orderRepository.findAllSimplifiedViewOrdersByUSer(username);
+        return orderRepository.findAllSimplifiedViewOrdersByUSer(username);
     }
 
     @Override

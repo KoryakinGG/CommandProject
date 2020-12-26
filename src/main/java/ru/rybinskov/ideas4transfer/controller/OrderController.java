@@ -5,21 +5,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.rybinskov.ideas4transfer.domain.order.OrderStatus;
 import ru.rybinskov.ideas4transfer.dto.OrderViewDto;
-import ru.rybinskov.ideas4transfer.dto.SimpleViewDto;
-import ru.rybinskov.ideas4transfer.dto.UserOrderDto;
 import ru.rybinskov.ideas4transfer.service.order_service.OrderService;
 import ru.rybinskov.ideas4transfer.service.user_service.UserService;
 
 import java.security.Principal;
-import java.util.List;
 
 
 @Controller
 @RequestMapping("/orders")
 public class OrderController {
     private final OrderService orderService;
-    // private final OrderNodeService orderNodeService;
-    //private final ProxyOrderServiceImpl proxyOrderServiceImpl;
 
     private final UserService userService;
 
