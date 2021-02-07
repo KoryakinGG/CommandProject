@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="nav-menu">
+    <table width="100%">
+        <tr>
+            <td width="25%" align="left"></td>
+            <td width="50%" align="center"><h1 align="center">Ideas4Transfer</h1></td>
+            <td width="25%" align="right">
+                <div sec:authorize="isAuthenticated()">
+                    <div>
+                        Привет, <a th:href="@{/users/profile}"><span sec:authentication="principal.username">Bob</span></a>!
+                    </div>
+                    <div>
+                        <a th:href="@{/logout}">Выйти </a>
+                    </div>
+                </div>
+                <div sec:authorize="!isAuthenticated()">
+                    <div>
+                        Hello, Unknown. Please <a th:href="@{/login}">Login</a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td width="25%" align="left"></td>
+            <td width="50%" align="center">
+                <table style="color: white">
+                    <tr>
+                        <td><a class="btn btn-primary btn-lg" th:href="@{/}">Главная</a></td>
+                        <td></td>
+                        <td><a class="btn btn-primary btn-lg" th:href="@{/orders}">Заявки</a></td>
+                        <td></td>
+                        <td sec:authorize="hasAuthority('ROLE_MANAGER')"><a class="btn btn-primary btn-lg" th:href="@{/users}">Пользователи</a>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+            <td width="25%" align="right">
+        </tr>
+    </table>
+
+
+</div>
+
+</body>
+</html>
