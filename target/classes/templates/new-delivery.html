@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+<body>
+<div th:insert="~{fragments/menu :: #nav-menu}"></div>
+<br>
+<h1 align="center">New Landing:</h1>
+<br>
+<hr>
+<table align="center">
+    <form th:action="@{/delivery/new-delivery}" th:object="${delivery}" method="post">
+        <table border="1">
+            <tr>
+                <td>Дата прибыватия на склад</td>
+                <td><input type="text" th:field="*{deliveryDate}"/></td>
+            </tr>
+            <tr>
+                <td>Плановое время прибытия на склад</td>
+                <td><input type="text" th:field="*{deliveryTime}"/></td>
+            </tr>
+            <tr>
+                <td>Марка ТС</td>
+                <td><input type="text" th:field="*{carInfo}"/></td>
+            </tr>
+            <tr>
+                <td>ФИО водителя</td>
+                <td><input type="text" th:field="*{driverInfo}"/></td>
+            </tr>
+            <tr>
+                <td>ФИО водителя</td>
+                <td><input type="text" th:field="*{brand}"/></td>
+            </tr>
+            <tr>
+                <td>Бренд</td>
+                <td><input type="text" th:field="*{orderNumber}"/></td>
+            </tr>
+            <tr>
+                <td>ВЗ</td>
+                <td><input type="text" th:field="*{deliveryType}"/></td>
+            </tr>
+            <tr>
+                <td>Тип поставки</td>
+                <td><input type="text" th:field="*{sendor}"/></td>
+            </tr>
+            <tr>
+                <td>Поставщик</td>
+                <td><input type="text" th:field="*{comment}"/></td>
+            </tr>
+            <tr>
+                <td>Комментарий</td>
+                <td><input type="text" th:field="*{shop}"/></td>
+            </tr>
+            <tr>
+                <td>Магазин</td>
+                <td><input type="text" th:field="*{numberOfPlaces}"/></td>
+            </tr>
+            <tr>
+                <td>Кол-во мест</td>
+                <td><input type="text" th:field="*{torgNumber}"/></td>
+            </tr>
+            <tr>
+                <td>№ Торг</td>
+                <td><input type="text" th:field="*{invoice}"/></td>
+            </tr>
+        </table>
+        <button type="submit">Create</button>
+    </form>
+</table>
+</body>
+</html>
+
+
+<!-- Это для выпадающего списка-->
+<!--            <tr>-->
+<!--                <td>role</td>-->
+<!--                <td>-->
+<!--                    <select name="role">-->
+<!--                        <option th:each="roleOpt : ${T(ru.rybinskov.ideas4transfer.domain.Role).values()}"-->
+<!--                                th:value="${roleOpt}" th:text="${roleOpt}"></option>-->
+<!--                    </select>-->
+<!--                </td>-->
+<!--            </tr>-->
