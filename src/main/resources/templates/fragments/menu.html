@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<!--<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">-->
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -34,9 +35,15 @@
                     <tr>
                         <td><a class="btn btn-primary btn-lg" th:href="@{/}">Главная</a></td>
                         <td></td>
-                        <td><a class="btn btn-primary btn-lg" th:href="@{/orders}">Заявки</a></td>
+                        <td><a class="btn btn-primary btn-lg" th:href="@{/users/new}">Добавить пользователя</a></td>
                         <td></td>
                         <td sec:authorize="hasAuthority('ROLE_MANAGER')"><a class="btn btn-primary btn-lg" th:href="@{/users}">Пользователи</a>
+                        </td>
+                        <td></td>
+                        <td sec:authorize="hasAuthority('ROLE_MANAGER')"><a class="btn btn-primary btn-lg" th:href="@{/landings/new}">Добавить приход</a>
+                        </td>
+                        <td></td>
+                        <td sec:authorize="hasAuthority('ROLE_MANAGER')"><a class="btn btn-primary btn-lg" th:href="@{/landings}">Посмотреть приходы</a>
                         </td>
                         <td></td>
                     </tr>

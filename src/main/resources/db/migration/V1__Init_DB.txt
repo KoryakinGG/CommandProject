@@ -1,0 +1,38 @@
+-- create schema command_project;
+set search_path to command_project;
+
+CREATE TABLE users_tbl
+(
+    id bigserial,
+    username character varying(255),
+    password character varying(255),
+    full_name character varying(255),
+    email character varying(255),
+    phone character varying(255),
+    role character varying(255)
+);
+
+CREATE TABLE landings_tbl
+(
+    id bigserial,
+    landing_date timestamp,
+    landing_time varchar(255),
+--     landing_time time,
+    localization character varying(255),
+    car character varying(255),
+    drivers_fullname character varying(255),
+    brand character varying(255),
+    vz character varying(255),
+    landing_type character varying(255),
+    vendor character varying(255),
+    comment character varying(255),
+    number_of_places character varying(255),
+    torg_number character varying(255),
+    invoice character varying(255)
+);
+
+CREATE TABLE users_landings
+(
+    landing_id bigint,
+    user_id bigint
+);

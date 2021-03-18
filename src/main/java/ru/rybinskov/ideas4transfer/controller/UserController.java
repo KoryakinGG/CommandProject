@@ -5,8 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import ru.rybinskov.ideas4transfer.domain.user.User;
+import ru.rybinskov.ideas4transfer.domain.User;
 import ru.rybinskov.ideas4transfer.service.user_service.UserService;
 
 
@@ -20,10 +19,10 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping
-    public String getList(Model model) {
-        model.addAttribute("users", userService.getAll());
-        return "user-list";
+    @PostMapping("/new-user")
+    public String addNewUser(User user) {
+        userService.save(user);
+        return "redirect:/users";
     }
 
     @GetMapping("/new")
@@ -32,9 +31,9 @@ public class UserController {
         return "new-user";
     }
 
-    @PostMapping("/new")
-    public String addNewUser(User user) {
-        userService.save(user);
-        return "redirect:/users";
+    @GetMapping
+    public String getList(Model model) {
+        model.addAttribute("users", userService.getAll());
+        return "user-list";
     }
 }

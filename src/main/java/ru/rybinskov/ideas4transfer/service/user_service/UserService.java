@@ -1,12 +1,11 @@
 package ru.rybinskov.ideas4transfer.service.user_service;
 
-import org.springframework.security.core.userdetails.UserDetailsService;
-import ru.rybinskov.ideas4transfer.domain.user.User;
+import ru.rybinskov.ideas4transfer.domain.User;
 
 
 import java.util.List;
 
-public interface UserService extends UserDetailsService {
+public interface UserService {
     User getById(Long id);
     List<User> getAll();
     User findByName(String name);

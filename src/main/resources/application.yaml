@@ -1,0 +1,24 @@
+server:
+  hostname: localhost
+  port: ${PORT:8189}
+  servlet:
+    context-path: /
+spring:
+  jpa:
+    show-sql: false
+    properties:
+      hibernate:
+        ddl-auto: validate
+        dialect: org.hibernate.dialect.PostgreSQL95Dialect
+        temp:
+          use_jdbc_metadata_defaults: false
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=command_project
+    username: postgres
+    password: password
+    flyway:
+      baseline-on-migrate: true
+  jackson:
+    serialization:
+      indent_output: true
