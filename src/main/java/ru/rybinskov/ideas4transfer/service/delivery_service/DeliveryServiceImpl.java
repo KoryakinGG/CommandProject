@@ -36,21 +36,6 @@ public class DeliveryServiceImpl implements DeliveryService {
     public void setDeliveryRepository(DeliveryRepository deliveryRepository) {
         this.deliveryRepository = deliveryRepository;
     }
-//
-//    @Override
-//    public Delivery DeliveryById(Long id) {
-//        return deliveryRepository.findDeliveryById(id);
-//    }
-//
-//    @Override
-//    public void save(Delivery delivery) {
-//        deliveryRepository.save(delivery);
-//    }
-//
-//    @Override
-//    public List<Delivery> getAll() {
-//        return deliveryRepository.findAll();
-//    }
 
     @Override
     public List<DeliveryJson> findAll() {
@@ -94,19 +79,6 @@ public class DeliveryServiceImpl implements DeliveryService {
                 delivery.getComment(), delivery.getShop().getName(),
                 delivery.getNumberOfPlaces(), delivery.getTorgNumber(), delivery.getInvoice());
 
-    }
-
-    @Override
-    public DeliveryJson findByJson(DeliveryJson deliveryJson) throws ResourceNotFoundException {
-        Long id = deliveryJson.getId();
-        Delivery delivery = deliveryRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Поставка по указанному id не найдена:  id = " + id));
-        return new DeliveryJson(delivery.getId(), delivery.getDeliveryDate(), delivery.getDeliveryTime().getName(),
-                delivery.getCarInfo(), delivery.getDriverInfo(),
-                delivery.getBrand().getAbbr(), delivery.getOrderNumber(),
-                delivery.getDeliveryType().getName(), delivery.getSender(),
-                delivery.getComment(), delivery.getShop().getName(),
-                delivery.getNumberOfPlaces(), delivery.getTorgNumber(), delivery.getInvoice());
     }
 
     @Override

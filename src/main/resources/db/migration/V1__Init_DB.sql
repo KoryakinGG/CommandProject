@@ -10,7 +10,7 @@ CREATE TABLE users_tbl
     email character varying(255),
     phone character varying(255),
     role character varying(255),
-    warehouse bigint
+    warehouse_id bigint
 );
 
 CREATE TABLE brands_tbl

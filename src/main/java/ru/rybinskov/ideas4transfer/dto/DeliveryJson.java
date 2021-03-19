@@ -10,7 +10,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.rybinskov.ideas4transfer.domain.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;

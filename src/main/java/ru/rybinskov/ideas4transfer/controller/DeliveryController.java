@@ -23,13 +23,11 @@ public class DeliveryController {
         this.deliveryService = deliveryService;
     }
 
-    // http://localhost:8189/command-project/api/v1/deliveries
     @GetMapping("/deliveries")
     public List<DeliveryJson> getAllDeliveries() {
         return deliveryService.findAll();
     }
 
-    // http://localhost:8189/command-project/api/v1/deliveries/{id}
     @GetMapping(value = "/deliveries/{id}")
     public ResponseEntity<DeliveryJson> getDeliveryById(@PathVariable(value = "id") Long deliveryId)
             throws ResourceNotFoundException {
@@ -37,23 +35,20 @@ public class DeliveryController {
         return ResponseEntity.ok().body(delivery);
     }
 
-    // http://localhost:8189/command-project/api/v1/deliveries/new
-    @PostMapping("/deliveries/new")
-    public void createDelivery(@RequestBody DeliveryJson delivery) throws JsonProcessingException {
+    @PostMapping("/deliveries")
+    public void createDelivery(@RequestBody DeliveryJson delivery) {
         deliveryService.createDelivery(delivery);
     }
 
-    // http://localhost:8189/command-project/api/v1/deliveries/{id}
-    @PutMapping("/deliveries") //update по ID
-    public ResponseEntity<DeliveryJson> updateDelivery(@RequestBody DeliveryJson deliveryDetails) throws ResourceNotFoundException, JsonProcessingException {
-        DeliveryJson delivery = deliveryService.findByJson(deliveryDetails);
+    @PutMapping("/deliveries")
+    public ResponseEntity<DeliveryJson> updateDelivery(@RequestBody DeliveryJson deliveryDetails) throws ResourceNotFoundException {
+        DeliveryJson delivery = deliveryService.findById(deliveryDetails.getId());
         delivery.updateAllFieldsWithoutId(deliveryDetails);
         deliveryService.updateDelivery(delivery);
         return ResponseEntity.ok(delivery);
     }
 
-    // http://localhost:8189/command-project/api/v1/deliveries/
-    @DeleteMapping("/deliveries") // добавить метод гет с перадресацией на delete
+    @DeleteMapping("/deliveries")
     public Map<String, Boolean> deleteDelivery(@RequestBody DeliveryJson delivery) {
         deliveryService.delete(delivery);
         Map<String, Boolean> response = new HashMap<>();
@@ -61,11 +56,8 @@ public class DeliveryController {
         return response;
     }
 
-
-////    // метод для тестов
-//    // http://localhost:8189/command-project/api/v1/deliveries/new
     @GetMapping("/deliveries/new")
-    public String createDelivery() throws JsonProcessingException { // @RequestBody DeliveryJson delivery
+    public String createDelivery() throws JsonProcessingException {
 
         ObjectMapper mapper = new ObjectMapper();
         String json =
@@ -88,5 +80,4 @@ public class DeliveryController {
         deliveryService.createDelivery(deliveryJson);
         return "Congratulation";
     }
-
 }

@@ -24,7 +24,7 @@ public class Brand {
     @Column
     private String abbr;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "users_brands",
             joinColumns = @JoinColumn(name = "brand_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))

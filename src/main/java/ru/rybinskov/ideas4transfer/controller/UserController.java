@@ -1,39 +1,27 @@
 package ru.rybinskov.ideas4transfer.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import ru.rybinskov.ideas4transfer.domain.User;
+import org.springframework.web.bind.annotation.*;
+import ru.rybinskov.ideas4transfer.dto.UserDto;
 import ru.rybinskov.ideas4transfer.service.user_service.UserService;
 
+import java.util.List;
 
-@Controller
-@RequestMapping("/users")
+@CrossOrigin({"https://mywarehouseapp.herokuapp.com", "http://mywarehouseapp.herokuapp.com"})
+@RestController
+@RequestMapping("/api/v1")
 public class UserController {
-
     private final UserService userService;
 
     public UserController(UserService userService) {
         this.userService = userService;
     }
 
-    @PostMapping("/new-user")
-    public String addNewUser(User user) {
+    @PostMapping("/users")
+    public String addNewUser(@RequestBody UserDto user) {
         userService.save(user);
-        return "redirect:/users";
+        return "Well Done";
     }
 
-    @GetMapping("/new")
-    public String getNewUserForm(Model model) {
-        model.addAttribute("user", new User());
-        return "new-user";
-    }
-
-    @GetMapping
-    public String getList(Model model) {
-        model.addAttribute("users", userService.getAll());
-        return "user-list";
-    }
+    @GetMapping("/users")
+    public List<UserDto> getList() {return userService.getAll();}
 }
