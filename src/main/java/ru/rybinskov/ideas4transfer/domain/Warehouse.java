@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.rybinskov.ideas4transfer.domain.example.Hobby;
 
 import javax.persistence.*;
 import java.util.List;
@@ -23,7 +24,8 @@ public class Warehouse {
     @Column
     private String abbr;
 
-    @OneToMany(mappedBy = "warehouse")
-    private List<User> users;
+//    @OneToMany(mappedBy = "warehouse")
+//    private List<User> users;
+
 
 }

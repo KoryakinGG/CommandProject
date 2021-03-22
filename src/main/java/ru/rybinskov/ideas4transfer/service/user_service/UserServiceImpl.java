@@ -1,5 +1,6 @@
 package ru.rybinskov.ideas4transfer.service.user_service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -7,13 +8,19 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import ru.rybinskov.ideas4transfer.domain.Delivery;
 import ru.rybinskov.ideas4transfer.domain.Role;
 import ru.rybinskov.ideas4transfer.domain.User;
+import ru.rybinskov.ideas4transfer.dto.DeliveryJson;
 import ru.rybinskov.ideas4transfer.dto.UserDto;
+import ru.rybinskov.ideas4transfer.exception.ResourceNotFoundException;
+import ru.rybinskov.ideas4transfer.mapper.UserMapper;
+import ru.rybinskov.ideas4transfer.repository.BrandRepository;
 import ru.rybinskov.ideas4transfer.repository.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -28,41 +35,30 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public UserDto getById(Long id) {
-        return mapToUserDto(
-                userRepository.findById(id).orElse(null)); // добавить эксепшн, что не нашел пользователя
+    public UserDto getById(Long id) throws ResourceNotFoundException {
+        User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Пользователь по указанному id не найден: id = " + id));
+        return new UserDto(user);
     }
 
     @Override
     public List<UserDto> getAll() {
-        return userRepository
-                .findAll()
-                .stream()
-                .map(UserServiceImpl::mapToUserDto)
-                .collect(Collectors.toList());
+        return userRepository.findAll().stream().map(UserDto::new).collect(Collectors.toList());
     }
 
     @Override
     public UserDto findByName(String name) {
-        return mapToUserDto(
-                        userRepository.findByUsername(name));
+        return null;
     }
 
     @Override
     public void save(UserDto userDto) {
-        userDto = UserDto.builder()
-                .username(userDto.getUsername())
-                .password(bCryptPasswordEncoder.encode(userDto.getPassword()))
-                .fullName(userDto.getFullName())
-                .email(userDto.getEmail())
-                .phone(userDto.getPhone())
-                .role(userDto.getRole())
-//                .deliveryTime(delivery.getDeliveryTime().getName())
-//                .activateCode(UUID.randomUUID().toString())
-//                .enabled(false)
-                .build();
-        User user = mapToUserEntity(userDto);
-        userRepository.save(user);
+        userDto.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
+        userRepository.save(new User(userDto));
+    }
+
+    public void delete(UserDto userDto) {
+        User user = new User(userDto);
+        userRepository.delete(user);
     }
 
     @Override
@@ -81,28 +77,5 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 roles);
     }
 
-    private static UserDto mapToUserDto(User entity){
-        UserDto dto = new UserDto();
-        dto.setId(entity.getId());
-        dto.setUsername(entity.getUsername());
-        dto.setPassword(entity.getPassword());
-        dto.setPhone(entity.getPhone());
-        dto.setEmail(entity.getEmail());
-        dto.setFullName(entity.getFullName());
-        dto.setRole(entity.getRole().getRole());
-        return dto;
-    }
-
-    private static User mapToUserEntity(UserDto dto){
-        User entity = new User();
-        entity.setId(dto.getId());
-        entity.setUsername(dto.getUsername());
-        entity.setPassword(dto.getPassword());
-        entity.setPhone(dto.getPhone());
-        entity.setEmail(dto.getEmail());
-        entity.setFullName(dto.getFullName());
-        entity.setRole(Role.valueOf(dto.getRole()));
-        return entity;
-    }
 }
 

@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin({"https://mywarehouseapp.herokuapp.com", "http://mywarehouseapp.herokuapp.com"})
+@CrossOrigin({"http://localhost:4200","https://mywarehouseapp.herokuapp.com", "http://mywarehouseapp.herokuapp.com"})
 @RestController
 @RequestMapping("/api/v1")
 public class DeliveryController {
@@ -61,21 +61,21 @@ public class DeliveryController {
 
         ObjectMapper mapper = new ObjectMapper();
         String json =
-                "  {\n" +
-                        "    \"deliveryDate\": \"09.03.2021\",\n" +
-                        "    \"deliveryTime\": \"первая половина дня\",\n" +
-                        "    \"carInfo\": \"Reno Master Н496ХВ197\",\n" +
-                        "    \"driverInfo\": \"Обломов Василий Олегович 89257834209\",\n" +
-                        "    \"brand\": \"ckh\",\n" +
-                        "    \"orderNumber\": \"GDH01000011-2021\",\n" +
-                        "    \"deliveryType\": \"кросс-докинг\",\n" +
-                        "    \"sender\": \"Goods House РИО Ленинский\",\n" +
-                        "    \"comment\": \"Доставить вовремя\",\n" +
-                        "    \"shop\": \"ООО Какой-то магазин\",\n" +
-                        "    \"numberOfPlaces\": \"40\",\n" +
-                        "    \"torgNumber\": \"q456\",\n" +
-                        "    \"invoice\": \"invoice123\"\n" +
-                        "  }\n";
+                "{\n" +
+                        "        \"deliveryDate\": \"09.03.2021\",\n" +
+                        "        \"deliveryTime\": \"первая половина дня\",\n" +
+                        "        \"carInfo\": \"Reno Master Н496ХВ197\",\n" +
+                        "        \"driverInfo\": \"Vasya Terkin\",\n" +
+                        "        \"brand\": \"GDH\",\n" +
+                        "        \"orderNumber\": \"GDH01000011-2021\",\n" +
+                        "        \"deliveryType\": \"кросс-докинг\",\n" +
+                        "        \"sender\": \"ООО Какой-то магазин\",\n" +
+                        "        \"comment\": \"ОПАЗДЫВАТЬ НЕЛЬЗЯ\",\n" +
+                        "        \"shop\": \"Goods House Авеню\",\n" +
+                        "        \"numberOfPlaces\": \"20\",\n" +
+                        "        \"torgNumber\": \"QWERTY123\",\n" +
+                        "        \"invoice\": \"QWERTY123\"\n" +
+                        "    }";
         DeliveryJson deliveryJson = mapper.readValue(json,DeliveryJson.class);
         deliveryService.createDelivery(deliveryJson);
         return "Congratulation";

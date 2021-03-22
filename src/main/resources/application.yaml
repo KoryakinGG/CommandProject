@@ -12,11 +12,12 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQL95Dialect
         temp:
           use_jdbc_metadata_defaults: false
+    open-in-view: false
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/postgres?currentSchema=command_project
     username: postgres
-    password: admin
+    password: password
     flyway:
       baseline-on-migrate: true
   jackson:

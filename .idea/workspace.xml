@@ -5,41 +5,47 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="62ca60c5-994a-44ce-b9bf-73ba6b1e6b63" name="Default Changelist" comment="1. Забыл добавить файлик текстовый с изменениями">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__wsdl4j_wsdl4j_1_6_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/qaplug_profiles.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChangeFile.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ChangeFile.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HELP.md" beforeDir="false" afterPath="$PROJECT_DIR$/HELP.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ideas4transfer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ideas4transfer.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/config/DateTimeFormatConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/Ideas4transferApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/Ideas4transferApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/config/SecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/controller/DeliveryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/controller/DeliveryController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/controller/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/domain/Brand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/domain/Brand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/domain/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/domain/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/domain/Shop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/domain/Shop.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/domain/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/domain/Warehouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/domain/Warehouse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/dto/BrandDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/dto/BrandDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/dto/DeliveryJson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/dto/DeliveryJson.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/dto/ShopDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/dto/ShopDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/dto/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/dto/UserDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/repository/DeliveryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/repository/DeliveryRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/delivery_service/DeliveryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/delivery_service/DeliveryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/delivery_service/DeliveryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/delivery_service/DeliveryServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/exception/ErrorControllerAdvice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/exception/ErrorControllerAdvice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/exception/ErrorDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/exception/ErrorDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/exception/ResourceNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/exception/ResourceNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/user_service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/user_service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/user_service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/user_service/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/utils/UserUtils.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V1__Init_DB.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/migration/V1__Init_DB.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V1__Init_DB.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/change-status.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/error.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/menu.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/landing-list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/new-landing.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/new-transfer-order.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/new-user.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/noteInfo.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user-list.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V2__Add_users_and_brands_and_shops.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/rybinskov/ideas4transfer/Ideas4transferApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/rybinskov/ideas4transfer/Ideas4transferApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +97,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../JavaEE" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/db/migration" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -100,16 +106,22 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Dell-PC\Downloads\commandProject-Dev5\src\main\resources\db\migration" />
+      <recent name="C:\Users\Dell-PC\Downloads\commandProject-Dev5\src\main\java\ru\rybinskov\ideas4transfer\repository" />
+      <recent name="C:\Users\Dell-PC\Downloads\commandProject-Dev5\src\main\java\ru\rybinskov\ideas4transfer\domain\test" />
       <recent name="C:\Users\Dell-PC\IdeaProjects\commandProject\src\main\java\ru\rybinskov\ideas4transfer" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ru.rybinskov.ideas4transfer.controller" />
+    </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.Ideas4transferApplication">
+  <component name="RunManager" selected="Spring Boot.Ideas4transferApplication (1)">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ru.rybinskov.ideas4transfer.controller.Main" />
       <module name="ideas4transfer" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ru.rybinskov.ideas4transfer.controller.*" />
+          <option name="PATTERN" value="ru.rybinskov.ideas4transfer.domain.example.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -124,6 +136,13 @@
         </value>
       </option>
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Ideas4transferApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="commandProject" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="ru.rybinskov.ideas4transfer.Ideas4transferApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -176,6 +195,11 @@
       <workItem from="1616093285805" duration="41000" />
       <workItem from="1616093334097" duration="5376000" />
       <workItem from="1616099523715" duration="339000" />
+      <workItem from="1616311776397" duration="22836000" />
+      <workItem from="1616334812682" duration="255000" />
+      <workItem from="1616335109522" duration="2010000" />
+      <workItem from="1616346273987" duration="514000" />
+      <workItem from="1616393462556" duration="11890000" />
     </task>
     <task id="LOCAL-00001" summary="1. Дописал класс UserDto остальными полями&#10;&#10;2. Создал папку Utils и создал в ней класс UserUtils, в котором прописал методы по переводу объектов из User в UserDto и обратно&#10;&#10;3. Переписал методы в UserService и UserController">
       <created>1616153374963</created>

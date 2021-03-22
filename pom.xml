@@ -23,10 +23,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.thymeleaf.extras</groupId>-->
-<!--            <artifactId>thymeleaf-extras-springsecurity5</artifactId>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -54,11 +50,11 @@
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
-        <dependency>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-core</artifactId>
-            <version>6.4.4</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.flywaydb</groupId>-->
+<!--            <artifactId>flyway-core</artifactId>-->
+<!--            <version>6.4.4</version>-->
+<!--        </dependency>-->
         <!-- end dataBase        -->
 
         <!--web services-->
@@ -98,6 +94,10 @@
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -127,6 +127,16 @@
                     </processTypes>
                 </configuration>
             </plugin>
+
+<!--            <plugin>-->
+<!--                <groupId>org.flywaydb</groupId>-->
+<!--                <artifactId>flyway-maven-plugin</artifactId>-->
+<!--                <configuration>-->
+<!--&lt;!&ndash;                    <url>${env.JDBC_DATABASE_URL}</url>&ndash;&gt;-->
+<!--                    <url>postgres://fuwxnghlsfepwp:6014e45e33e49dd95205f04b09d97d47038e6e09ef7fa0eee8833d088bf17bdb@ec2-54-220-53-223.eu-west-1.compute.amazonaws.com:5432/dctoqm1sn5730f-->
+<!--                    </url>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 

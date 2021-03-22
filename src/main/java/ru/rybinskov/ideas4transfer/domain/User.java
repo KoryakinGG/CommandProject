@@ -4,9 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.rybinskov.ideas4transfer.dto.BrandDto;
+import ru.rybinskov.ideas4transfer.dto.UserDto;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Data
@@ -32,13 +35,27 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @ManyToOne
+//    @ManyToOne
+    @OneToOne
+    @JoinColumn(name = "warehouse_id")
     private Warehouse warehouse;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "users_brands",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "brand_id")
-    )
+     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)  //  cascade = {  CascadeType.PERSIST, CascadeType.MERGE}
+     @JoinTable(
+        name = "users_brands_tbl",
+        joinColumns = { @JoinColumn(name = "user_id") },
+        inverseJoinColumns = { @JoinColumn(name = "brand_id") })
     private List<Brand> brands;
+
+    public User(UserDto userDto) {
+        this.id = userDto.getId();
+        this.username = userDto.getUsername();
+        this.password = userDto.getPassword();
+        this.phone = userDto.getPhone();
+        this.email = userDto.getEmail();
+        this.fullName = userDto.getFullName();
+        this.role = userDto.getRole();
+        this.warehouse = userDto.getWarehouse();
+        this.brands = userDto.getBrands().stream().map(Brand::new).collect(Collectors.toList());
+    }
 }

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.rybinskov.ideas4transfer.dto.BrandDto;
 
 import javax.persistence.*;
 import java.util.List;
@@ -24,13 +25,25 @@ public class Brand {
     @Column
     private String abbr;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "users_brands",
-            joinColumns = @JoinColumn(name = "brand_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
+//    @ManyToMany
+//    @JoinTable(schema = "command_project", name = "users_brands_tbl",
+//            joinColumns = @JoinColumn(name = "brand_id"),
+//            inverseJoinColumns = @JoinColumn(name = "user_id"))
+
+    @ManyToMany(mappedBy = "brands")
     private List<User> users;
 
-    @OneToMany(mappedBy = "brand")
-    private List<Shop> shopsList;
+//    @OneToMany(targetEntity = Shop.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    @CollectionTable(schema = "command_project",
+//        name = "brands_shops",
+//        joinColumns = {@JoinColumn(name = "brand_id",
+//                referencedColumnName = "id")})
+//    private List<Shop> shops;
+
+    public Brand(BrandDto brand) {
+        this.id = brand.getId();
+        this.name = brand.getName();
+        this.abbr = brand.getAbbr();
+    }
 
 }

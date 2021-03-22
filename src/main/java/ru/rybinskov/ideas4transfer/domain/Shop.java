@@ -22,6 +22,7 @@ public class Shop {
     @Column
     private String abbr;
 
-    @ManyToOne
-    private Brand brand;
+//    @ManyToOne(fetch = FetchType.LAZY)
+////    @JoinColumn(name = "brands_id")
+//    private Brand brand;
 }
