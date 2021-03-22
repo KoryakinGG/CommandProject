@@ -7,18 +7,10 @@ import java.util.List;
 
 public interface DeliveryService {
 
-//    Delivery DeliveryById(Long id);
-//    void save(Delivery delivery);
-//    List<Delivery> getAll();
-//    List<Delivery> getAllSimplifiedLandingByUser(String username);
-//    void saveAll(List<Delivery> list);
-//    void deleteById (Long id);
-
-//    void collectAndSaveDelivery(DeliveryJson deliveryJson);
     List<DeliveryDto> findAll();
     DeliveryDto findById(Long id) throws ResourceNotFoundException;
     void createDelivery(DeliveryDto deliveryDto);
-    void updateDelivery(DeliveryDto deliveryDto);
+    void updateDelivery(DeliveryDto deliveryDto) throws ResourceNotFoundException;
     void delete(DeliveryDto deliveryDto);
 
 }

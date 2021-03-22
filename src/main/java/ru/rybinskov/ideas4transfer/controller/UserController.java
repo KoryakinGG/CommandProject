@@ -27,7 +27,7 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    public List<UserDto> getList() {return userService.getAll();}
+    public List<UserDto> getList() {return userService.findAll();}
 
     @PostMapping("/users")
     public String addNewUser(@RequestBody UserDto user) {

@@ -279,8 +279,8 @@ INSERT INTO command_project.brands_tbl(
 VALUES ('Goods House Авеню', 'GDH');
 
 INSERT INTO command_project.brands_tbl(
-    name, abbr)
-VALUES ('Some brand', 'ckh');
+    abbr, name)
+VALUES ('СКН Европейский', 'СКН');
 
 
 INSERT INTO roles_tbl (

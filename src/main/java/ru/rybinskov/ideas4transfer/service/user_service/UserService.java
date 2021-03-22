@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface UserService {
     UserDto getById(Long id) throws ResourceNotFoundException;
-    List<UserDto> getAll();
+    List<UserDto> findAll();
     UserDto findByName(String name);
     void save(UserDto user);
     void delete(UserDto userDto);

@@ -42,7 +42,7 @@ public class User {
     private Collection<Role> roles;
 
 
-    @ManyToMany //(fetch = FetchType.EAGER)
+    @ManyToMany
      @JoinTable(
         name = "users_brands_tbl",
         joinColumns = { @JoinColumn(name = "user_id") },

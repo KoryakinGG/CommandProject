@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public List<UserDto> getAll() {
+    public List<UserDto> findAll() {
         return userRepository.findAll().stream().map(UserDto::new).collect(Collectors.toList());
     }
 

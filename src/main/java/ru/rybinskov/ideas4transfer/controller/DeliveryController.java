@@ -42,10 +42,8 @@ public class DeliveryController {
 
     @PutMapping("/deliveries")
     public ResponseEntity<DeliveryDto> updateDelivery(@RequestBody DeliveryDto deliveryDetails) throws ResourceNotFoundException {
-        DeliveryDto delivery = deliveryService.findById(deliveryDetails.getId());
-        delivery.updateAllFieldsWithoutId(deliveryDetails);
-        deliveryService.updateDelivery(delivery);
-        return ResponseEntity.ok(delivery);
+        deliveryService.updateDelivery(deliveryDetails);
+        return ResponseEntity.ok(deliveryDetails);
     }
 
     @DeleteMapping("/deliveries")

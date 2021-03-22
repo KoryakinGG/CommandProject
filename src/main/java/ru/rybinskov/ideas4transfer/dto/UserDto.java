@@ -34,7 +34,6 @@ public class UserDto {
         this.email = user.getEmail();
         this.fullName = user.getFullName();
         this.roles = user.getRoles().stream().map(RoleDto::new).collect(Collectors.toList()); // stream
-
         this.brands = user.getBrands().stream().map(BrandDto::new).collect(Collectors.toList());
     }
 

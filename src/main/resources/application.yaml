@@ -9,12 +9,16 @@ spring:
       show-sql: true
       ddl-auto: validate
       dialect: org.hibernate.dialect.PostgreSQL95Dialect
+#    show-sql: false
+#    properties:
+#      hibernate:
+#        format_sql: true
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres?currentSchema=command_project
     username: postgres
     password: password
     flyway:
       baseline-on-migrate: true
-#  jackson:
-#    serialization:
-#      indent_output: true
+  jackson:
+    serialization:
+      indent_output: true
