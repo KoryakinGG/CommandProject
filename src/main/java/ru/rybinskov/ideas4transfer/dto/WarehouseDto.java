@@ -21,4 +21,10 @@ public class WarehouseDto {
         this.name = warehouse.getName();
         this.abbr = warehouse.getAbbr();
     }
+
+    public void updateAllFieldsWithoutId(WarehouseDto warehouseDto) {
+        this.name = warehouseDto.getName();
+        this.abbr = warehouseDto.getAbbr();
+    }
+
 }

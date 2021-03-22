@@ -16,7 +16,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres?currentSchema=command_project
     username: postgres
-    password: password
+    password: admin
     flyway:
       baseline-on-migrate: true
   jackson:

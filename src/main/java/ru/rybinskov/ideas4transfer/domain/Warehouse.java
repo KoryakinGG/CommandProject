@@ -26,7 +26,7 @@ public class Warehouse {
     public Warehouse(WarehouseDto warehouse) {
         this.id = warehouse.getId();
         this.name = warehouse.getName();
-        this.abbr = warehouse.getName();
+        this.abbr = warehouse.getAbbr();
     }
 
 }

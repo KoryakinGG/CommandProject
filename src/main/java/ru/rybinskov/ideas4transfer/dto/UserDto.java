@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.rybinskov.ideas4transfer.domain.Role;
 import ru.rybinskov.ideas4transfer.domain.User;
-import ru.rybinskov.ideas4transfer.domain.Warehouse;
-
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;

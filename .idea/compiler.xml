@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="commandProject" />
+        <module name="ideas4transfer" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

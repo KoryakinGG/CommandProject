@@ -30,7 +30,6 @@ public class DeliveryServiceImpl implements DeliveryService {
         Delivery delivery = deliveryRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Поставка по указанному id не найдена:  id = " + id));
         return new DeliveryDto(delivery);
-
     }
 
     @Override
@@ -46,7 +45,6 @@ public class DeliveryServiceImpl implements DeliveryService {
     }
 
     public void delete(DeliveryDto deliveryDto) {
-
         deliveryRepository.delete(new Delivery(deliveryDto));
     }
 
