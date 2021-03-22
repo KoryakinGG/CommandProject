@@ -15,7 +15,6 @@ import java.util.List;
 @Builder
 @Entity
 @Table(schema = "command_project", name = "brands_tbl")
-//@NamedQuery(name = "withValutes", query = "SELECT e FROM ExchangeRate e JOIN FETCH e.currencies WHERE e.date = :date")
 public class Brand {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,21 +23,17 @@ public class Brand {
     private String name;
     @Column
     private String abbr;
-
+//
 //    @ManyToMany
-//    @JoinTable(schema = "command_project", name = "users_brands_tbl",
-//            joinColumns = @JoinColumn(name = "brand_id"),
-//            inverseJoinColumns = @JoinColumn(name = "user_id"))
+//    @JoinTable(
+//            name = "users_brands_tbl",
+//            joinColumns = { @JoinColumn(name = "brand_id") },
+//            inverseJoinColumns = { @JoinColumn(name = "user_id") })
+//    private List<User> users;
 
-    @ManyToMany(mappedBy = "brands")
-    private List<User> users;
 
-//    @OneToMany(targetEntity = Shop.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    @CollectionTable(schema = "command_project",
-//        name = "brands_shops",
-//        joinColumns = {@JoinColumn(name = "brand_id",
-//                referencedColumnName = "id")})
-//    private List<Shop> shops;
+    @OneToMany(mappedBy = "brand")
+    private List<Shop> shops;
 
     public Brand(BrandDto brand) {
         this.id = brand.getId();

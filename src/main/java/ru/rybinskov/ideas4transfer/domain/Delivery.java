@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.rybinskov.ideas4transfer.dto.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -19,7 +20,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(schema = "command_project", name = "deliveries_tbl")
+@Table(name = "deliveries_tbl")
 public class Delivery {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,7 +34,7 @@ public class Delivery {
     @Column
     private LocalDate deliveryDate;
 
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
     private DeliveryTime deliveryTime;
 
     @Column
@@ -43,13 +44,12 @@ public class Delivery {
     private String driverInfo;
 
     @ManyToOne
-    @JoinColumn(name = "brand_id")
     private Brand brand;
 
     @Column
     private String orderNumber;
 
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
     private DeliveryType deliveryType;
 
     @Column
@@ -59,7 +59,6 @@ public class Delivery {
     private String comment;
 
     @ManyToOne
-    @JoinColumn(name = "shop_id")
     private Shop shop;
 
     @Column
@@ -72,10 +71,26 @@ public class Delivery {
     private String invoice;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "warehouse_id")
     private Warehouse warehouse;
+
+    public Delivery(DeliveryDto deliveryDto) {
+        this.deliveryDate = deliveryDto.getDeliveryDate();
+        this.deliveryTime = deliveryDto.getDeliveryTime();
+        this.carInfo = deliveryDto.getCarInfo();
+        this.driverInfo = deliveryDto.getDriverInfo();
+        this.brand = new Brand(deliveryDto.getBrand());
+        this.orderNumber = deliveryDto.getOrderNumber();
+        this.deliveryType = deliveryDto.getDeliveryType();
+        this.sender = deliveryDto.getSender();
+        this.comment = deliveryDto.getComment();
+        this.shop = new Shop(deliveryDto.getShop());
+        this.numberOfPlaces = deliveryDto.getNumberOfPlaces();
+        this.torgNumber = deliveryDto.getTorgNumber();
+        this.invoice = deliveryDto.getInvoice();
+        this.user = new User(deliveryDto.getUser());
+        this.warehouse = new Warehouse(deliveryDto.getWarehouse());
+    }
 }

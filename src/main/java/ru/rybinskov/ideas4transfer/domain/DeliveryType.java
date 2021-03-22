@@ -1,31 +1,23 @@
 package ru.rybinskov.ideas4transfer.domain;
 
-public enum DeliveryType {
-    //при входе будем делать toLowerCase
-    CROSS_DOCKING("кросс-докинг"), TO_WAREHOUSE("на склад");
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-    private final String name;
+import javax.persistence.*;
 
-    DeliveryType(String name) {
-        this.name = name;
-    }
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Entity
+@Table(name = "delivery_type_tbl")
+public class DeliveryType {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column
+    private String type;
 
-    public String getName() {
-        return this.name;
-    }
-
-    //Всё, что ниже важно, т.к. enum не поддерживает пробелы =(
-    @Override
-    public String toString() {
-        return name;
-    }
-
-    public static DeliveryType valueOfOrDefault(String myValue) {
-        for (DeliveryType type : DeliveryType.class.getEnumConstants()) {
-            if (type.toString().equals(myValue.toLowerCase())) {
-                return type;
-            }
-        }
-        throw new IllegalArgumentException("Введено запрещенное значение");
-    }
 }

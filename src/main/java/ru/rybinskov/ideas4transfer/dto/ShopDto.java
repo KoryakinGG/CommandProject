@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.rybinskov.ideas4transfer.domain.Shop;
 
 @Data
 @NoArgsConstructor
@@ -13,5 +14,12 @@ public class ShopDto {
     private Long id;
     private String name;
     private String abbr;
-//    private String brand;
+    private BrandDto brand;
+
+    public ShopDto(Shop shop) {
+        this.id = shop.getId();
+        this.name = shop.getName();
+        this.abbr = shop.getAbbr();
+        this.brand = new BrandDto(shop.getBrand());
+    }
 }

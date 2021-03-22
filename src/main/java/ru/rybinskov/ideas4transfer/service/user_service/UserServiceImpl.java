@@ -1,6 +1,6 @@
 package ru.rybinskov.ideas4transfer.service.user_service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,19 +8,17 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import ru.rybinskov.ideas4transfer.domain.Delivery;
+
+import org.springframework.transaction.annotation.Transactional;
 import ru.rybinskov.ideas4transfer.domain.Role;
 import ru.rybinskov.ideas4transfer.domain.User;
-import ru.rybinskov.ideas4transfer.dto.DeliveryJson;
 import ru.rybinskov.ideas4transfer.dto.UserDto;
 import ru.rybinskov.ideas4transfer.exception.ResourceNotFoundException;
-import ru.rybinskov.ideas4transfer.mapper.UserMapper;
-import ru.rybinskov.ideas4transfer.repository.BrandRepository;
 import ru.rybinskov.ideas4transfer.repository.UserRepository;
 
-import java.util.ArrayList;
+
+import java.util.Collection;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -62,20 +60,19 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
-        if(user == null){
-            throw new UsernameNotFoundException("User not found with name: " + username);
+        if (user == null) {
+            throw new UsernameNotFoundException(String.format("User '%s' not found", username));
         }
-
-        List<GrantedAuthority> roles = new ArrayList<>();
-        roles.add(new SimpleGrantedAuthority(user.getRole().name()));
-
-        return new org.springframework.security.core.userdetails.User(
-                user.getUsername(),
-                user.getPassword(),
-                roles);
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), mapRolesToAuthorities(user.getRoles()));
     }
+    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
+        return roles.stream().map(role -> new SimpleGrantedAuthority(role.getRole())).collect(Collectors.toList());
+    }
+
+
 
 }
 

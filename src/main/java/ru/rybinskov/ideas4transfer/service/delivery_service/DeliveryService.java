@@ -1,6 +1,6 @@
 package ru.rybinskov.ideas4transfer.service.delivery_service;
 
-import ru.rybinskov.ideas4transfer.dto.DeliveryJson;
+import ru.rybinskov.ideas4transfer.dto.DeliveryDto;
 import ru.rybinskov.ideas4transfer.exception.ResourceNotFoundException;
 
 import java.util.List;
@@ -15,10 +15,10 @@ public interface DeliveryService {
 //    void deleteById (Long id);
 
 //    void collectAndSaveDelivery(DeliveryJson deliveryJson);
-    List<DeliveryJson> findAll();
-    DeliveryJson findById(Long id) throws ResourceNotFoundException;
-    void createDelivery(DeliveryJson deliveryJson);
-    void updateDelivery(DeliveryJson deliveryJson);
-    void delete(DeliveryJson deliveryJson);
+    List<DeliveryDto> findAll();
+    DeliveryDto findById(Long id) throws ResourceNotFoundException;
+    void createDelivery(DeliveryDto deliveryDto);
+    void updateDelivery(DeliveryDto deliveryDto);
+    void delete(DeliveryDto deliveryDto);
 
 }

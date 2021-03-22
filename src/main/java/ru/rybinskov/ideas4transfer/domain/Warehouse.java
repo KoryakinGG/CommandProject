@@ -4,17 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.rybinskov.ideas4transfer.domain.example.Hobby;
+import ru.rybinskov.ideas4transfer.dto.WarehouseDto;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(schema = "command_project", name = "warehouses_tbl")
+@Table(name = "warehouses_tbl")
 public class Warehouse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,8 +23,10 @@ public class Warehouse {
     @Column
     private String abbr;
 
-//    @OneToMany(mappedBy = "warehouse")
-//    private List<User> users;
-
+    public Warehouse(WarehouseDto warehouse) {
+        this.id = warehouse.getId();
+        this.name = warehouse.getName();
+        this.abbr = warehouse.getName();
+    }
 
 }

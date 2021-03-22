@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.rybinskov.ideas4transfer.dto.ShopDto;
 
 import javax.persistence.*;
 
@@ -12,7 +13,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(schema = "command_project", name = "shops_tbl")
+@Table(name = "shops_tbl")
 public class Shop {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +23,14 @@ public class Shop {
     @Column
     private String abbr;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-////    @JoinColumn(name = "brands_id")
-//    private Brand brand;
+    @ManyToOne
+    @JoinColumn(name = "brand_id")
+    private Brand brand;
+
+    public Shop(ShopDto shopDto) {
+        this.id = shopDto.getId();
+        this.name = shopDto.getName();
+        this.abbr = shopDto.getAbbr();
+        this.brand = new Brand(shopDto.getBrand());
+    }
 }

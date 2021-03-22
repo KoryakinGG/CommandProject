@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.rybinskov.ideas4transfer.domain.Warehouse;
 
 @Data
 @NoArgsConstructor
@@ -15,4 +16,9 @@ public class WarehouseDto {
     private String name;
     private String abbr;
 
+    public WarehouseDto(Warehouse warehouse) {
+        this.id = warehouse.getId();
+        this.name = warehouse.getName();
+        this.abbr = warehouse.getAbbr();
+    }
 }

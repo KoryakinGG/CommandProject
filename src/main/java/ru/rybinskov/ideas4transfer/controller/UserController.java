@@ -2,7 +2,6 @@ package ru.rybinskov.ideas4transfer.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.rybinskov.ideas4transfer.dto.DeliveryJson;
 import ru.rybinskov.ideas4transfer.dto.UserDto;
 import ru.rybinskov.ideas4transfer.exception.ResourceNotFoundException;
 import ru.rybinskov.ideas4transfer.service.user_service.UserService;

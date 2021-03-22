@@ -1,16 +1,28 @@
 package ru.rybinskov.ideas4transfer.domain;
 
-public enum Role {
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import ru.rybinskov.ideas4transfer.dto.RoleDto;
 
-    ADMIN("ADMIN"),
-    BRAND_MANAGER("BRAND_MANAGER"),
-    WAREHOUSE("WAREHOUSE");
+import javax.persistence.*;
 
-    private final String role;
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Entity
+@Table(name = "roles_tbl")
+public class Role {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column
+    private String role;
 
-    Role(String role) {
-        this.role = role;
+    public Role(RoleDto roleDto) {
+        this.id = roleDto.getId();
+        this.role = roleDto.getRole();
     }
-
-    public String getRole() {return role;}
 }

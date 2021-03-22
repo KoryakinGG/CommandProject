@@ -5,16 +5,27 @@ server:
     context-path: /
 spring:
   jpa:
+    show-sql: false
     hibernate:
-      show-sql: true
-      ddl-auto: validate
+#      show-sql: true
+#      format_sql: true
+      ddl-auto: create-drop
       dialect: org.hibernate.dialect.PostgreSQL95Dialect
   datasource:
+#    driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/postgres?currentSchema=command_project
     username: postgres
     password: password
     flyway:
       baseline-on-migrate: true
-#  jackson:
-#    serialization:
-#      indent_output: true
+  jackson:
+    serialization:
+      indent_output: true
+#  logging:
+#    level:
+#      org:
+#        hibernate:
+#          sql: debug
+#          type: trace
+#            descriptor=trace
+#
