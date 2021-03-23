@@ -13,7 +13,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "roles_tbl")
+@Table(schema = "command_project", name = "roles_tbl")
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

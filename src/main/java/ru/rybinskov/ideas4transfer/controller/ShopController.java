@@ -36,8 +36,7 @@ public class ShopController {
         shopService.updateShop(shopDto);
         return ResponseEntity.ok(shopDto);
     }
-//        DeliveryDto delivery = deliveryService.findById(deliveryDetails.getId());
-//        delivery.updateAllFieldsWithoutId(deliveryDetails);
+
     @DeleteMapping("/shops")
     public Map<String, Boolean> deleteShop(@RequestBody ShopDto shopDto) {
         shopService.delete(shopDto);

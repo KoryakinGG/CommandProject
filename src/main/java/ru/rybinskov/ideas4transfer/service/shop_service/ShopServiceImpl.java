@@ -6,13 +6,15 @@ import ru.rybinskov.ideas4transfer.domain.Shop;
 import ru.rybinskov.ideas4transfer.dto.ShopDto;
 import ru.rybinskov.ideas4transfer.exception.ResourceNotFoundException;
 import ru.rybinskov.ideas4transfer.repository.ShopRepository;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class ShopServiceImpl implements ShopService {
 
-    private ShopRepository shopRepository;
+    private final ShopRepository shopRepository;
+
 
     @Autowired
     public ShopServiceImpl(ShopRepository shopRepository) {

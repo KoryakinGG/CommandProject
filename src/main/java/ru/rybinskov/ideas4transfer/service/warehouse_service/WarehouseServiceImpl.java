@@ -2,9 +2,8 @@ package ru.rybinskov.ideas4transfer.service.warehouse_service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.rybinskov.ideas4transfer.domain.Shop;
+
 import ru.rybinskov.ideas4transfer.domain.Warehouse;
-import ru.rybinskov.ideas4transfer.dto.ShopDto;
 import ru.rybinskov.ideas4transfer.dto.WarehouseDto;
 import ru.rybinskov.ideas4transfer.exception.ResourceNotFoundException;
 import ru.rybinskov.ideas4transfer.repository.WarehouseRepository;

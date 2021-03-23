@@ -4,8 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.rybinskov.ideas4transfer.dto.BrandDto;
-import ru.rybinskov.ideas4transfer.dto.RoleDto;
 import ru.rybinskov.ideas4transfer.dto.UserDto;
 
 import javax.persistence.*;
@@ -13,13 +11,13 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(schema = "command_project",name = "users_tbl")
+@Table(schema = "command_project", name = "users_tbl")
+
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,17 +34,17 @@ public class User {
     private String phone;
 
     @ManyToMany
-    @JoinTable(name = "users_roles_tbl",
-         joinColumns = @JoinColumn(name = "user_id"),
-         inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JoinTable(schema = "command_project", name = "users_roles_tbl",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Collection<Role> roles;
 
-
     @ManyToMany
-     @JoinTable(
-        name = "users_brands_tbl",
-        joinColumns = { @JoinColumn(name = "user_id") },
-        inverseJoinColumns = { @JoinColumn(name = "brand_id") })
+    @JoinTable(
+            schema = "command_project",
+            name = "users_brands_tbl",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "brand_id")})
     private List<Brand> brands;
 
     public User(UserDto userDto) {

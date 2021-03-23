@@ -12,7 +12,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "delivery_time_tbl")
+@Table(schema = "command_project", name = "delivery_time_tbl")
 public class DeliveryTime {
 
     @Id

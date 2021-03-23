@@ -60,22 +60,62 @@ public class DeliveryController {
         ObjectMapper mapper = new ObjectMapper();
         String json =
                 "{\n" +
-                        "        \"deliveryDate\": \"09.03.2021\",\n" +
-                        "        \"deliveryTime\": \"\",\n" +
-                        "        \"carInfo\": \"Reno Master Н496ХВ197\",\n" +
-                        "        \"driverInfo\": \"Vasya Terkin\",\n" +
-                        "        \"brand\": \"j\",\n" +  // BrandDto
-                        "        \"orderNumber\": \"GDH01000011-2021\",\n" +
-                        "        \"deliveryType\": \"кросс-докинг\",\n" + // LONG
-                        "        \"sender\": \"ООО Какой-то магазин\",\n" +
-                        "        \"comment\": \"ОПАЗДЫВАТЬ НЕЛЬЗЯ\",\n" +
-                        "        \"shop\": \"Goods House Авеню\",\n" +  // ShopDto
-                        "        \"numberOfPlaces\": \"20\",\n" +
-                        "        \"torgNumber\": \"QWERTY123\",\n" +
-                        "        \"invoice\": \"QWERTY123\",\n" +
-                        "        \"user\": \"Alex\",\n" +  // UserDto
-                        "        \"warehouse\": \"Склад №1\"\n" + // WarehouseDto
-                        "    }";
+                        "  \"id\" : 1,\n" +
+                        "  \"deliveryDate\" : \"10.03.2021\",\n" +
+                        "  \"deliveryTime\" : {\n" +
+                        "    \"id\" : 1,\n" +
+                        "    \"deliveryTime\" : \"23.03.2021\"\n" +
+                        "  },\n" +
+                        "  \"carInfo\" : \"Н496ХВ197\",\n" +
+                        "  \"driverInfo\" : \"Vasya\",\n" +
+                        "  \"brand\" : {\n" +
+                        "    \"id\" : 1,\n" +
+                        "    \"name\" : \"Goods House\",\n" +
+                        "    \"abbr\" : \"GDH\"\n" +
+                        "  },\n" +
+                        "  \"orderNumber\" : \"w12344\",\n" +
+                        "  \"deliveryType\" : {\n" +
+                        "    \"id\" : 1,\n" +
+                        "    \"type\" : \"CROSS_DOCKING\"\n" +
+                        "  },\n" +
+                        "  \"sender\" : \"ООО Какая-то компания\",\n" +
+                        "  \"comment\" : \"доставить вовремя\",\n" +
+                        "  \"shop\" : {\n" +
+                        "    \"id\" : 1,\n" +
+                        "    \"name\" : \"Goods House Авеню\",\n" +
+                        "    \"abbr\" : \"GDH1\",\n" +
+                        "    \"brand\" : {\n" +
+                        "      \"id\" : 1,\n" +
+                        "      \"name\" : \"Goods House 2\",\n" +
+                        "      \"abbr\" : \"GDH2\"\n" +
+                        "    }\n" +
+                        "  },\n" +
+                        "  \"numberOfPlaces\" : \"40\",\n" +
+                        "  \"torgNumber\" : \"1123\",\n" +
+                        "  \"invoice\" : \"1123\",\n" +
+                        "  \"user\" : {\n" +
+                        "    \"id\" : 1,\n" +
+                        "    \"username\" : \"Gogi\",\n" +
+                        "    \"roles\" : [ {\n" +
+                        "      \"id\" : 1,\n" +
+                        "      \"role\" : \"ROLE_ADMIN\"\n" +
+                        "    } ],\n" +
+                        "    \"fullName\" : \"Gogi Gogi\",\n" +
+                        "    \"email\" : \"gogi@gmail.com\",\n" +
+                        "    \"phone\" : \"88002222222\",\n" +
+                        "    \"password\" : \"password\",\n" +
+                        "    \"brands\" : [ {\n" +
+                        "      \"id\" : 1,\n" +
+                        "      \"name\" : \"Goods House\",\n" +
+                        "      \"abbr\" : \"GDH\"\n" +
+                        "    } ]\n" +
+                        "  },\n" +
+                        "  \"warehouse\" : {\n" +
+                        "    \"id\" : 1,\n" +
+                        "    \"name\" : \"Склад №1\",\n" +
+                        "    \"abbr\" : \"skd1\"\n" +
+                        "  }\n" +
+                        "}";
         DeliveryDto deliveryDto = mapper.readValue(json, DeliveryDto.class);
         deliveryService.createDelivery(deliveryDto);
         return "Congratulation";

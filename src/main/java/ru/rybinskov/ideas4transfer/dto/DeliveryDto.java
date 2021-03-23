@@ -26,13 +26,13 @@ public class DeliveryDto {
     private Long id;
     @JsonFormat(
             shape = JsonFormat.Shape.STRING,
+//            pattern = "yyyy.MM.dd")
             pattern = "dd.MM.yyyy")
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
     @JsonProperty(value = "deliveryDate")
     private LocalDate deliveryDate;
-
-    @JsonProperty(value = "deliveryTime")
+    @JsonProperty(value = "deliverTime")
     private DeliveryTime deliveryTime;
 
     @JsonProperty(value = "carInfo")
@@ -77,6 +77,7 @@ public class DeliveryDto {
     private WarehouseDto warehouse;
 
     public DeliveryDto(Delivery delivery) {
+        this.id = delivery.getId();
         this.deliveryDate = delivery.getDeliveryDate();
         this.deliveryTime = delivery.getDeliveryTime();
         this.carInfo = delivery.getCarInfo();

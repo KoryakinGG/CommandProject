@@ -20,7 +20,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "deliveries_tbl")
+@Table(schema = "command_project", name = "deliveries_tbl")
 public class Delivery {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,6 +28,7 @@ public class Delivery {
 
     @JsonFormat(
             shape = JsonFormat.Shape.STRING,
+//            pattern = "yyyy.MM.dd")
             pattern = "dd.MM.yyyy")
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)

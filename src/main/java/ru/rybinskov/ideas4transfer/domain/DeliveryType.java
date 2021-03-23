@@ -12,7 +12,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "delivery_type_tbl")
+@Table(schema = "command_project", name = "delivery_type_tbl")
 public class DeliveryType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
