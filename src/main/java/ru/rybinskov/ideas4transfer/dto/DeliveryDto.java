@@ -22,58 +22,41 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 public class DeliveryDto {
-    @JsonProperty(value = "id")
+
     private Long id;
     @JsonFormat(
             shape = JsonFormat.Shape.STRING,
-//            pattern = "yyyy.MM.dd")
             pattern = "dd.MM.yyyy")
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
-    @JsonProperty(value = "deliveryDate")
     private LocalDate deliveryDate;
-    @JsonProperty(value = "deliverTime")
+
     private DeliveryTime deliveryTime;
 
-    @JsonProperty(value = "carInfo")
     private String carInfo;
 
-    @JsonProperty(value = "driverInfo")
     private String driverInfo;
 
-    @JsonProperty(value = "brand")
     private BrandDto brand;
 
-    @JsonProperty(value = "orderNumber")
     private String orderNumber;
 
-    @JsonProperty(value = "deliveryType")
     private DeliveryType deliveryType;
 
-    @JsonProperty(value ="sender")
     private String sender;
 
-    @JsonProperty(value = "comment")
     private String comment;
 
-    @JsonProperty(value = "shop")
     private ShopDto shop;
 
-    @JsonProperty(value = "numberOfPlaces")
-    @Column
     private String numberOfPlaces;
 
-    @JsonProperty(value = "torgNumber")
-    @Column
     private String torgNumber;
 
-    @JsonProperty(value = "invoice")
     private String invoice;
 
-    @JsonProperty(value = "user")
     private UserDto user;
 
-    @JsonProperty(value = "warehouse")
     private WarehouseDto warehouse;
 
     public DeliveryDto(Delivery delivery) {
@@ -95,7 +78,6 @@ public class DeliveryDto {
         this.warehouse = new WarehouseDto(delivery.getWarehouse());
     }
 
-
     public void updateAllFieldsWithoutId(DeliveryDto updatedDelivery) {
         this.deliveryDate = updatedDelivery.getDeliveryDate();
         this.deliveryTime = updatedDelivery.getDeliveryTime();
@@ -113,5 +95,4 @@ public class DeliveryDto {
         this.user = updatedDelivery.getUser();
         this.warehouse = updatedDelivery.getWarehouse();
     }
-
 }

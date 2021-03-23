@@ -252,11 +252,11 @@ VALUES (2,'TO_WAREHOUSE');
 
 INSERT INTO delivery_time_tbl(
     id, delivery_time)
-VALUES (1, '23.03.2021');
+VALUES (1, 'Первая половина дня');
 
 INSERT INTO delivery_time_tbl(
     id, delivery_time)
-VALUES (2,'30.04.2021');
+VALUES (2,'Вторая половина дня');
 
 INSERT INTO deliveries_tbl (
     car_info, comment, delivery_date, driver_info, invoice, number_of_places,
