@@ -48,4 +48,10 @@ public class WarehouseServiceImpl implements WarehouseService{
     public void delete(WarehouseDto warehouseDto) {
         warehouseRepository.delete(new Warehouse(warehouseDto));
     }
+
+    @Override
+    public void saveAll(List<WarehouseDto> warehouseDtos) {
+        List<Warehouse> shops = warehouseDtos.stream().map(Warehouse::new).collect(Collectors.toList());
+        warehouseRepository.saveAll(shops);
+    }
 }

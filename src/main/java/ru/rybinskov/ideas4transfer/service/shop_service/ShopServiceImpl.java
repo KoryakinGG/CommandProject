@@ -48,4 +48,10 @@ public class ShopServiceImpl implements ShopService {
     public void delete(ShopDto shopDto) {
         shopRepository.delete(new Shop(shopDto));
     }
+
+    @Override
+    public void saveAll(List<ShopDto> shopDtos) {
+        List<Shop> shops = shopDtos.stream().map(Shop::new).collect(Collectors.toList());
+        shopRepository.saveAll(shops);
+    }
 }

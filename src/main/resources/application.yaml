@@ -14,9 +14,9 @@ spring:
       hibernate:
         format_sql: true
   datasource:
-    url: jdbc:postgresql://localhost:5432/test?currentSchema=command_project
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=command_project
     username: postgres
-    password: n7g2phk2
+    password: password
     flyway:
       baseline-on-migrate: true
   jackson:

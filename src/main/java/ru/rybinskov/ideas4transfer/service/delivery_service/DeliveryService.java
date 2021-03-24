@@ -12,5 +12,6 @@ public interface DeliveryService {
     void createDelivery(DeliveryDto deliveryDto);
     void updateDelivery(DeliveryDto deliveryDto) throws ResourceNotFoundException;
     void delete(DeliveryDto deliveryDto);
+    void saveAll(List<DeliveryDto> deliveryDtos);
 
 }

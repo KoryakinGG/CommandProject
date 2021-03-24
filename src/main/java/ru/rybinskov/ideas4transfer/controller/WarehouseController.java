@@ -44,4 +44,9 @@ public class WarehouseController {
         response.put("deleted", Boolean.TRUE);
         return response;
     }
+
+    @PostMapping("/grouped-warehouses")
+    public void saveAllWarehouses(@RequestBody List<WarehouseDto> warehouseDtos) {
+        warehouseService.saveAll(warehouseDtos);
+    }
 }

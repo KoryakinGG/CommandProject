@@ -19,10 +19,10 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
-    private String role;
+    private String roleName;
 
     public Role(RoleDto roleDto) {
         this.id = roleDto.getId();
-        this.role = roleDto.getRole();
+        this.roleName = roleDto.getRole();
     }
 }

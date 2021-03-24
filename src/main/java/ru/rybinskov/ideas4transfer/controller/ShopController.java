@@ -44,4 +44,10 @@ public class ShopController {
         response.put("deleted", Boolean.TRUE);
         return response;
     }
+
+    @PostMapping("/grouped-shops")
+    public void saveAllShops(@RequestBody List<ShopDto> shopDtos) {
+        shopService.saveAll(shopDtos);
+    }
+
 }

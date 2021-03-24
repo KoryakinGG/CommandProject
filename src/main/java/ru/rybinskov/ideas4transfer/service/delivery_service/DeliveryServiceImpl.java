@@ -48,4 +48,10 @@ public class DeliveryServiceImpl implements DeliveryService {
         deliveryRepository.delete(new Delivery(deliveryDto));
     }
 
+    @Override
+    public void saveAll(List<DeliveryDto> deliveryDtos) {
+        List<Delivery> deliveries = deliveryDtos.stream().map(Delivery::new).collect(Collectors.toList());
+        deliveryRepository.saveAll(deliveries);
+    }
+
 }

@@ -50,7 +50,6 @@ public class User {
     public User(UserDto userDto) {
         this.id = userDto.getId();
         this.username = userDto.getUsername();
-        this.password = userDto.getPassword();
         this.phone = userDto.getPhone();
         this.email = userDto.getEmail();
         this.fullName = userDto.getFullName();

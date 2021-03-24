@@ -29,18 +29,16 @@ public class UserController {
     @GetMapping("/users")
     public List<UserDto> getList() {return userService.findAll();}
 
-    @PostMapping("/users")
-    public String addNewUser(@RequestBody UserDto user) {
-        userService.save(user);
-        return "Well Done";
-    }
+//    @PostMapping("/users")
+//    public String addNewUser(@RequestBody UserDto user) {
+//        userService.save(user);
+//        return "Well Done";
+//    }
 
     @PutMapping("/users")
     public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDetails) throws ResourceNotFoundException {
-        UserDto userDto = userService.getById(userDetails.getId());
-        userDto.updateAllFieldsWithoutId(userDetails);
-        userService.save(userDto);
-        return ResponseEntity.ok(userDto);
+        userService.update(userDetails);
+        return ResponseEntity.ok(userDetails);
     }
 
     @DeleteMapping("/users")

@@ -12,4 +12,5 @@ public interface WarehouseService {
     void updateWarehouse(WarehouseDto warehouseDto) throws ResourceNotFoundException;
     void save(WarehouseDto warehouseDto);
     void delete(WarehouseDto warehouseDto);
+    public void saveAll(List<WarehouseDto> warehouseDtos);
 }

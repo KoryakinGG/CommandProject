@@ -12,4 +12,5 @@ public interface ShopService {
     void updateShop(ShopDto shopDto) throws ResourceNotFoundException;
     void save(ShopDto shopDto);
     void delete(ShopDto shopDto);
+    void saveAll(List<ShopDto> shopDtos);
 }

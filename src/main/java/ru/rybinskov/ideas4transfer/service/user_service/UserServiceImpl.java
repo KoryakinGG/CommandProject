@@ -10,11 +10,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
+import ru.rybinskov.ideas4transfer.domain.Delivery;
 import ru.rybinskov.ideas4transfer.domain.Role;
 import ru.rybinskov.ideas4transfer.domain.User;
+import ru.rybinskov.ideas4transfer.dto.DeliveryDto;
 import ru.rybinskov.ideas4transfer.dto.UserDto;
 import ru.rybinskov.ideas4transfer.exception.ResourceNotFoundException;
 import ru.rybinskov.ideas4transfer.repository.UserRepository;
+import ru.rybinskov.ideas4transfer.security.principal.UserPrincipal;
 
 
 import java.util.Collection;
@@ -48,11 +51,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return null;
     }
 
-    @Override
-    public void save(UserDto userDto) {
-        userDto.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
-        userRepository.save(new User(userDto));
-    }
+//    @Override
+//    public void save(UserDto userDto) {
+//        userDto.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
+//        userRepository.save(new User(userDto));
+//    }
 
     public void delete(UserDto userDto) {
         User user = new User(userDto);
@@ -60,17 +63,32 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    public void update (UserDto userDetails) throws ResourceNotFoundException {
+        UserDto userDto = getById(userDetails.getId());
+        userDto.updateAllFieldsWithoutId(userDto);
+        userRepository.save(new User(userDto));
+    }
+
+    @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
-        if (user == null) {
-            throw new UsernameNotFoundException(String.format("User '%s' not found", username));
-        }
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), mapRolesToAuthorities(user.getRoles()));
+        User user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(String.format("Пользователь '%s' не найден", username)));
+        return UserPrincipal.build(user);
     }
-    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
-        return roles.stream().map(role -> new SimpleGrantedAuthority(role.getRole())).collect(Collectors.toList());
-    }
+
+
+//    @Override
+//    @Transactional
+//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//        User user = userRepository.findByUsername(username);
+//        if (user == null) {
+//            throw new UsernameNotFoundException(String.format("User '%s' not found", username));
+//        }
+//        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), mapRolesToAuthorities(user.getRoles()));
+//    }
+//    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
+//        return roles.stream().map(role -> new SimpleGrantedAuthority(role.getRole())).collect(Collectors.toList());
+//    }
 
 
 

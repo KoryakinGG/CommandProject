@@ -67,4 +67,10 @@ public class DeliveryController {
         deliveryService.createDelivery(deliveryDto);
         return "Congratulation, delivery created";
     }
+
+    @PostMapping("/grouped-deliveries")
+    public void saveAllDeliveries(@RequestBody List<DeliveryDto> deliveries) {
+        deliveryService.saveAll(deliveries);
+    }
+
 }

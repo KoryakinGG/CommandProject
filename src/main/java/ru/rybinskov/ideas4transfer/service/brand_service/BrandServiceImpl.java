@@ -50,4 +50,10 @@ public class BrandServiceImpl implements BrandService{
     public void delete(BrandDto brandDto) {
         brandRepository.delete(new Brand(brandDto));
     }
+
+    @Override
+    public void saveAll(List<BrandDto> brandDtos) {
+        List<Brand> brands = brandDtos.stream().map(Brand::new).collect(Collectors.toList());
+        brandRepository.saveAll(brands);
+    }
 }

@@ -17,6 +17,6 @@ public class RoleDto {
 
     public RoleDto(Role role) {
         this.id = role.getId();
-        this.role = role.getRole();
+        this.role = role.getRoleName();
     }
 }

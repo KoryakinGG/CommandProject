@@ -5,9 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.rybinskov.ideas4transfer.domain.Brand;
-import ru.rybinskov.ideas4transfer.domain.User;
-
-import java.util.List;
 
 @Data
 @NoArgsConstructor

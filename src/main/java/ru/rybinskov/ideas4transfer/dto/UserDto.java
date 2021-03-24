@@ -20,13 +20,11 @@ public class UserDto {
     private String fullName;
     private String email;
     private String phone;
-    private String password;
     private List<BrandDto> brands;
 
     public UserDto(User user) {
         this.id = user.getId();
         this.username = user.getUsername();
-        this.password = user.getPassword();
         this.phone = user.getPhone();
         this.email = user.getEmail();
         this.fullName = user.getFullName();
@@ -36,7 +34,6 @@ public class UserDto {
 
     public void updateAllFieldsWithoutId(UserDto userDto) {
         this.username = userDto.getUsername();
-        this.password = userDto.getPassword();
         this.phone = userDto.getPhone();
         this.email = userDto.getEmail();
         this.fullName = userDto.getFullName();

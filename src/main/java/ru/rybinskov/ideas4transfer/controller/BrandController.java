@@ -51,4 +51,10 @@ public class BrandController {
         response.put("deleted", Boolean.TRUE);
         return response;
     }
+
+    @PostMapping("/grouped-brands")
+    public void saveAllBrands(@RequestBody List<BrandDto> brandDtos) {
+        brandService.saveAll(brandDtos);
+    }
+
 }

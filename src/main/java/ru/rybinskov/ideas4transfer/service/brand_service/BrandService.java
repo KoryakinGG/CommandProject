@@ -12,4 +12,5 @@ public interface BrandService {
     void createBrand(BrandDto brandDto);
     void updateBrand(BrandDto brandDto) throws ResourceNotFoundException;
     void delete(BrandDto brandDto);
+    void saveAll(List<BrandDto> brandDtos);
 }

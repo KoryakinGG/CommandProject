@@ -9,6 +9,7 @@ public interface UserService {
     UserDto getById(Long id) throws ResourceNotFoundException;
     List<UserDto> findAll();
     UserDto findByName(String name);
-    void save(UserDto user);
+//    void save(UserDto user);
     void delete(UserDto userDto);
+    void update(UserDto user) throws ResourceNotFoundException;
 }
