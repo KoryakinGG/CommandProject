@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.rybinskov.ideas4transfer.dto.DeliveryTypeDto;
 
 import javax.persistence.*;
 
@@ -20,4 +21,8 @@ public class DeliveryType {
     @Column
     private String type;
 
+    public DeliveryType(DeliveryTypeDto deliveryTypeDto) {
+        this.id = deliveryTypeDto.getId();
+        this.type = deliveryTypeDto.getType();
+    }
 }

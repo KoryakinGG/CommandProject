@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.rybinskov.ideas4transfer.dto.DeliveryTimeDto;
 
 import javax.persistence.*;
 
@@ -20,4 +21,9 @@ public class DeliveryTime {
     private Long id;
     @Column
     private String deliveryTime;
+
+    public DeliveryTime(DeliveryTimeDto deliveryTimeDto) {
+        this.id = deliveryTimeDto.getId();
+        this.deliveryTime = deliveryTimeDto.getDeliveryTime();
+    }
 }

@@ -24,7 +24,6 @@ public class BrandDto {
     }
 
     public void updateAllFieldsWithoutId(BrandDto brandDto) {
-        this.id = brandDto.getId();
         this.name = brandDto.getName();
         this.abbr = brandDto.getAbbr();
     }
