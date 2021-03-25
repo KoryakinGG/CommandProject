@@ -262,7 +262,7 @@ INSERT INTO deliveries_tbl (
     car_info, comment, delivery_date, driver_info, invoice, number_of_places,
     order_number, sender, torg_number, brand_id, delivery_time_id,
     delivery_type_id, shop_id, user_id, warehouse_id) VALUES (
-                                                                 'Н496ХВ197', 'доставить вовремя', '10.03.2021',
+                                                                 'Н496ХВ197', 'доставить вовремя', '2021.10.01',
                                                                  'Gogi', '1123', '40', 'w12344',
                                                                  'ООО Какая-то компания', '1123', 1, 1, 1, 1, 1, 1);
 
@@ -270,6 +270,14 @@ INSERT INTO deliveries_tbl (
     car_info, comment, delivery_date, driver_info, invoice, number_of_places,
     order_number, sender, torg_number, brand_id, delivery_time_id,
     delivery_type_id, shop_id, user_id, warehouse_id) VALUES (
-                                                                 'Е855ВА177', 'доставить без опазаданий', '30.04.2021',
+                                                                 'Е855ВА177', 'доставить без опазаданий', '2021/04/23',
                                                                  'Petro', '1126', '20', 'w123444',
                                                                  'ООО Редиска', 'w123444', 2, 2, 2, 2, 2, 1);
+
+INSERT INTO deliveries_tbl (
+    car_info, comment, delivery_date, driver_info, invoice, number_of_places,
+    order_number, sender, torg_number, brand_id, delivery_time_id,
+    delivery_type_id, shop_id, user_id, warehouse_id) VALUES (
+                                                                 'X777XX777', 'доставить без опазаданий', '2021-06-23',
+                                                                 'Petro', '777', '100', '777',
+                                                                 'ООО ЁМОЁ', '777', 2, 2, 2, 2, 2, 1);

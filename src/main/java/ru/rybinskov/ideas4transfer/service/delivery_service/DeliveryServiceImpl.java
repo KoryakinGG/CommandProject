@@ -7,6 +7,8 @@ import ru.rybinskov.ideas4transfer.dto.DeliveryDto;
 import ru.rybinskov.ideas4transfer.exception.ResourceNotFoundException;
 import ru.rybinskov.ideas4transfer.repository.DeliveryRepository;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -54,4 +56,14 @@ public class DeliveryServiceImpl implements DeliveryService {
         deliveryRepository.saveAll(deliveries);
     }
 
+    @Override
+    public List<DeliveryDto> findByDeliveryDateIsBetween(String first, String last) {
+        String europeanDatePattern = "yyyy-MM-dd";
+        DateTimeFormatter europeanDateFormatter = DateTimeFormatter.ofPattern(europeanDatePattern);
+        LocalDate firstDate = LocalDate.parse(first, europeanDateFormatter);
+        LocalDate lastDate = LocalDate.parse(last, europeanDateFormatter);
+        List<DeliveryDto> lists = deliveryRepository.findByDeliveryDateIsBetween(firstDate, lastDate).stream().map(DeliveryDto::new).collect(Collectors.toList());
+        lists.sort(Comparator.comparing(DeliveryDto::getDeliveryDate));
+        return lists;
+    }
 }

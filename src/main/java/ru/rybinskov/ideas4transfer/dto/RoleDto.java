@@ -19,8 +19,4 @@ public class RoleDto {
         this.id = role.getId();
         this.role = role.getRoleName();
     }
-
-    public void updateAllFieldsWithoutId(RoleDto roleDto) {
-        this.role = roleDto.getRole();
-    }
 }

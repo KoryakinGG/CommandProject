@@ -1,6 +1,5 @@
 package ru.rybinskov.ideas4transfer.service.deleviry_type_service;
 
-import ru.rybinskov.ideas4transfer.dto.DeliveryTimeDto;
 import ru.rybinskov.ideas4transfer.dto.DeliveryTypeDto;
 import ru.rybinskov.ideas4transfer.exception.ResourceNotFoundException;
 

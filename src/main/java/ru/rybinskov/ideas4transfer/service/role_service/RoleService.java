@@ -1,6 +1,5 @@
 package ru.rybinskov.ideas4transfer.service.role_service;
 
-import ru.rybinskov.ideas4transfer.dto.BrandDto;
 import ru.rybinskov.ideas4transfer.dto.RoleDto;
 import ru.rybinskov.ideas4transfer.exception.ResourceNotFoundException;
 

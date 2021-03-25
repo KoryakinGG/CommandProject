@@ -25,4 +25,5 @@ public class DeliveryType {
         this.id = deliveryTypeDto.getId();
         this.type = deliveryTypeDto.getType();
     }
+
 }

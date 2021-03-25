@@ -1,22 +1,16 @@
 package ru.rybinskov.ideas4transfer.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.rybinskov.ideas4transfer.domain.Delivery;
-import ru.rybinskov.ideas4transfer.domain.DeliveryTime;
-import ru.rybinskov.ideas4transfer.dto.BrandDto;
 import ru.rybinskov.ideas4transfer.dto.DeliveryDto;
 import ru.rybinskov.ideas4transfer.exception.ResourceNotFoundException;
 import ru.rybinskov.ideas4transfer.service.delivery_service.DeliveryService;
 
-import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin({"http://localhost:4200","https://mywarehouseapp.herokuapp.com", "http://mywarehouseapp.herokuapp.com"})
+@CrossOrigin({"http://localhost:4200", "https://mywarehouseapp.herokuapp.com", "http://mywarehouseapp.herokuapp.com"})
 @RestController
 @RequestMapping("/api/v1")
 public class DeliveryController {
@@ -59,9 +53,9 @@ public class DeliveryController {
     }
 
     @GetMapping("/deliveries/new")
-    public String createDelivery() throws JsonProcessingException {
+    public String createDelivery() {
         List<DeliveryDto> deliveryDtoList = deliveryService.findAll();
-        DeliveryDto deliveryDto = deliveryDtoList.get(deliveryDtoList.size() -1);
+        DeliveryDto deliveryDto = deliveryDtoList.get(deliveryDtoList.size() - 1);
         deliveryDto.setId(null);
         deliveryDto.setDeliveryDate(deliveryDto.getDeliveryDate().plusDays(1L));
         deliveryService.createDelivery(deliveryDto);
@@ -71,6 +65,13 @@ public class DeliveryController {
     @PostMapping("/grouped-deliveries")
     public void saveAllDeliveries(@RequestBody List<DeliveryDto> deliveries) {
         deliveryService.saveAll(deliveries);
+    }
+
+    // http://localhost:8189/api/v1/grouped-deliveries?first=2021-12-25&last=2021-12-25
+    @GetMapping(value = "/grouped-deliveries", params = {"first", "last"})
+    public ResponseEntity<List<DeliveryDto>> getByDeliveryDateIsBetween(String first, String last) {
+        List<DeliveryDto> lists = deliveryService.findByDeliveryDateIsBetween(first, last);
+        return ResponseEntity.ok().body(lists);
     }
 
 }
