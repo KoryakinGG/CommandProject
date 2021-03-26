@@ -13,7 +13,7 @@ public interface DeliveryService {
     List<DeliveryDto> findAll();
     DeliveryDto findById(Long id) throws ResourceNotFoundException;
     void createDelivery(DeliveryDto deliveryDto) throws ExceedingAllowedDateValueException;
-    void updateDelivery(DeliveryDto deliveryDto) throws ResourceNotFoundException;
+    void updateDelivery(DeliveryDto deliveryDto) throws ResourceNotFoundException, ExceedingAllowedDateValueException;
     void delete(DeliveryDto deliveryDto);
     void saveAll(List<DeliveryDto> deliveryDtos) throws ExceedingAllowedDateValueException;
     List<DeliveryDto> findByDeliveryDateIsBetween(String first, String second);

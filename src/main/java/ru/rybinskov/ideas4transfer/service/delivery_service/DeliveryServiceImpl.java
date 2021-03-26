@@ -36,9 +36,12 @@ public class DeliveryServiceImpl implements DeliveryService {
     }
 
     @Override
-    public void updateDelivery(DeliveryDto deliveryDto) throws ResourceNotFoundException {
+    public void updateDelivery(DeliveryDto deliveryDto) throws ResourceNotFoundException, ExceedingAllowedDateValueException {
         DeliveryDto delivery = findById(deliveryDto.getId());
         delivery.updateAllFieldsWithoutId(deliveryDto);
+        if (delivery.getDeliveryDate().compareTo(LocalDate.now().plusDays(21)) > 0) {
+            throw new ExceedingAllowedDateValueException("На текущую дату невозможно оформить доставку. Ближайшая из возможных дат: " + LocalDate.now().plusDays(21) + " или ранее.");
+        }
         deliveryRepository.save(new Delivery(delivery));
     }
 
