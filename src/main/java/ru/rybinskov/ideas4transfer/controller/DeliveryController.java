@@ -3,6 +3,7 @@ package ru.rybinskov.ideas4transfer.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.rybinskov.ideas4transfer.dto.DeliveryDto;
+import ru.rybinskov.ideas4transfer.exception.ExceedingAllowedDateValueException;
 import ru.rybinskov.ideas4transfer.exception.ResourceNotFoundException;
 import ru.rybinskov.ideas4transfer.service.delivery_service.DeliveryService;
 
@@ -34,7 +35,7 @@ public class DeliveryController {
     }
 
     @PostMapping("/deliveries")
-    public void createDelivery(@RequestBody DeliveryDto delivery) {
+    public void createDelivery(@RequestBody DeliveryDto delivery) throws ExceedingAllowedDateValueException {
         deliveryService.createDelivery(delivery);
     }
 
@@ -53,7 +54,7 @@ public class DeliveryController {
     }
 
     @GetMapping("/deliveries/new")
-    public String createDelivery() {
+    public String createDelivery() throws ExceedingAllowedDateValueException {
         List<DeliveryDto> deliveryDtoList = deliveryService.findAll();
         DeliveryDto deliveryDto = deliveryDtoList.get(deliveryDtoList.size() - 1);
         deliveryDto.setId(null);
@@ -63,7 +64,7 @@ public class DeliveryController {
     }
 
     @PostMapping("/grouped-deliveries")
-    public void saveAllDeliveries(@RequestBody List<DeliveryDto> deliveries) {
+    public void saveAllDeliveries(@RequestBody List<DeliveryDto> deliveries) throws ExceedingAllowedDateValueException {
         deliveryService.saveAll(deliveries);
     }
 
