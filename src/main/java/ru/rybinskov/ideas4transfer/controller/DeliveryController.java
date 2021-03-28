@@ -40,7 +40,7 @@ public class DeliveryController {
     }
 
     @PutMapping("/deliveries")
-    public ResponseEntity<DeliveryDto> updateDelivery(@RequestBody DeliveryDto deliveryDetails) throws ResourceNotFoundException {
+    public ResponseEntity<DeliveryDto> updateDelivery(@RequestBody DeliveryDto deliveryDetails) throws ResourceNotFoundException, ExceedingAllowedDateValueException {
         deliveryService.updateDelivery(deliveryDetails);
         return ResponseEntity.ok(deliveryDetails);
     }

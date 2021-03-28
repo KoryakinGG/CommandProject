@@ -65,8 +65,17 @@ public class DeliveryServiceImpl implements DeliveryService {
 
     @Override
     public void saveAll(List<DeliveryDto> deliveryDtos) throws ExceedingAllowedDateValueException {
-        List<DeliveryDto> listNotValidDeliveries = deliveryDtos.stream().filter(d -> d.getDeliveryDate().compareTo(LocalDate.now().plusDays(21))  > 0).sorted().collect(Collectors.toList());
-        List<DeliveryDto> listValidDeliveries =deliveryDtos.stream().filter(d -> d.getDeliveryDate().compareTo(LocalDate.now().plusDays(21))  <= 0).sorted().collect(Collectors.toList());
+        List<DeliveryDto> listValidDeliveries = new ArrayList<>(), listNotValidDeliveries = new ArrayList<>();
+
+        deliveryDtos.forEach(d -> {
+            if (d.getDeliveryDate().
+                    compareTo(LocalDate.now().plusDays(21)) <= 0) {
+                listValidDeliveries.add(d);
+            } else {
+                listNotValidDeliveries.add(d);
+            }
+
+        });
         List<Delivery> deliveries = listValidDeliveries.stream().map(Delivery::new).collect(Collectors.toList());
         deliveryRepository.saveAll(deliveries);
 
