@@ -53,15 +53,10 @@ public class DeliveryServiceImpl implements DeliveryService {
         deliveryRepository.save(new Delivery(deliveryDto));
     }
 
+    @Override
     public void delete(DeliveryDto deliveryDto) {
         deliveryRepository.delete(new Delivery(deliveryDto));
     }
-
-//    @Override
-//    public void saveAll(List<DeliveryDto> deliveryDtos) {
-//        List<Delivery> deliveries = deliveryDtos.stream().map(Delivery::new).collect(Collectors.toList());
-//        deliveryRepository.saveAll(deliveries);
-//    }
 
     @Override
     public void saveAll(List<DeliveryDto> deliveryDtos) throws ExceedingAllowedDateValueException {
@@ -78,15 +73,13 @@ public class DeliveryServiceImpl implements DeliveryService {
         });
         List<Delivery> deliveries = listValidDeliveries.stream().map(Delivery::new).collect(Collectors.toList());
         deliveryRepository.saveAll(deliveries);
-
         if (!listNotValidDeliveries.isEmpty()) {
-            StringBuilder builder = new StringBuilder("На текущую дату невозможно оформить доставку. Ближайшая из возможных дат: " + LocalDate.now().plusDays(21) + " или раньше. Исправьте даты поставок:" );
-            for (int i = 0; i < listNotValidDeliveries.size(); i++) {
-                builder.append(listNotValidDeliveries.get(1).getDeliveryDate()).append("; ");
-            }
-            throw new ExceedingAllowedDateValueException(builder.toString());
+            String notValidDeliveries = listNotValidDeliveries.stream()
+                    .map(deliveryDto -> deliveryDto.getDeliveryDate().toString())
+                    .collect(Collectors.joining("; ", "[ ", " ]"));
+            throw new ExceedingAllowedDateValueException("На текущую дату невозможно оформить доставку. Ближайшая из возможных дат: "
+                    + LocalDate.now().plusDays(21) + " или раньше. Исправьте даты поставок: " + notValidDeliveries);
         }
-
     }
 
     @Override
