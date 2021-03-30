@@ -4,13 +4,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.rybinskov.ideas4transfer.dto.UserDto;
 import ru.rybinskov.ideas4transfer.exception.ResourceNotFoundException;
+import ru.rybinskov.ideas4transfer.exception.WarehouseException;
 import ru.rybinskov.ideas4transfer.service.user_service.UserService;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin({"http://localhost:4200","https://mywarehouseapp.herokuapp.com", "http://mywarehouseapp.herokuapp.com"})
+@CrossOrigin({"http://localhost:4200", "https://mywarehouseapp.herokuapp.com", "http://mywarehouseapp.herokuapp.com"})
 @RestController
 @RequestMapping("/api/v1")
 public class UserController {
@@ -27,26 +28,27 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    public List<UserDto> getList() {return userService.findAll();}
+    public List<UserDto> getList() {
+        return userService.findAll();
+    }
 
 //    @PostMapping("/users")
-//    public String addNewUser(@RequestBody UserDto user) {
-//        userService.save(user);
-//        return "Well Done";
+//    public ResponseEntity<UserDto> addNewUser(@RequestBody UserDto userDto) {
+//        userDto.setId(null);
+//        return ResponseEntity.ok(userService.save(userDto));
 //    }
 
-    @PutMapping("/users")
-    public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDetails) throws ResourceNotFoundException {
-        userService.update(userDetails);
-        return ResponseEntity.ok(userDetails);
+    // создание или изменение пользователя
+    @PostMapping("/users")
+    public ResponseEntity<UserDto> addOrUpdateUser(@RequestBody UserDto userDto)
+            throws ResourceNotFoundException, WarehouseException {
+        return ResponseEntity.ok(userService.save(userDto));
     }
 
     @DeleteMapping("/users")
-    public Map<String, Boolean> deleteUser(@RequestBody UserDto userDto) {
+    public String deleteUser(@RequestBody UserDto userDto) {
         userService.delete(userDto);
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("deleted", Boolean.TRUE);
-        return response;
+        return "Deleted";
     }
 
 }

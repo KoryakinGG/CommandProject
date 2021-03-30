@@ -48,6 +48,10 @@ public class User {
     private List<Brand> brands;
 
     public User(UserDto userDto) {
+        updateAllFieldsWithoutId(userDto);
+    }
+
+    public void updateAllFieldsWithoutId(UserDto userDto) {
         this.id = userDto.getId();
         this.username = userDto.getUsername();
         this.phone = userDto.getPhone();

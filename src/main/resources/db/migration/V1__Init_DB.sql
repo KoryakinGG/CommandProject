@@ -187,7 +187,7 @@ alter table if exists command_project.users_roles_tbl
 
 INSERT INTO command_project.brands_tbl(
     abbr, name)
-VALUES ('GDH','Goods House');
+VALUES ('GRA','Green Apple');
 
 INSERT INTO command_project.brands_tbl(
     abbr, name)
@@ -196,7 +196,7 @@ VALUES ('BH2','Bad House');
 
 INSERT INTO shops_tbl (
     abbr, name, brand_id) VALUES (
-                                     'GDH1', 'Goods House Авеню', '1');
+                                     'GRA1', 'Green Apple Store', '1');
 
 INSERT INTO shops_tbl (
     abbr, name, brand_id) VALUES (

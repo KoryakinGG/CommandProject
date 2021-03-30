@@ -1,8 +1,6 @@
 package ru.rybinskov.ideas4transfer.service.user_service;
 
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -10,17 +8,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
-import ru.rybinskov.ideas4transfer.domain.Delivery;
-import ru.rybinskov.ideas4transfer.domain.Role;
 import ru.rybinskov.ideas4transfer.domain.User;
-import ru.rybinskov.ideas4transfer.dto.DeliveryDto;
 import ru.rybinskov.ideas4transfer.dto.UserDto;
 import ru.rybinskov.ideas4transfer.exception.ResourceNotFoundException;
+import ru.rybinskov.ideas4transfer.exception.WarehouseException;
 import ru.rybinskov.ideas4transfer.repository.UserRepository;
 import ru.rybinskov.ideas4transfer.security.principal.UserPrincipal;
 
 
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -51,22 +46,40 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return null;
     }
 
-//    @Override
-//    public void save(UserDto userDto) {
-//        userDto.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
-//        userRepository.save(new User(userDto));
-//    }
+    @Override
+    public UserDto save(UserDto userDto) throws ResourceNotFoundException, WarehouseException {
+
+        String username = userDto.getUsername();
+        // Вот тут я не знаю, есть ли смысл проверять username на null
+        // или он по умолчанию инициализируется пустой строкой?
+        if(username != null) {
+            username = username.trim();
+        }
+        if (userDto.getId() == null) //создание нового пользователя
+        {
+            if(username == null || username.equals("")) {
+                throw new WarehouseException("Ошибка при создании пользователя: логин не указан или он пустой");
+            }
+
+            // пользователя не должно быть в БД
+            if (userRepository.findByUsername(username).isPresent()) {
+                throw new WarehouseException("Пользователь с именем " + username + " уже существует");
+            }
+            return new UserDto(userRepository.save(new User(userDto)));
+        }
+        // обновление уже существующего пользователя
+        User user = userRepository.findById(userDto.getId())
+                .orElseThrow(()-> new ResourceNotFoundException("Пользователь с id = " + userDto.getId() + " не найден"));
+
+        userDto.setUsername(user.getUsername()); // игнорируем изменения в логине, полученном из Dto
+        //обновляем поля в user, не затрагивая пароля и Id
+        user.updateAllFieldsWithoutId(userDto);
+        return new UserDto(userRepository.save(user));
+    }
 
     public void delete(UserDto userDto) {
         User user = new User(userDto);
         userRepository.delete(user);
-    }
-
-    @Override
-    public void update (UserDto userDetails) throws ResourceNotFoundException {
-        UserDto userDto = getById(userDetails.getId());
-        userDto.updateAllFieldsWithoutId(userDto);
-        userRepository.save(new User(userDto));
     }
 
     @Override
@@ -89,7 +102,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 //    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
 //        return roles.stream().map(role -> new SimpleGrantedAuthority(role.getRole())).collect(Collectors.toList());
 //    }
-
 
 
 }

@@ -32,14 +32,14 @@ public class UserDto {
         this.brands = user.getBrands().stream().map(BrandDto::new).collect(Collectors.toList());
     }
 
-    public void updateAllFieldsWithoutId(UserDto userDto) {
-        this.username = userDto.getUsername();
-        this.phone = userDto.getPhone();
-        this.email = userDto.getEmail();
-        this.fullName = userDto.getFullName();
-        this.roles = userDto.getRoles();
-        this.brands = userDto.getBrands();
-    }
+//    public void updateAllFieldsWithoutId(UserDto userDto) {
+//        this.username = userDto.getUsername();
+//        this.phone = userDto.getPhone();
+//        this.email = userDto.getEmail();
+//        this.fullName = userDto.getFullName();
+//        this.roles = userDto.getRoles();
+//        this.brands = userDto.getBrands();
+//    }
 }
 
 
