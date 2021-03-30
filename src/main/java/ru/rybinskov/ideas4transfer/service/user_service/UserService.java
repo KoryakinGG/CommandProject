@@ -11,6 +11,6 @@ public interface UserService {
     List<UserDto> findAll();
     UserDto findByName(String name);
     UserDto save(UserDto userDto) throws ResourceNotFoundException, WarehouseException;
-    void delete(UserDto userDto);
+    void delete(Long id) throws ResourceNotFoundException;
 //    UserDto update(UserDto user) throws ResourceNotFoundException;
 }

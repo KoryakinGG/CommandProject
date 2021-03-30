@@ -22,9 +22,9 @@ public class UserController {
     }
 
     @GetMapping(value = "/users/{id}")
-    public ResponseEntity<UserDto> getUserDtoById(@PathVariable(value = "id") Long usersId) throws ResourceNotFoundException {
-        UserDto userDto = userService.getById(usersId);
-        return ResponseEntity.ok().body(userDto);
+    public ResponseEntity<UserDto> getUserDtoById(@PathVariable(value = "id") Long userId) throws ResourceNotFoundException {
+        UserDto userDto = userService.getById(userId);
+        return ResponseEntity.ok(userDto);
     }
 
     @GetMapping("/users")
@@ -32,23 +32,26 @@ public class UserController {
         return userService.findAll();
     }
 
-//    @PostMapping("/users")
-//    public ResponseEntity<UserDto> addNewUser(@RequestBody UserDto userDto) {
-//        userDto.setId(null);
-//        return ResponseEntity.ok(userService.save(userDto));
-//    }
-
-    // создание или изменение пользователя
+    // создание пользователя
     @PostMapping("/users")
-    public ResponseEntity<UserDto> addOrUpdateUser(@RequestBody UserDto userDto)
-            throws ResourceNotFoundException, WarehouseException {
+    public ResponseEntity<UserDto> addNewUser(@RequestBody UserDto userDto) throws ResourceNotFoundException, WarehouseException {
+        userDto.setId(null);
         return ResponseEntity.ok(userService.save(userDto));
     }
 
-    @DeleteMapping("/users")
-    public String deleteUser(@RequestBody UserDto userDto) {
-        userService.delete(userDto);
-        return "Deleted";
+    // изменение пользователя
+    @PutMapping("/users/{id}")
+    public ResponseEntity<UserDto> updateUser(@PathVariable(value = "id") Long userId, @RequestBody UserDto userDto)
+            throws ResourceNotFoundException, WarehouseException {
+        userDto.setId(userId);  // игнорим, то что пришло в DTO
+        return ResponseEntity.ok(userService.save(userDto));
+    }
+
+    @DeleteMapping("/users/{id}")
+    public ResponseEntity<String> deleteUser(@PathVariable(value = "id") Long userId) throws ResourceNotFoundException {
+        userService.delete(userId);
+        return ResponseEntity.ok("Deleted");
     }
 
 }
+

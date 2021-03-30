@@ -2,8 +2,10 @@ package ru.rybinskov.ideas4transfer.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.rybinskov.ideas4transfer.dto.BrandDto;
 import ru.rybinskov.ideas4transfer.dto.WarehouseDto;
 import ru.rybinskov.ideas4transfer.exception.ResourceNotFoundException;
+import ru.rybinskov.ideas4transfer.exception.WarehouseException;
 import ru.rybinskov.ideas4transfer.service.warehouse_service.WarehouseService;
 
 import java.util.HashMap;
@@ -29,20 +31,22 @@ public class WarehouseController {
     }
 
     @PostMapping("/warehouses")
-    public void createWarehouse(@RequestBody WarehouseDto warehouseDto) {warehouseService.save(warehouseDto);}
+    public ResponseEntity<WarehouseDto> addNewWarehouse(@RequestBody WarehouseDto warehouseDto) throws ResourceNotFoundException, WarehouseException {
+        warehouseDto.setId(null);
+        return ResponseEntity.ok(warehouseService.save(warehouseDto));
+    }
 
-    @PutMapping("/warehouses")
-    public ResponseEntity<WarehouseDto> updateWarehouse(@RequestBody WarehouseDto warehouseDto) throws ResourceNotFoundException {
-        warehouseService.updateWarehouse(warehouseDto);
+    @PutMapping("/warehouses/{id}")
+    public ResponseEntity<WarehouseDto> updateWarehouse(@PathVariable(value = "id") Long id, @RequestBody WarehouseDto warehouseDto) throws ResourceNotFoundException, WarehouseException {
+        warehouseDto.setId(id);
+        warehouseService.save(warehouseDto);
         return ResponseEntity.ok(warehouseDto);
     }
 
-    @DeleteMapping("/warehouses")
-    public Map<String, Boolean> deleteWarehouse(@RequestBody WarehouseDto warehouseDto) {
-        warehouseService.delete(warehouseDto);
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("deleted", Boolean.TRUE);
-        return response;
+    @DeleteMapping("/warehouses/{id}")
+    public ResponseEntity<String> deleteWarehouse(@PathVariable(value = "id") Long id) {
+        warehouseService.delete(id);
+        return ResponseEntity.ok("Deleted");
     }
 
     @PostMapping("/grouped-warehouses")

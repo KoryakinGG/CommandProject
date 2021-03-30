@@ -28,7 +28,10 @@ public class Shop {
     private Brand brand;
 
     public Shop(ShopDto shopDto) {
-        this.id = shopDto.getId();
+        updateFields(shopDto);
+    }
+
+    public void updateFields(ShopDto shopDto) {
         this.name = shopDto.getName();
         this.abbr = shopDto.getAbbr();
         this.brand = new Brand(shopDto.getBrand());

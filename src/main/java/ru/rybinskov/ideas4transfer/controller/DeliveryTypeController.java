@@ -2,8 +2,10 @@ package ru.rybinskov.ideas4transfer.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.rybinskov.ideas4transfer.dto.DeliveryTimeDto;
 import ru.rybinskov.ideas4transfer.dto.DeliveryTypeDto;
 import ru.rybinskov.ideas4transfer.exception.ResourceNotFoundException;
+import ru.rybinskov.ideas4transfer.exception.WarehouseException;
 import ru.rybinskov.ideas4transfer.service.deleviry_type_service.DeliveryTypeService;
 
 import java.util.HashMap;
@@ -34,22 +36,22 @@ public class DeliveryTypeController {
     }
 
     @PostMapping("/delivery-types")
-    public void createDeliveryType(@RequestBody DeliveryTypeDto deliveryTypeDto) {
-        deliveryTypeService.createDeliveryType(deliveryTypeDto);
+    public ResponseEntity<DeliveryTypeDto> addNewDeliveryType(@RequestBody DeliveryTypeDto deliveryTypeDto) throws ResourceNotFoundException, WarehouseException {
+        deliveryTypeDto.setId(null);
+        return ResponseEntity.ok(deliveryTypeService.save(deliveryTypeDto));
     }
 
-    @PutMapping("/delivery-types")
-    public ResponseEntity<DeliveryTypeDto> updateDeliveryType(@RequestBody DeliveryTypeDto deliveryTypeDto) throws ResourceNotFoundException {
-        deliveryTypeService.updateDeliveryType(deliveryTypeDto);
+    @PutMapping("/delivery-types/{id}")
+    public ResponseEntity<DeliveryTypeDto> updateDeliveryType(@PathVariable(value = "id") Long id, @RequestBody DeliveryTypeDto deliveryTypeDto) throws ResourceNotFoundException, WarehouseException {
+        deliveryTypeDto.setId(id);
+        deliveryTypeService.save(deliveryTypeDto);
         return ResponseEntity.ok(deliveryTypeDto);
     }
 
-    @DeleteMapping("/delivery-types")
-    public Map<String, Boolean> deleteDeliveryType(@RequestBody DeliveryTypeDto deliveryTypeDto) {
-        deliveryTypeService.delete(deliveryTypeDto);
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("deleted", Boolean.TRUE);
-        return response;
+    @DeleteMapping("/delivery-types/{id}")
+    public ResponseEntity<String> deleteDeliveryType(@PathVariable(value = "id") Long id) {
+        deliveryTypeService.delete(id);
+        return ResponseEntity.ok("Deleted");
     }
 
     @PostMapping("/grouped-delivery-types")

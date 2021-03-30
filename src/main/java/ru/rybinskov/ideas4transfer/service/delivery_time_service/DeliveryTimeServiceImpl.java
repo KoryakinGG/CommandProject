@@ -1,24 +1,24 @@
 package ru.rybinskov.ideas4transfer.service.delivery_time_service;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.rybinskov.ideas4transfer.domain.DeliveryTime;
+import ru.rybinskov.ideas4transfer.domain.Warehouse;
 import ru.rybinskov.ideas4transfer.dto.DeliveryTimeDto;
+import ru.rybinskov.ideas4transfer.dto.WarehouseDto;
 import ru.rybinskov.ideas4transfer.exception.ResourceNotFoundException;
+import ru.rybinskov.ideas4transfer.exception.WarehouseException;
 import ru.rybinskov.ideas4transfer.repository.DeliveryTimeRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class DeliveryTimeServiceImpl implements DeliveryTimeService{
 
-    DeliveryTimeRepository deliveryTimeRepository;
-
-    @Autowired
-    public DeliveryTimeServiceImpl(DeliveryTimeRepository deliveryTimeRepository) {
-        this.deliveryTimeRepository = deliveryTimeRepository;
-    }
+    private final DeliveryTimeRepository deliveryTimeRepository;
 
     @Override
     public List<DeliveryTimeDto> findAll() {
@@ -32,20 +32,19 @@ public class DeliveryTimeServiceImpl implements DeliveryTimeService{
     }
 
     @Override
-    public void createDeliveryTime(DeliveryTimeDto deliveryTimeDto) {
-        deliveryTimeRepository.save(new DeliveryTime(deliveryTimeDto));
+    public DeliveryTimeDto save(DeliveryTimeDto deliveryTimeDto) throws ResourceNotFoundException, WarehouseException {
+        if (deliveryTimeDto.getId() == null) {
+            return new DeliveryTimeDto(deliveryTimeRepository.save(new DeliveryTime(deliveryTimeDto)));
+        }
+        DeliveryTime deliveryTime = deliveryTimeRepository.findById(deliveryTimeDto.getId())
+                .orElseThrow(()-> new ResourceNotFoundException("Время поставки с id = " + deliveryTimeDto.getId() + " не найдено"));
+        deliveryTime.updateFields(deliveryTimeDto);
+        return new DeliveryTimeDto(deliveryTimeRepository.save(deliveryTime));
     }
 
     @Override
-    public void updateDeliveryTime(DeliveryTimeDto deliveryTimeDto) throws ResourceNotFoundException {
-        DeliveryTimeDto deliveryTime = findById(deliveryTimeDto.getId());
-        deliveryTime.updateAllFieldsWithoutId(deliveryTimeDto);
-        deliveryTimeRepository.save(new DeliveryTime(deliveryTime));
-    }
-
-    @Override
-    public void delete(DeliveryTimeDto deliveryTimeDto) {
-        deliveryTimeRepository.delete(new DeliveryTime(deliveryTimeDto));
+    public void delete(Long id) {
+        deliveryTimeRepository.deleteById(id);
     }
 
     @Override

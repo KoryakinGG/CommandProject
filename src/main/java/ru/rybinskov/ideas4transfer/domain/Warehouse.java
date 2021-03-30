@@ -23,10 +23,13 @@ public class Warehouse {
     @Column
     private String abbr;
 
-    public Warehouse(WarehouseDto warehouse) {
-        this.id = warehouse.getId();
-        this.name = warehouse.getName();
-        this.abbr = warehouse.getAbbr();
+    public Warehouse(WarehouseDto warehouseDto) {
+        updateFields(warehouseDto);
+    }
+
+    public void updateFields(WarehouseDto warehouseDto) {
+        this.name = warehouseDto.getName();
+        this.abbr = warehouseDto.getAbbr();
     }
 
 }

@@ -1,5 +1,6 @@
 package ru.rybinskov.ideas4transfer.security.jwt;
 
+import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +21,19 @@ public class JwtAuthTokenFilter extends OncePerRequestFilter {
 
 	@Autowired
 	private JwtProvider tokenProvider;
-
 	@Autowired
 	private UserServiceImpl userService;
+
+	//
+//	@Autowired
+//	public void setTokenProvider(JwtProvider tokenProvider) {
+//		this.tokenProvider = tokenProvider;
+//	}
+//
+//	@Autowired
+//	public void setUserService(UserServiceImpl userService) {
+//		this.userService = userService;
+//	}
 
 	private static final Logger logger = LoggerFactory.getLogger(JwtAuthTokenFilter.class);
 

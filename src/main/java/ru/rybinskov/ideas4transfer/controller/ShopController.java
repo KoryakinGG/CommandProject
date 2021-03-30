@@ -2,8 +2,10 @@ package ru.rybinskov.ideas4transfer.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.rybinskov.ideas4transfer.dto.BrandDto;
 import ru.rybinskov.ideas4transfer.dto.ShopDto;
 import ru.rybinskov.ideas4transfer.exception.ResourceNotFoundException;
+import ru.rybinskov.ideas4transfer.exception.WarehouseException;
 import ru.rybinskov.ideas4transfer.service.shop_service.ShopService;
 
 import java.util.HashMap;
@@ -29,20 +31,22 @@ public class ShopController {
     }
 
     @PostMapping("/shops")
-    public void createShop(@RequestBody ShopDto shopDto) {shopService.save(shopDto);}
+    public ResponseEntity<ShopDto> addNewBrand(@RequestBody ShopDto shopDto) throws ResourceNotFoundException, WarehouseException {
+        shopDto.setId(null);
+        return ResponseEntity.ok(shopService.save(shopDto));
+    }
 
-    @PutMapping("/shops")
-    public ResponseEntity<ShopDto> updateShop(@RequestBody ShopDto shopDto) throws ResourceNotFoundException {
-        shopService.updateShop(shopDto);
+    @PutMapping("/shops/{id}")
+    public ResponseEntity<ShopDto> updateBrand(@PathVariable(value = "id") Long id, @RequestBody ShopDto shopDto) throws ResourceNotFoundException, WarehouseException {
+        shopDto.setId(id);
+        shopService.save(shopDto);
         return ResponseEntity.ok(shopDto);
     }
 
-    @DeleteMapping("/shops")
-    public Map<String, Boolean> deleteShop(@RequestBody ShopDto shopDto) {
-        shopService.delete(shopDto);
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("deleted", Boolean.TRUE);
-        return response;
+    @DeleteMapping("/shops/{id}")
+    public ResponseEntity<String> deleteBrand(@PathVariable(value = "id") Long id) {
+        shopService.delete(id);
+        return ResponseEntity.ok("Deleted");
     }
 
     @PostMapping("/grouped-shops")

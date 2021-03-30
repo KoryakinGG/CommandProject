@@ -23,7 +23,10 @@ public class DeliveryTime {
     private String deliveryTime;
 
     public DeliveryTime(DeliveryTimeDto deliveryTimeDto) {
-        this.id = deliveryTimeDto.getId();
+        updateFields(deliveryTimeDto);
+    }
+
+    public void updateFields(DeliveryTimeDto deliveryTimeDto) {
         this.deliveryTime = deliveryTimeDto.getDeliveryTime();
     }
 }

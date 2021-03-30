@@ -10,4 +10,6 @@ public interface DeliveryRepository extends JpaRepository<Delivery, Long> {
     Delivery findDeliveryById(Long id);
     List<Delivery> findByDeliveryDate(LocalDate localDate);
     List<Delivery> findByDeliveryDateIsBetween(LocalDate first, LocalDate second);
+    List<Delivery> findByDeliveryDateGreaterThanEqual (LocalDate first);
+    List<Delivery> findByDeliveryDateLessThanEqual (LocalDate last);
 }

@@ -1,24 +1,24 @@
 package ru.rybinskov.ideas4transfer.service.deleviry_type_service;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.rybinskov.ideas4transfer.domain.DeliveryTime;
 import ru.rybinskov.ideas4transfer.domain.DeliveryType;
+import ru.rybinskov.ideas4transfer.dto.DeliveryTimeDto;
 import ru.rybinskov.ideas4transfer.dto.DeliveryTypeDto;
 import ru.rybinskov.ideas4transfer.exception.ResourceNotFoundException;
+import ru.rybinskov.ideas4transfer.exception.WarehouseException;
 import ru.rybinskov.ideas4transfer.repository.DeliveryTypeRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class DeliveryTypeServiceImpl implements DeliveryTypeService{
 
-    DeliveryTypeRepository deliveryTypeRepository;
-
-    @Autowired
-    public DeliveryTypeServiceImpl(DeliveryTypeRepository deliveryTypeRepository) {
-        this.deliveryTypeRepository = deliveryTypeRepository;
-    }
+    private final DeliveryTypeRepository deliveryTypeRepository;
 
     @Override
     public List<DeliveryTypeDto> findAll() {
@@ -32,20 +32,19 @@ public class DeliveryTypeServiceImpl implements DeliveryTypeService{
     }
 
     @Override
-    public void createDeliveryType(DeliveryTypeDto deliveryTypeDto) {
-        deliveryTypeRepository.save(new DeliveryType(deliveryTypeDto));
+    public DeliveryTypeDto save(DeliveryTypeDto deliveryTypeDto) throws ResourceNotFoundException, WarehouseException {
+        if (deliveryTypeDto.getId() == null) {
+            return new DeliveryTypeDto(deliveryTypeRepository.save(new DeliveryType(deliveryTypeDto)));
+        }
+        DeliveryType deliveryType = deliveryTypeRepository.findById(deliveryTypeDto.getId())
+                .orElseThrow(()-> new ResourceNotFoundException("Тип поставки с id = " + deliveryTypeDto.getId() + " не найден"));
+        deliveryType.updateFields(deliveryTypeDto);
+        return new DeliveryTypeDto(deliveryTypeRepository.save(deliveryType));
     }
 
     @Override
-    public void updateDeliveryType(DeliveryTypeDto deliveryTypeDto) throws ResourceNotFoundException {
-        DeliveryTypeDto deliveryType = findById(deliveryTypeDto.getId());
-        deliveryType.updateAllFieldsWithoutId(deliveryTypeDto);
-        deliveryTypeRepository.save(new DeliveryType(deliveryType));
-    }
-
-    @Override
-    public void delete(DeliveryTypeDto deliveryTypeDto) {
-        deliveryTypeRepository.delete(new DeliveryType(deliveryTypeDto));
+    public void delete(Long id) {
+        deliveryTypeRepository.deleteById(id);
     }
 
     @Override

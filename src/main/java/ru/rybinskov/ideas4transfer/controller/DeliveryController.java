@@ -3,10 +3,14 @@ package ru.rybinskov.ideas4transfer.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.rybinskov.ideas4transfer.dto.DeliveryDto;
+import ru.rybinskov.ideas4transfer.dto.UserDto;
 import ru.rybinskov.ideas4transfer.exception.ExceedingAllowedDateValueException;
 import ru.rybinskov.ideas4transfer.exception.ResourceNotFoundException;
+import ru.rybinskov.ideas4transfer.exception.WarehouseException;
 import ru.rybinskov.ideas4transfer.service.delivery_service.DeliveryService;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,11 +26,6 @@ public class DeliveryController {
         this.deliveryService = deliveryService;
     }
 
-    @GetMapping("/deliveries")
-    public List<DeliveryDto> getAllDeliveries() {
-        return deliveryService.findAll();
-    }
-
     @GetMapping(value = "/deliveries/{id}")
     public ResponseEntity<DeliveryDto> getDeliveryById(@PathVariable(value = "id") Long deliveryId)
             throws ResourceNotFoundException {
@@ -35,32 +34,22 @@ public class DeliveryController {
     }
 
     @PostMapping("/deliveries")
-    public void createDelivery(@RequestBody DeliveryDto delivery) throws ExceedingAllowedDateValueException {
-        deliveryService.createDelivery(delivery);
-    }
-
-    @PutMapping("/deliveries")
-    public ResponseEntity<DeliveryDto> updateDelivery(@RequestBody DeliveryDto deliveryDetails) throws ResourceNotFoundException, ExceedingAllowedDateValueException {
-        deliveryService.updateDelivery(deliveryDetails);
-        return ResponseEntity.ok(deliveryDetails);
-    }
-
-    @DeleteMapping("/deliveries")
-    public Map<String, Boolean> deleteDelivery(@RequestBody DeliveryDto delivery) {
-        deliveryService.delete(delivery);
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("deleted", Boolean.TRUE);
-        return response;
-    }
-
-    @GetMapping("/deliveries/new")
-    public String createDelivery() throws ExceedingAllowedDateValueException {
-        List<DeliveryDto> deliveryDtoList = deliveryService.findAll();
-        DeliveryDto deliveryDto = deliveryDtoList.get(deliveryDtoList.size() - 1);
+    public ResponseEntity<DeliveryDto> addNewDelivery(@RequestBody DeliveryDto deliveryDto) throws ExceedingAllowedDateValueException, ResourceNotFoundException, WarehouseException {
         deliveryDto.setId(null);
-        deliveryDto.setDeliveryDate(deliveryDto.getDeliveryDate().plusDays(1L));
-        deliveryService.createDelivery(deliveryDto);
-        return "Congratulation, delivery created";
+        return ResponseEntity.ok(deliveryService.save(deliveryDto));
+    }
+
+    @PutMapping("/deliveries/{id}")
+    public ResponseEntity<DeliveryDto> updateDelivery(@PathVariable(value = "id") Long deliveryId, @RequestBody DeliveryDto deliveryDto) throws ResourceNotFoundException, ExceedingAllowedDateValueException, WarehouseException {
+        deliveryDto.setId(deliveryId);
+        deliveryService.save(deliveryDto);
+        return ResponseEntity.ok(deliveryDto);
+    }
+
+    @DeleteMapping("/deliveries/{id}")
+    public ResponseEntity<String> deleteDelivery(@PathVariable(value = "id") Long deliveryId) throws ResourceNotFoundException {
+        deliveryService.delete(deliveryId);
+        return ResponseEntity.ok("Deleted");
     }
 
     @PostMapping("/grouped-deliveries")
@@ -68,11 +57,36 @@ public class DeliveryController {
         deliveryService.saveAll(deliveries);
     }
 
-    // http://localhost:8189/api/v1/grouped-deliveries?first=2021-12-25&last=2021-12-25
-    @GetMapping(value = "/grouped-deliveries", params = {"first", "last"})
-    public ResponseEntity<List<DeliveryDto>> getByDeliveryDateIsBetween(String first, String last) {
-        List<DeliveryDto> lists = deliveryService.findByDeliveryDateIsBetween(first, last);
+    // http://localhost:8189/api/v1/deliveries?first=2021-04-23&last=2021-12-25
+    @GetMapping(value = "/deliveries")
+    public ResponseEntity<List<DeliveryDto>> filterByDate(@RequestParam(required = false, name = "first") String first,
+                               @RequestParam(required = false, name = "last") String last){
+        List<DeliveryDto> lists = new ArrayList<>();
+        if (first == null && last == null) {
+            lists =deliveryService.findAll();
+        }
+        else if (first != null && last == null) {
+            lists = deliveryService.findByDeliveryDateGreaterThanEqual(first);
+        }
+        else if (first == null && last != null) {
+            lists = deliveryService.findByDeliveryDateLessThanEqual(last);
+        }
+        else if (first != null && last != null) {
+            lists = deliveryService.findByDeliveryDateIsBetween(first, last);
+        }
         return ResponseEntity.ok().body(lists);
     }
+
+
+    @GetMapping("/deliveries/new")
+    public String createDelivery() throws ExceedingAllowedDateValueException, ResourceNotFoundException, WarehouseException {
+        List<DeliveryDto> deliveryDtoList = deliveryService.findAll();
+        DeliveryDto deliveryDto = deliveryDtoList.get(deliveryDtoList.size() - 1);
+        deliveryDto.setId(null);
+        deliveryDto.setDeliveryDate(deliveryDto.getDeliveryDate().plusDays(1L));
+        deliveryService.save(deliveryDto);
+        return "Congratulation, delivery created";
+    }
+
 
 }

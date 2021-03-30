@@ -3,7 +3,10 @@ package ru.rybinskov.ideas4transfer.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.rybinskov.ideas4transfer.dto.BrandDto;
+import ru.rybinskov.ideas4transfer.dto.DeliveryDto;
+import ru.rybinskov.ideas4transfer.exception.ExceedingAllowedDateValueException;
 import ru.rybinskov.ideas4transfer.exception.ResourceNotFoundException;
+import ru.rybinskov.ideas4transfer.exception.WarehouseException;
 import ru.rybinskov.ideas4transfer.service.brand_service.BrandService;
 
 import java.util.HashMap;
@@ -34,22 +37,22 @@ public class BrandController {
     }
 
     @PostMapping("/brands")
-    public void createBrand(@RequestBody BrandDto brandDto) {
-        brandService.createBrand(brandDto);
+    public ResponseEntity<BrandDto> addNewBrand(@RequestBody BrandDto brandDto) throws ResourceNotFoundException, WarehouseException {
+        brandDto.setId(null);
+        return ResponseEntity.ok(brandService.save(brandDto));
     }
 
-    @PutMapping("/brands")
-    public ResponseEntity<BrandDto> updateBrand(@RequestBody BrandDto brandDetails) throws ResourceNotFoundException {
-        brandService.updateBrand(brandDetails);
-        return ResponseEntity.ok(brandDetails);
+    @PutMapping("/brands/{id}")
+    public ResponseEntity<BrandDto> updateBrand(@PathVariable(value = "id") Long id, @RequestBody BrandDto brandDto) throws ResourceNotFoundException, WarehouseException {
+        brandDto.setId(id);
+        brandService.save(brandDto);
+        return ResponseEntity.ok(brandDto);
     }
 
-    @DeleteMapping("/brands")
-    public Map<String, Boolean> deleteBrand(@RequestBody BrandDto brandDto) {
-        brandService.delete(brandDto);
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("deleted", Boolean.TRUE);
-        return response;
+    @DeleteMapping("/brands/{id}")
+    public ResponseEntity<String> deleteBrand(@PathVariable(value = "id") Long id) {
+        brandService.delete(id);
+        return ResponseEntity.ok("Deleted");
     }
 
     @PostMapping("/grouped-brands")

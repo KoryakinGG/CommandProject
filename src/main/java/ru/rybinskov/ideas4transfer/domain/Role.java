@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.rybinskov.ideas4transfer.dto.RoleDto;
+import ru.rybinskov.ideas4transfer.dto.ShopDto;
 
 import javax.persistence.*;
 
@@ -25,4 +26,9 @@ public class Role {
         this.id = roleDto.getId();
         this.roleName = roleDto.getRole();
     }
+
+    public void updateFields(RoleDto roleDto) {
+        this.roleName = roleDto.getRole();
+    }
+
 }

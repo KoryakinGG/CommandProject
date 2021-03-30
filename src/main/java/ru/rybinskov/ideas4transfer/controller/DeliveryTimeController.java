@@ -3,7 +3,9 @@ package ru.rybinskov.ideas4transfer.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.rybinskov.ideas4transfer.dto.DeliveryTimeDto;
+import ru.rybinskov.ideas4transfer.dto.WarehouseDto;
 import ru.rybinskov.ideas4transfer.exception.ResourceNotFoundException;
+import ru.rybinskov.ideas4transfer.exception.WarehouseException;
 import ru.rybinskov.ideas4transfer.service.delivery_time_service.DeliveryTimeService;
 
 import java.util.HashMap;
@@ -34,22 +36,22 @@ public class DeliveryTimeController {
     }
 
     @PostMapping("/delivery-times")
-    public void createDeliveryTime(@RequestBody DeliveryTimeDto deliveryTimeDto) {
-        deliveryTimeService.createDeliveryTime(deliveryTimeDto);
+    public ResponseEntity<DeliveryTimeDto> addNewDeliveryTime(@RequestBody DeliveryTimeDto deliveryTimeDto) throws ResourceNotFoundException, WarehouseException {
+        deliveryTimeDto.setId(null);
+        return ResponseEntity.ok(deliveryTimeService.save(deliveryTimeDto));
     }
 
-    @PutMapping("/delivery-times")
-    public ResponseEntity<DeliveryTimeDto> updateDeliveryTime(@RequestBody DeliveryTimeDto deliveryTimeDto) throws ResourceNotFoundException {
-        deliveryTimeService.updateDeliveryTime(deliveryTimeDto);
+    @PutMapping("/delivery-times/{id}")
+    public ResponseEntity<DeliveryTimeDto> updateDeliveryTime(@PathVariable(value = "id") Long id, @RequestBody DeliveryTimeDto deliveryTimeDto) throws ResourceNotFoundException, WarehouseException {
+        deliveryTimeDto.setId(id);
+        deliveryTimeService.save(deliveryTimeDto);
         return ResponseEntity.ok(deliveryTimeDto);
     }
 
-    @DeleteMapping("/delivery-times")
-    public Map<String, Boolean> deleteDeliveryTime(@RequestBody DeliveryTimeDto deliveryTimeDto) {
-        deliveryTimeService.delete(deliveryTimeDto);
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("deleted", Boolean.TRUE);
-        return response;
+    @DeleteMapping("/delivery-times/{id}")
+    public ResponseEntity<String> deleteDeliveryTime(@PathVariable(value = "id") Long id) {
+        deliveryTimeService.delete(id);
+        return ResponseEntity.ok("Deleted");
     }
 
     @PostMapping("/grouped-delivery-times")

@@ -1,5 +1,6 @@
 package ru.rybinskov.ideas4transfer.service.brand_service;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.rybinskov.ideas4transfer.domain.Brand;
@@ -7,20 +8,19 @@ import ru.rybinskov.ideas4transfer.domain.Delivery;
 import ru.rybinskov.ideas4transfer.dto.BrandDto;
 import ru.rybinskov.ideas4transfer.dto.DeliveryDto;
 import ru.rybinskov.ideas4transfer.exception.ResourceNotFoundException;
+import ru.rybinskov.ideas4transfer.exception.WarehouseException;
 import ru.rybinskov.ideas4transfer.repository.BrandRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class BrandServiceImpl implements BrandService{
 
-   private BrandRepository brandRepository;
 
-   @Autowired
-   public void setBrandRepository(BrandRepository brandRepository) {
-       this.brandRepository = brandRepository;
-   }
+   private final BrandRepository brandRepository;
+
 
     @Override
     public List<BrandDto> findAll() {
@@ -35,20 +35,19 @@ public class BrandServiceImpl implements BrandService{
     }
 
     @Override
-    public void createBrand(BrandDto brandDto) {
-        brandRepository.save(new Brand(brandDto));
+    public BrandDto save(BrandDto brandDto) throws ResourceNotFoundException, WarehouseException {
+        if (brandDto.getId() == null) {
+            return new BrandDto(brandRepository.save(new Brand(brandDto)));
+        }
+        Brand brand = brandRepository.findById(brandDto.getId())
+                .orElseThrow(()-> new ResourceNotFoundException("Бренд с id = " + brandDto.getId() + " не найден"));
+        brand.updateFields(brandDto);
+        return new BrandDto(brandRepository.save(brand));
     }
 
     @Override
-    public void updateBrand(BrandDto brandDetails) throws ResourceNotFoundException {
-        BrandDto brandDto = findById(brandDetails.getId());
-        brandDto.updateAllFieldsWithoutId(brandDetails);
-        brandRepository.save(new Brand(brandDto));
-    }
-
-    @Override
-    public void delete(BrandDto brandDto) {
-        brandRepository.delete(new Brand(brandDto));
+    public void delete(Long id) {
+        brandRepository.deleteById(id);
     }
 
     @Override

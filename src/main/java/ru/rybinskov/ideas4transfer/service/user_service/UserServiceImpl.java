@@ -1,10 +1,10 @@
 package ru.rybinskov.ideas4transfer.service.user_service;
 
-
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -20,15 +20,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class UserServiceImpl implements UserService, UserDetailsService {
 
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final UserRepository userRepository;
-
-    public UserServiceImpl(BCryptPasswordEncoder bCryptPasswordEncoder, UserRepository userRepository) {
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-        this.userRepository = userRepository;
-    }
+//
+//    @Autowired
+//    public void setUserRepository(UserRepository userRepository) {
+//        this.userRepository = userRepository;
+//    }
 
     @Override
     public UserDto getById(Long id) throws ResourceNotFoundException {
@@ -77,8 +77,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return new UserDto(userRepository.save(user));
     }
 
-    public void delete(UserDto userDto) {
-        User user = new User(userDto);
+    public void delete(Long id) throws ResourceNotFoundException {
+        User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Пользователь по указанному id не найден: id = " + id));
         userRepository.delete(user);
     }
 
@@ -105,4 +105,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
 
 }
+
+
 

@@ -78,6 +78,10 @@ public class Delivery {
     private Warehouse warehouse;
 
     public Delivery(DeliveryDto deliveryDto) {
+        updateFields(deliveryDto);
+    }
+
+    public void updateFields(DeliveryDto deliveryDto) {
         this.deliveryDate = deliveryDto.getDeliveryDate();
         this.deliveryTime = deliveryDto.getDeliveryTime();
         this.carInfo = deliveryDto.getCarInfo();

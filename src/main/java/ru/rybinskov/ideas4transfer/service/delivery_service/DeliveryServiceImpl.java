@@ -1,11 +1,12 @@
 package ru.rybinskov.ideas4transfer.service.delivery_service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.rybinskov.ideas4transfer.domain.*;
 import ru.rybinskov.ideas4transfer.dto.DeliveryDto;
 import ru.rybinskov.ideas4transfer.exception.ExceedingAllowedDateValueException;
 import ru.rybinskov.ideas4transfer.exception.ResourceNotFoundException;
+import ru.rybinskov.ideas4transfer.exception.WarehouseException;
 import ru.rybinskov.ideas4transfer.repository.DeliveryRepository;
 
 import java.time.LocalDate;
@@ -14,14 +15,10 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class DeliveryServiceImpl implements DeliveryService {
 
-    private DeliveryRepository deliveryRepository;
-
-    @Autowired
-    public void setDeliveryRepository(DeliveryRepository deliveryRepository) {
-        this.deliveryRepository = deliveryRepository;
-    }
+    private final DeliveryRepository deliveryRepository;
 
     @Override
     public List<DeliveryDto> findAll() {
@@ -36,26 +33,23 @@ public class DeliveryServiceImpl implements DeliveryService {
     }
 
     @Override
-    public void updateDelivery(DeliveryDto deliveryDto) throws ResourceNotFoundException, ExceedingAllowedDateValueException {
-        DeliveryDto delivery = findById(deliveryDto.getId());
-        delivery.updateAllFieldsWithoutId(deliveryDto);
-        if (delivery.getDeliveryDate().compareTo(LocalDate.now().plusDays(21)) > 0) {
-            throw new ExceedingAllowedDateValueException("На текущую дату невозможно оформить доставку. Ближайшая из возможных дат: " + LocalDate.now().plusDays(21) + " или ранее.");
+    public DeliveryDto save(DeliveryDto deliveryDto) throws ResourceNotFoundException, WarehouseException {
+        if (deliveryDto.getId() == null)
+        {
+            return new DeliveryDto(deliveryRepository.save(new Delivery(deliveryDto)));
         }
-        deliveryRepository.save(new Delivery(delivery));
+        // обновление уже существующего пользователя
+        Delivery delivery = deliveryRepository.findById(deliveryDto.getId())
+                .orElseThrow(()-> new ResourceNotFoundException("Поставка с id = " + deliveryDto.getId() + " не найдена"));
+
+        //обновляем поля в user, не затрагивая пароля и Id
+        delivery.updateFields(deliveryDto);
+        return new DeliveryDto(deliveryRepository.save(delivery));
     }
 
     @Override
-    public void createDelivery(DeliveryDto deliveryDto) throws ExceedingAllowedDateValueException {
-        if (deliveryDto.getDeliveryDate().compareTo(LocalDate.now().plusDays(21)) > 0) {
-            throw new ExceedingAllowedDateValueException("На текущую дату невозможно оформить доставку. Ближайшая из возможных дат: " + LocalDate.now().plusDays(21) + " или ранее.");
-        }
-        deliveryRepository.save(new Delivery(deliveryDto));
-    }
-
-    @Override
-    public void delete(DeliveryDto deliveryDto) {
-        deliveryRepository.delete(new Delivery(deliveryDto));
+    public void delete(Long id) {
+        deliveryRepository.deleteById(id);
     }
 
     @Override
@@ -82,14 +76,46 @@ public class DeliveryServiceImpl implements DeliveryService {
         }
     }
 
+    private DateTimeFormatter getFormatter() {
+        String europeanDatePattern = "yyyy-MM-dd";
+        return DateTimeFormatter.ofPattern(europeanDatePattern);
+    }
+
     @Override
     public List<DeliveryDto> findByDeliveryDateIsBetween(String first, String last) {
-        String europeanDatePattern = "yyyy-MM-dd";
-        DateTimeFormatter europeanDateFormatter = DateTimeFormatter.ofPattern(europeanDatePattern);
-        LocalDate firstDate = LocalDate.parse(first, europeanDateFormatter);
-        LocalDate lastDate = LocalDate.parse(last, europeanDateFormatter);
+        LocalDate firstDate = LocalDate.parse(first, getFormatter());
+        LocalDate lastDate = LocalDate.parse(last, getFormatter());
         return deliveryRepository.findByDeliveryDateIsBetween(firstDate, lastDate)
                 .stream().map(DeliveryDto::new)
+                .sorted(Comparator.comparing(DeliveryDto::getDeliveryDate))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<DeliveryDto> findByDeliveryDateGreaterThanEqual(String date) {
+        LocalDate localDate = LocalDate.parse(date, getFormatter());
+        return deliveryRepository.findByDeliveryDateGreaterThanEqual(localDate)
+                .stream().map(DeliveryDto::new)
+                .sorted(Comparator.comparing(DeliveryDto::getDeliveryDate))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<DeliveryDto> findByDeliveryDateLessThanEqual(String date) {
+        LocalDate localDate = LocalDate.parse(date, getFormatter());
+        return deliveryRepository.findByDeliveryDateLessThanEqual(localDate)
+                .stream().map(DeliveryDto::new)
+                .sorted(Comparator.comparing(DeliveryDto::getDeliveryDate))
+                .collect(Collectors.toList());
+    }
+
+    public List<DeliveryDto> getByDate(String first, String last){
+        LocalDate firstDate = LocalDate.parse(first, getFormatter());
+        LocalDate lastDate = LocalDate.parse(first, getFormatter());
+
+        List<DeliveryDto> list = findAll();
+        return list.stream()
+                .filter(delivery -> delivery.getDeliveryDate().compareTo(firstDate) >= 0 && delivery.getDeliveryDate().compareTo(lastDate) <= 0)
                 .sorted(Comparator.comparing(DeliveryDto::getDeliveryDate))
                 .collect(Collectors.toList());
     }

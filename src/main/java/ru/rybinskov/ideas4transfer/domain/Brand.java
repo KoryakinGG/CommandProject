@@ -23,22 +23,21 @@ public class Brand {
     private String name;
     @Column
     private String abbr;
-//
-//    @ManyToMany
-//    @JoinTable(
-//            name = "users_brands_tbl",
-//            joinColumns = { @JoinColumn(name = "brand_id") },
-//            inverseJoinColumns = { @JoinColumn(name = "user_id") })
-//    private List<User> users;
-
 
     @OneToMany(mappedBy = "brand")
     private List<Shop> shops;
 
-    public Brand(BrandDto brand) {
-        this.id = brand.getId();
-        this.name = brand.getName();
-        this.abbr = brand.getAbbr();
+    public Brand(BrandDto brandDto) {
+        updateFields(brandDto);
+
     }
+
+    public void updateFields(BrandDto brandDto) {
+        this.id = brandDto.getId();
+        this.name = brandDto.getName();
+        this.abbr = brandDto.getAbbr();
+    }
+
+
 
 }

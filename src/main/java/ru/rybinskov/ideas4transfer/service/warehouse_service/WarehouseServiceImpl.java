@@ -1,25 +1,25 @@
 package ru.rybinskov.ideas4transfer.service.warehouse_service;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ru.rybinskov.ideas4transfer.domain.Shop;
 import ru.rybinskov.ideas4transfer.domain.Warehouse;
+import ru.rybinskov.ideas4transfer.dto.ShopDto;
 import ru.rybinskov.ideas4transfer.dto.WarehouseDto;
 import ru.rybinskov.ideas4transfer.exception.ResourceNotFoundException;
+import ru.rybinskov.ideas4transfer.exception.WarehouseException;
 import ru.rybinskov.ideas4transfer.repository.WarehouseRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class WarehouseServiceImpl implements WarehouseService{
 
-    private WarehouseRepository warehouseRepository;
-
-    @Autowired
-    public WarehouseServiceImpl(WarehouseRepository warehouseRepository) {
-        this.warehouseRepository = warehouseRepository;
-    }
+    private final WarehouseRepository warehouseRepository;
 
     @Override
     public WarehouseDto findById(Long id) throws ResourceNotFoundException {
@@ -40,13 +40,19 @@ public class WarehouseServiceImpl implements WarehouseService{
     }
 
     @Override
-    public void save(WarehouseDto warehouseDto) {
-        warehouseRepository.save(new Warehouse(warehouseDto));
+    public WarehouseDto save(WarehouseDto warehouseDto) throws ResourceNotFoundException, WarehouseException {
+        if (warehouseDto.getId() == null) {
+            return new WarehouseDto(warehouseRepository.save(new Warehouse(warehouseDto)));
+        }
+        Warehouse warehouse = warehouseRepository.findById(warehouseDto.getId())
+                .orElseThrow(()-> new ResourceNotFoundException("Склад с id = " + warehouseDto.getId() + " не найден"));
+        warehouse.updateFields(warehouseDto);
+        return new WarehouseDto(warehouseRepository.save(warehouse));
     }
 
     @Override
-    public void delete(WarehouseDto warehouseDto) {
-        warehouseRepository.delete(new Warehouse(warehouseDto));
+    public void delete(Long id) {
+        warehouseRepository.deleteById(id);
     }
 
     @Override
