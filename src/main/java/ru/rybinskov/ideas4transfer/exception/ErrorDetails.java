@@ -1,7 +1,10 @@
 package ru.rybinskov.ideas4transfer.exception;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.Date;
 
+@Slf4j
 public class ErrorDetails {
 	private Date timestamp;
 	private String message;
@@ -12,6 +15,7 @@ public class ErrorDetails {
 		this.timestamp = timestamp;
 		this.message = message;
 		this.details = details;
+		log.warn("ErrorDetails: timestamp: {}, message: {}, details: {}",timestamp, message,details);
 	}
 
 	public Date getTimestamp() {

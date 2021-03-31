@@ -1,6 +1,7 @@
 package ru.rybinskov.ideas4transfer.service.user_service;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -19,6 +20,7 @@ import ru.rybinskov.ideas4transfer.security.principal.UserPrincipal;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 @AllArgsConstructor
 public class UserServiceImpl implements UserService, UserDetailsService {
@@ -33,16 +35,19 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public UserDto getById(Long id) throws ResourceNotFoundException {
         User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Пользователь по указанному id не найден: id = " + id));
+        log.info("Working method UserService getById {}", id);
         return new UserDto(user);
     }
 
     @Override
     public List<UserDto> findAll() {
+        log.info("Working method UserService findAll");
         return userRepository.findAll().stream().map(UserDto::new).collect(Collectors.toList());
     }
 
     @Override
     public UserDto findByName(String name) {
+        log.info("Working method UserService findByName");
         return null;
     }
 
@@ -80,12 +85,14 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public void delete(Long id) throws ResourceNotFoundException {
         User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Пользователь по указанному id не найден: id = " + id));
         userRepository.delete(user);
+        log.info("Working method UserService delete id = {}", id);
     }
 
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(String.format("Пользователь '%s' не найден", username)));
+        log.info("Working method UserService loadUserByUsername  = {}", user);
         return UserPrincipal.build(user);
     }
 

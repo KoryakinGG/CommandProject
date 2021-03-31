@@ -16,9 +16,41 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres?currentSchema=command_project
     username: postgres
-    password: password
+    password: admin
     flyway:
       baseline-on-migrate: true
   jackson:
     serialization:
       indent_output: true
+---
+spring:
+  profiles.active: dev
+---
+spring:
+  profiles: dev
+logging:
+  pattern:
+    console: "%clr(%d{dd-MM-yyyy HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n)"
+    file: "%d{dd-MM-yyyy HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  level:
+    org.springframework.web: INFO
+    guru.springframework.controllers: WARN
+    org.hibernate: INFO
+  file:
+    name: logs/dev_app.log
+    max-size: 100
+    max-history: 40
+---
+spring:
+  profiles: production
+logging:
+  pattern:
+    file: "%d{dd-MM-yyyy HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  level:
+    org.springframework.web: WARN
+    guru.springframework.controllers: WARN
+    org.hibernate: WARN
+  file:
+    max-size: 100
+    max-history: 40
+    name: logs/production_app.log
