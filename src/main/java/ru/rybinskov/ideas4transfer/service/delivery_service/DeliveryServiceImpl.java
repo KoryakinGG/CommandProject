@@ -1,6 +1,7 @@
 package ru.rybinskov.ideas4transfer.service.delivery_service;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.rybinskov.ideas4transfer.domain.*;
 import ru.rybinskov.ideas4transfer.dto.DeliveryDto;
@@ -14,6 +15,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 @AllArgsConstructor
 public class DeliveryServiceImpl implements DeliveryService {
@@ -22,6 +24,7 @@ public class DeliveryServiceImpl implements DeliveryService {
 
     @Override
     public List<DeliveryDto> findAll() {
+        log.info("Working method DeliveryService findAll");
         return deliveryRepository.findAll().stream().map(DeliveryDto::new).collect(Collectors.toList());
     }
 
@@ -29,6 +32,7 @@ public class DeliveryServiceImpl implements DeliveryService {
     public DeliveryDto findById(Long id) throws ResourceNotFoundException {
         Delivery delivery = deliveryRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Поставка по указанному id не найдена:  id = " + id));
+        log.info("Working method DeliveryService findById: {}", delivery);
         return new DeliveryDto(delivery);
     }
 
@@ -36,6 +40,7 @@ public class DeliveryServiceImpl implements DeliveryService {
     public DeliveryDto save(DeliveryDto deliveryDto) throws ResourceNotFoundException, WarehouseException {
         if (deliveryDto.getId() == null)
         {
+            log.info("Working method DeliveryType save: {} is null, create new", deliveryDto.getId());
             return new DeliveryDto(deliveryRepository.save(new Delivery(deliveryDto)));
         }
         // обновление уже существующего пользователя
@@ -44,12 +49,14 @@ public class DeliveryServiceImpl implements DeliveryService {
 
         //обновляем поля в user, не затрагивая пароля и Id
         delivery.updateFields(deliveryDto);
+        log.info("Working method DeliveryService save: {}", delivery);
         return new DeliveryDto(deliveryRepository.save(delivery));
     }
 
     @Override
     public void delete(Long id) {
         deliveryRepository.deleteById(id);
+        log.info("Working method DeliveryService delete: {} is deleted", id );
     }
 
     @Override
@@ -67,6 +74,7 @@ public class DeliveryServiceImpl implements DeliveryService {
         });
         List<Delivery> deliveries = listValidDeliveries.stream().map(Delivery::new).collect(Collectors.toList());
         deliveryRepository.saveAll(deliveries);
+        log.info("Working method DeliveryService saveAll: {}", deliveries );
         if (!listNotValidDeliveries.isEmpty()) {
             String notValidDeliveries = listNotValidDeliveries.stream()
                     .map(deliveryDto -> deliveryDto.getDeliveryDate().toString())
@@ -85,6 +93,7 @@ public class DeliveryServiceImpl implements DeliveryService {
     public List<DeliveryDto> findByDeliveryDateIsBetween(String first, String last) {
         LocalDate firstDate = LocalDate.parse(first, getFormatter());
         LocalDate lastDate = LocalDate.parse(last, getFormatter());
+        log.info("Working method DeliveryService findByDeliveryDateIsBetween: firstDate {}, LastDate {}", firstDate,lastDate);
         return deliveryRepository.findByDeliveryDateIsBetween(firstDate, lastDate)
                 .stream().map(DeliveryDto::new)
                 .sorted(Comparator.comparing(DeliveryDto::getDeliveryDate))
@@ -94,6 +103,7 @@ public class DeliveryServiceImpl implements DeliveryService {
     @Override
     public List<DeliveryDto> findByDeliveryDateGreaterThanEqual(String date) {
         LocalDate localDate = LocalDate.parse(date, getFormatter());
+        log.info("Working method DeliveryService findByDeliveryDateGreaterThanEqual: {}", localDate);
         return deliveryRepository.findByDeliveryDateGreaterThanEqual(localDate)
                 .stream().map(DeliveryDto::new)
                 .sorted(Comparator.comparing(DeliveryDto::getDeliveryDate))
@@ -103,6 +113,7 @@ public class DeliveryServiceImpl implements DeliveryService {
     @Override
     public List<DeliveryDto> findByDeliveryDateLessThanEqual(String date) {
         LocalDate localDate = LocalDate.parse(date, getFormatter());
+        log.info("Working method DeliveryService findByDeliveryDateLessThanEqual: {}", localDate);
         return deliveryRepository.findByDeliveryDateLessThanEqual(localDate)
                 .stream().map(DeliveryDto::new)
                 .sorted(Comparator.comparing(DeliveryDto::getDeliveryDate))
@@ -112,10 +123,12 @@ public class DeliveryServiceImpl implements DeliveryService {
     public List<DeliveryDto> getByDate(String first, String last){
         LocalDate firstDate = LocalDate.parse(first, getFormatter());
         LocalDate lastDate = LocalDate.parse(first, getFormatter());
-
         List<DeliveryDto> list = findAll();
+        log.info("Working method DeliveryService getByDate: {}", list);
         return list.stream()
-                .filter(delivery -> delivery.getDeliveryDate().compareTo(firstDate) >= 0 && delivery.getDeliveryDate().compareTo(lastDate) <= 0)
+                .filter(delivery -> delivery.getDeliveryDate()
+                .compareTo(firstDate) >= 0 && delivery.getDeliveryDate()
+                .compareTo(lastDate) <= 0)
                 .sorted(Comparator.comparing(DeliveryDto::getDeliveryDate))
                 .collect(Collectors.toList());
     }
