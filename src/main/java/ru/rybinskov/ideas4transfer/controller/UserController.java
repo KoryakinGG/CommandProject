@@ -11,7 +11,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin({"http://localhost:4200", "https://mywarehouseapp.herokuapp.com", "http://mywarehouseapp.herokuapp.com"})
 @RestController
 @RequestMapping("/api/v1")
 public class UserController {

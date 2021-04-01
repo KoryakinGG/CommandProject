@@ -18,7 +18,6 @@ import ru.rybinskov.ideas4transfer.security.jwt.JwtProvider;
 
 import javax.validation.Valid;
 
-@CrossOrigin({"http://localhost:4200","https://mywarehouseapp.herokuapp.com", "http://mywarehouseapp.herokuapp.com"})
 @RestController
 @RequestMapping("/api/v1")
 public class AuthController {

@@ -13,6 +13,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import ru.rybinskov.ideas4transfer.security.jwt.JwtAuthEntryPoint;
 import ru.rybinskov.ideas4transfer.security.jwt.JwtAuthTokenFilter;
 
@@ -20,7 +22,7 @@ import ru.rybinskov.ideas4transfer.security.jwt.JwtAuthTokenFilter;
 @EnableGlobalMethodSecurity(
         prePostEnabled = true
 )
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebMvcConfigurer {
 
     private UserDetailsService userDetailsService;
     private JwtAuthEntryPoint unauthorizedHandler;
@@ -41,9 +43,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("http://localhost:4200/**");
+        registry.addMapping("http://mywarehouseapp.herokuapp.com/**");
+        registry.addMapping("https://mywarehouseapp.herokuapp.com/**");
+    }
+
+    @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable().
-                authorizeRequests()
+        http.cors().and().csrf().disable()
+                .authorizeRequests()
                 .antMatchers("/api/v1/auth/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
