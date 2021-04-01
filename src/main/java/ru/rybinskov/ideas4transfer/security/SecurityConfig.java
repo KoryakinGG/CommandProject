@@ -20,9 +20,8 @@ import ru.rybinskov.ideas4transfer.security.jwt.JwtAuthTokenFilter;
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(
-        prePostEnabled = true
-)
-public class SecurityConfig extends WebSecurityConfigurerAdapter { //  implements WebMvcConfigurer
+        prePostEnabled = true)
+public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebMvcConfigurer{
 
     private UserDetailsService userDetailsService;
     private JwtAuthEntryPoint unauthorizedHandler;
@@ -42,12 +41,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter { //  implement
         return new JwtAuthTokenFilter();
     }
 
-//    @Override
-//    public void addCorsMappings(CorsRegistry registry) {
-//        registry.addMapping("http://localhost:4200");
-//        registry.addMapping("http://mywarehouseapp.herokuapp.com");
-//        registry.addMapping("https://mywarehouseapp.herokuapp.com");
-//    }
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedOrigins("http://localhost:4200",
+                        "http://mywarehouseapp.herokuapp.com",
+                        "https://mywarehouseapp.herokuapp.com");
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
