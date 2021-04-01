@@ -2,17 +2,22 @@ package ru.rybinskov.ideas4transfer.service.delivery_service;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.rybinskov.ideas4transfer.domain.*;
 import ru.rybinskov.ideas4transfer.dto.DeliveryDto;
 import ru.rybinskov.ideas4transfer.exception.ExceedingAllowedDateValueException;
 import ru.rybinskov.ideas4transfer.exception.ResourceNotFoundException;
 import ru.rybinskov.ideas4transfer.exception.WarehouseException;
+import ru.rybinskov.ideas4transfer.repository.BrandRepository;
 import ru.rybinskov.ideas4transfer.repository.DeliveryRepository;
+import ru.rybinskov.ideas4transfer.repository.ShopRepository;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -21,6 +26,8 @@ import java.util.stream.Collectors;
 public class DeliveryServiceImpl implements DeliveryService {
 
     private final DeliveryRepository deliveryRepository;
+    private final BrandRepository brandRepository;
+    private final ShopRepository shopRepository;
 
     @Override
     public List<DeliveryDto> findAll() {
@@ -60,27 +67,20 @@ public class DeliveryServiceImpl implements DeliveryService {
     }
 
     @Override
-    public void saveAll(List<DeliveryDto> deliveryDtos) throws ExceedingAllowedDateValueException {
-        List<DeliveryDto> listValidDeliveries = new ArrayList<>(), listNotValidDeliveries = new ArrayList<>();
+    @Transactional
+    public void saveAll(List<DeliveryDto> deliveryDtos) throws WarehouseException {
 
-        deliveryDtos.forEach(d -> {
-            if (d.getDeliveryDate().
-                    compareTo(LocalDate.now().plusDays(21)) <= 0) {
-                listValidDeliveries.add(d);
-            } else {
-                listNotValidDeliveries.add(d);
-            }
+        List<DeliveryDto> listNotValidDeliveries = deliveryDtos.stream().filter(
+                d -> d.getDeliveryDate().compareTo(LocalDate.now().plusDays(21)) >= 0
+                        || !(brandRepository.findById(d.getBrand().getId())).isPresent()
+                        || !(shopRepository.findById(d.getShop().getId())).isPresent()).collect(Collectors.toList());
 
-        });
-        List<Delivery> deliveries = listValidDeliveries.stream().map(Delivery::new).collect(Collectors.toList());
-        deliveryRepository.saveAll(deliveries);
-        log.info("Working method DeliveryService saveAll: {}", deliveries );
-        if (!listNotValidDeliveries.isEmpty()) {
-            String notValidDeliveries = listNotValidDeliveries.stream()
-                    .map(deliveryDto -> deliveryDto.getDeliveryDate().toString())
-                    .collect(Collectors.joining("; ", "[ ", " ]"));
-            throw new ExceedingAllowedDateValueException("На текущую дату невозможно оформить доставку. Ближайшая из возможных дат: "
-                    + LocalDate.now().plusDays(21) + " или раньше. Исправьте даты поставок: " + notValidDeliveries);
+        if (listNotValidDeliveries.isEmpty()) {
+            List<Delivery> deliveries = deliveryDtos.stream().map(Delivery::new).collect(Collectors.toList());
+            deliveryRepository.saveAll(deliveries);
+        } else {
+            throw new WarehouseException("Недопустимая Дата поставки или данные о Brand или Shop отстутствуют в справочнике. " +
+                    "Для офромления доставки обновите сведения в справочнике. " +  listNotValidDeliveries);
         }
     }
 

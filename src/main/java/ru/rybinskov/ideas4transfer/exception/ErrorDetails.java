@@ -15,7 +15,7 @@ public class ErrorDetails {
 		this.timestamp = timestamp;
 		this.message = message;
 		this.details = details;
-		log.warn("ErrorDetails: timestamp: {}, message: {}, details: {}",timestamp, message,details);
+		log.warn("ErrorDetails: timestamp: {}, message: {}, details: {}",timestamp, message, details);
 	}
 
 	public Date getTimestamp() {

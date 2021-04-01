@@ -32,6 +32,7 @@ public class Shop {
     }
 
     public void updateFields(ShopDto shopDto) {
+        this.id = shopDto.getId();
         this.name = shopDto.getName();
         this.abbr = shopDto.getAbbr();
         this.brand = new Brand(shopDto.getBrand());

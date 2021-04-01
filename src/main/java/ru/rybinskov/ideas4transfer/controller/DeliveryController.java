@@ -53,7 +53,7 @@ public class DeliveryController {
     }
 
     @PostMapping("/grouped-deliveries")
-    public void saveAllDeliveries(@RequestBody List<DeliveryDto> deliveries) throws ExceedingAllowedDateValueException {
+    public void saveAllDeliveries(@RequestBody List<DeliveryDto> deliveries) throws WarehouseException {
         deliveryService.saveAll(deliveries);
     }
 

@@ -26,6 +26,7 @@ public class DeliveryType {
     }
 
     public void updateFields(DeliveryTypeDto deliveryTypeDto){
+        this.id = deliveryTypeDto.getId();
         this.type = deliveryTypeDto.getType();
     }
 

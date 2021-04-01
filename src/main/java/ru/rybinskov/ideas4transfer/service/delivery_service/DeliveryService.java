@@ -12,7 +12,7 @@ public interface DeliveryService {
     List<DeliveryDto> findAll();
     DeliveryDto findById(Long id) throws ResourceNotFoundException;
     void delete(Long id);
-    void saveAll(List<DeliveryDto> deliveryDtos) throws ExceedingAllowedDateValueException;
+    void saveAll(List<DeliveryDto> deliveryDtos) throws WarehouseException;
     List<DeliveryDto> findByDeliveryDateIsBetween(String first, String second);
     List<DeliveryDto> findByDeliveryDateGreaterThanEqual(String date);
     List<DeliveryDto> findByDeliveryDateLessThanEqual(String date);

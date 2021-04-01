@@ -27,6 +27,7 @@ public class DeliveryTime {
     }
 
     public void updateFields(DeliveryTimeDto deliveryTimeDto) {
+        this.id = deliveryTimeDto.getId();
         this.deliveryTime = deliveryTimeDto.getDeliveryTime();
     }
 }
