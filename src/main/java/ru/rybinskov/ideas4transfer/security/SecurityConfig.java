@@ -46,7 +46,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
         registry.addMapping("/**")
                 .allowedOrigins("http://localhost:4200",
                         "http://mywarehouseapp.herokuapp.com",
-                        "https://mywarehouseapp.herokuapp.com");
+                        "https://mywarehouseapp.herokuapp.com")
+                .allowedMethods("*");
     }
 
     @Override

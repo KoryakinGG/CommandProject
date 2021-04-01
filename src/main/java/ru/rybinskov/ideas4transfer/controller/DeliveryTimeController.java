@@ -58,4 +58,3 @@ public class DeliveryTimeController {
         deliveryTimeService.saveAll(deliveryTimeDto);
     }
 }
-
