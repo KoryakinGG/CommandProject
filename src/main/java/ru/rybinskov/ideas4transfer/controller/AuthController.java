@@ -55,7 +55,6 @@ public class AuthController {
         this.jwtProvider = jwtProvider;
     }
 
-    @Operation(summary = "My endpoint", security = @SecurityRequirement(name = "bearerAuth"))
     @PostMapping("/auth")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginForm loginRequest) {
 
