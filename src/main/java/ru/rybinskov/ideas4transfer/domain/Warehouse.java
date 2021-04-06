@@ -28,6 +28,7 @@ public class Warehouse {
     }
 
     public void updateFields(WarehouseDto warehouseDto) {
+        this.id = warehouseDto.getId();
         this.name = warehouseDto.getName();
         this.abbr = warehouseDto.getAbbr();
     }

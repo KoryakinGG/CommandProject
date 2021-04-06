@@ -28,6 +28,7 @@ public class Role {
     }
 
     public void updateFields(RoleDto roleDto) {
+        this.id = roleDto.getId();
         this.roleName = roleDto.getRole();
     }
 

@@ -1,5 +1,6 @@
 package ru.rybinskov.ideas4transfer.controller;
 
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.rybinskov.ideas4transfer.dto.DeliveryDto;
@@ -15,7 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin({"http://localhost:4200", "https://mywarehouseapp.herokuapp.com", "http://mywarehouseapp.herokuapp.com"})
+//@CrossOrigin({"http://localhost:4200","https://mywarehouseapp.herokuapp.com", "http://mywarehouseapp.herokuapp.com"})
 @RestController
 @RequestMapping("/api/v1")
 public class DeliveryController {
@@ -53,7 +54,7 @@ public class DeliveryController {
     }
 
     @PostMapping("/grouped-deliveries")
-    public void saveAllDeliveries(@RequestBody List<DeliveryDto> deliveries) throws ExceedingAllowedDateValueException {
+    public void saveAllDeliveries(@RequestBody List<DeliveryDto> deliveries) throws WarehouseException {
         deliveryService.saveAll(deliveries);
     }
 
@@ -61,17 +62,17 @@ public class DeliveryController {
     @GetMapping(value = "/deliveries")
     public ResponseEntity<List<DeliveryDto>> filterByDate(@RequestParam(required = false, name = "first") String first,
                                @RequestParam(required = false, name = "last") String last){
-        List<DeliveryDto> lists = new ArrayList<>();
+        List<DeliveryDto> lists;
         if (first == null && last == null) {
             lists =deliveryService.findAll();
         }
         else if (first != null && last == null) {
             lists = deliveryService.findByDeliveryDateGreaterThanEqual(first);
         }
-        else if (first == null && last != null) {
+        else if (first == null) {
             lists = deliveryService.findByDeliveryDateLessThanEqual(last);
         }
-        else if (first != null && last != null) {
+        else {
             lists = deliveryService.findByDeliveryDateIsBetween(first, last);
         }
         return ResponseEntity.ok().body(lists);

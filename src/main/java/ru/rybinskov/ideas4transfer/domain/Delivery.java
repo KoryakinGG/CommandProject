@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 import ru.rybinskov.ideas4transfer.dto.*;
 
 import javax.persistence.*;
@@ -82,6 +83,7 @@ public class Delivery {
     }
 
     public void updateFields(DeliveryDto deliveryDto) {
+        this.id = deliveryDto.getId();
         this.deliveryDate = deliveryDto.getDeliveryDate();
         this.deliveryTime = deliveryDto.getDeliveryTime();
         this.carInfo = deliveryDto.getCarInfo();

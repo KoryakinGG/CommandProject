@@ -36,4 +36,11 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 		log.warn("exceedingAllowedDateValueException: {}",errorDetails );
 		return new ResponseEntity<>(errorDetails, HttpStatus.METHOD_NOT_ALLOWED);
 	}
+
+	@ExceptionHandler(WarehouseException.class)
+	public ResponseEntity<?> resourceNotFoundException(WarehouseException ex, WebRequest request) {
+		ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(), request.getDescription(false));
+		log.warn("warehouseException: {}",errorDetails );
+		return new ResponseEntity<>(errorDetails, HttpStatus.METHOD_NOT_ALLOWED);
+	}
 }

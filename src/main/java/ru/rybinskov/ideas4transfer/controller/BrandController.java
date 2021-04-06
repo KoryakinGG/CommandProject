@@ -1,6 +1,8 @@
 package ru.rybinskov.ideas4transfer.controller;
 
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import ru.rybinskov.ideas4transfer.dto.BrandDto;
 import ru.rybinskov.ideas4transfer.dto.DeliveryDto;
@@ -13,7 +15,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin({"http://localhost:4200","https://mywarehouseapp.herokuapp.com", "http://mywarehouseapp.herokuapp.com"})
 @RestController
 @RequestMapping("/api/v1")
 public class BrandController {
