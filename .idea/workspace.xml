@@ -17,8 +17,11 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/controller/ShopController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/controller/ShopController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/controller/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/controller/WarehouseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/controller/WarehouseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/dto/DeliveryDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/dto/DeliveryDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/security/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/security/jwt/JwtProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/security/jwt/JwtProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/additional-spring-configuration-metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/additional-spring-configuration-metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +47,14 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="MIXED" />
     <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="GithubProjectSettings">
     <option name="CREATE_PULL_REQUEST_DEFAULT_BRANCH" value="Dev4" />
@@ -93,7 +104,13 @@
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="ru.rybinskov.ideas4transfer.common" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="ru.rybinskov.ideas4transfer" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ru.rybinskov.ideas4transfer.security" />
+      <recent name="ru.rybinskov.ideas4transfer.common" />
+      <recent name="ru.rybinskov.ideas4transfer.service.excel_report_service" />
       <recent name="ru.rybinskov.ideas4transfer.repository" />
       <recent name="ru.rybinskov.ideas4transfer.controller" />
     </key>
@@ -106,8 +123,8 @@
     </option>
   </component>
   <component name="RunManager" selected="Spring Boot.Ideas4transferApplication">
-    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ru.rybinskov.ideas4transfer.common.Main" />
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ru.rybinskov.ideas4transfer.controller.Main" />
       <module name="ideas4transfer" />
       <extension name="coverage">
         <pattern>
@@ -120,7 +137,7 @@
       </method>
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ru.rybinskov.ideas4transfer.controller.Main" />
+      <option name="MAIN_CLASS_NAME" value="ru.rybinskov.ideas4transfer.common.Main" />
       <module name="ideas4transfer" />
       <extension name="coverage">
         <pattern>
@@ -161,13 +178,11 @@
     </configuration>
     <list>
       <item itemvalue="Application.Main" />
-      <item itemvalue="Application.Main (1)" />
       <item itemvalue="Spring Boot.Ideas4transferApplication (1)" />
       <item itemvalue="Spring Boot.Ideas4transferApplication" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main (1)" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />
       </list>
@@ -244,7 +259,18 @@
       <workItem from="1617262240317" duration="891000" />
       <workItem from="1617279279512" duration="6291000" />
       <workItem from="1617289471892" duration="9165000" />
-      <workItem from="1617299825091" duration="892000" />
+      <workItem from="1617299825091" duration="1001000" />
+      <workItem from="1617437788244" duration="113000" />
+      <workItem from="1617446479863" duration="497000" />
+      <workItem from="1617558585441" duration="3249000" />
+      <workItem from="1617566996492" duration="665000" />
+      <workItem from="1617600149919" duration="8872000" />
+      <workItem from="1617609172412" duration="204000" />
+      <workItem from="1617629435969" duration="1377000" />
+      <workItem from="1617634866978" duration="9058000" />
+      <workItem from="1617686026767" duration="193000" />
+      <workItem from="1617719661546" duration="693000" />
+      <workItem from="1617725269509" duration="300000" />
     </task>
     <task id="LOCAL-00001" summary="1. Дописал класс UserDto остальными полями&#10;&#10;2. Создал папку Utils и создал в ней класс UserUtils, в котором прописал методы по переводу объектов из User в UserDto и обратно&#10;&#10;3. Переписал методы в UserService и UserController">
       <created>1616153374963</created>

@@ -1,15 +1,20 @@
 package ru.rybinskov.ideas4transfer.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import ru.rybinskov.ideas4transfer.dto.DeliveryDto;
 import ru.rybinskov.ideas4transfer.dto.UserDto;
 import ru.rybinskov.ideas4transfer.exception.ExceedingAllowedDateValueException;
 import ru.rybinskov.ideas4transfer.exception.ResourceNotFoundException;
 import ru.rybinskov.ideas4transfer.exception.WarehouseException;
 import ru.rybinskov.ideas4transfer.service.delivery_service.DeliveryService;
+import ru.rybinskov.ideas4transfer.service.excel_report_service.ExcelReportView;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,6 +24,7 @@ import java.util.Map;
 //@CrossOrigin({"http://localhost:4200","https://mywarehouseapp.herokuapp.com", "http://mywarehouseapp.herokuapp.com"})
 @RestController
 @RequestMapping("/api/v1")
+@SecurityRequirement(name = "bearerAuth")
 public class DeliveryController {
 
     private final DeliveryService deliveryService;
@@ -78,6 +84,10 @@ public class DeliveryController {
         return ResponseEntity.ok().body(lists);
     }
 
+    @PostMapping("/report")
+    public ModelAndView getExcel(@RequestBody List<DeliveryDto> deliveries){
+        return new ModelAndView(new ExcelReportView(), "reportDeliveries", deliveries);
+    }
 
     @GetMapping("/deliveries/new")
     public String createDelivery() throws ExceedingAllowedDateValueException, ResourceNotFoundException, WarehouseException {

@@ -76,6 +76,14 @@
         </dependency>
         <!-- For Working with swagger	-->
 
+        <!-- APACHE POI -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>RELEASE</version>
+        </dependency>
+        <!-- APACHE POI -->
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

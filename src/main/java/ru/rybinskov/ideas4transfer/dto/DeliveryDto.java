@@ -1,7 +1,6 @@
 package ru.rybinskov.ideas4transfer.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
@@ -14,7 +13,6 @@ import ru.rybinskov.ideas4transfer.domain.Delivery;
 import ru.rybinskov.ideas4transfer.domain.DeliveryTime;
 import ru.rybinskov.ideas4transfer.domain.DeliveryType;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 
 @Data
@@ -78,21 +76,21 @@ public class DeliveryDto {
         this.warehouse = new WarehouseDto(delivery.getWarehouse());
     }
 
-    public void updateAllFieldsWithoutId(DeliveryDto updatedDelivery) {
-        this.deliveryDate = updatedDelivery.getDeliveryDate();
-        this.deliveryTime = updatedDelivery.getDeliveryTime();
-        this.carInfo = updatedDelivery.getCarInfo();
-        this.driverInfo = updatedDelivery.getDriverInfo();
-        this.brand = updatedDelivery.getBrand();
-        this.orderNumber = updatedDelivery.getOrderNumber();
-        this.deliveryType = updatedDelivery.getDeliveryType();
-        this.sender = updatedDelivery.getSender();
-        this.comment = updatedDelivery.getComment();
-        this.shop = updatedDelivery.getShop();
-        this.numberOfPlaces = updatedDelivery.getNumberOfPlaces();
-        this.torgNumber = updatedDelivery.getTorgNumber();
-        this.invoice = updatedDelivery.getInvoice();
-        this.user = updatedDelivery.getUser();
-        this.warehouse = updatedDelivery.getWarehouse();
-    }
+//    public void updateAllFieldsWithoutId(DeliveryDto updatedDelivery) {
+//        this.deliveryDate = updatedDelivery.getDeliveryDate();
+//        this.deliveryTime = updatedDelivery.getDeliveryTime();
+//        this.carInfo = updatedDelivery.getCarInfo();
+//        this.driverInfo = updatedDelivery.getDriverInfo();
+//        this.brand = updatedDelivery.getBrand();
+//        this.orderNumber = updatedDelivery.getOrderNumber();
+//        this.deliveryType = updatedDelivery.getDeliveryType();
+//        this.sender = updatedDelivery.getSender();
+//        this.comment = updatedDelivery.getComment();
+//        this.shop = updatedDelivery.getShop();
+//        this.numberOfPlaces = updatedDelivery.getNumberOfPlaces();
+//        this.torgNumber = updatedDelivery.getTorgNumber();
+//        this.invoice = updatedDelivery.getInvoice();
+//        this.user = updatedDelivery.getUser();
+//        this.warehouse = updatedDelivery.getWarehouse();
+//    }
 }
