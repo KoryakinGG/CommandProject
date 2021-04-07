@@ -39,7 +39,8 @@ public class RoleServiceImpl implements RoleService{
     public RoleDto save(RoleDto roleDto) throws ResourceNotFoundException, WarehouseException {
         if (roleDto.getId() == null) {
             log.info("Working method RoleService save: {} is null, create new", roleDto.getId());
-            return new RoleDto(roleRepository.save(new Role(roleDto)));
+            RoleDto roleDto1= new RoleDto(roleRepository.save(new Role(roleDto)));
+            return roleDto1;
         }
         Role role = roleRepository.findById(roleDto.getId())
                 .orElseThrow(()-> new ResourceNotFoundException("Роль с id = " + roleDto.getId() + " не найдена"));

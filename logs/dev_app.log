@@ -1,1 +1,2 @@
-01-04-2021 21:12:14 [http-nio-8189-exec-1] INFO  r.r.i.s.d.DeliveryServiceImpl - Working method DeliveryService findByDeliveryDateIsBetween: firstDate 2021-04-01, LastDate 2021-07-01
+07-04-2021 00:58:26 [http-nio-8189-exec-7] WARN  r.r.i.exception.ErrorDetails - ErrorDetails: timestamp: Wed Apr 07 00:58:26 MSK 2021, message: Mayday, mayday! We’re going down in flames, details: uri=/api/v1/oups
+07-04-2021 00:58:26 [http-nio-8189-exec-7] WARN  r.r.i.e.GlobalExceptionHandler - globalExceptionHandler: ru.rybinskov.ideas4transfer.exception.ErrorDetails@64a95d28
