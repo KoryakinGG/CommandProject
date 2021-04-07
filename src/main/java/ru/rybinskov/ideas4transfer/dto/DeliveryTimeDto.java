@@ -19,8 +19,4 @@ public class DeliveryTimeDto {
         this.deliveryTime = deliveryTime.getDeliveryTime();
     }
 
-    public void updateAllFieldsWithoutId(DeliveryTimeDto deliveryTimeDto) {
-        this.deliveryTime = deliveryTimeDto.getDeliveryTime();
-    }
-
 }

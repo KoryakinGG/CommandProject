@@ -12,5 +12,6 @@ public interface UserService {
     UserDto findByName(String name);
     UserDto save(UserDto userDto) throws ResourceNotFoundException, WarehouseException;
     void delete(Long id) throws ResourceNotFoundException;
-//    UserDto update(UserDto user) throws ResourceNotFoundException;
+//    void assignPassword(UserDto userDto) throws ResourceNotFoundException, WarehouseException;
+
 }

@@ -27,12 +27,12 @@ public class Delivery {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonFormat(
-            shape = JsonFormat.Shape.STRING,
-//            pattern = "yyyy.MM.dd")
-            pattern = "dd.MM.yyyy")
-    @JsonDeserialize(using = LocalDateDeserializer.class)
-    @JsonSerialize(using = LocalDateSerializer.class)
+//    @JsonFormat(
+//            shape = JsonFormat.Shape.STRING,
+////            pattern = "yyyy.MM.dd")
+//            pattern = "dd.MM.yyyy")
+//    @JsonDeserialize(using = LocalDateDeserializer.class)
+//    @JsonSerialize(using = LocalDateSerializer.class)
     @Column
     private LocalDate deliveryDate;
 

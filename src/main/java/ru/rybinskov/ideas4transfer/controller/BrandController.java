@@ -1,5 +1,6 @@
 package ru.rybinskov.ideas4transfer.controller;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -17,6 +18,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1")
+@SecurityRequirement(name = "bearerAuth")
 public class BrandController {
 
     private final BrandService brandService;

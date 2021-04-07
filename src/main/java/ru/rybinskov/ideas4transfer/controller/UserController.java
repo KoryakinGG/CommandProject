@@ -1,5 +1,6 @@
 package ru.rybinskov.ideas4transfer.controller;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1")
+@SecurityRequirement(name = "bearerAuth")
 public class UserController {
     private final UserService userService;
 
@@ -52,6 +54,12 @@ public class UserController {
         userService.delete(userId);
         return ResponseEntity.ok("Deleted");
     }
+
+//    @PostMapping("/users/set-pass")
+//    public ResponseEntity<String> setUserPassword(@RequestBody UserDto userDto) throws ResourceNotFoundException, WarehouseException {
+//        userService.assignPassword(userDto);
+//        return ResponseEntity.ok("Еhe password is set");
+//    }
 
 }
 
