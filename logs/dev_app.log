@@ -1,1 +1,1 @@
-06-04-2021 20:00:59 [http-nio-8189-exec-5] INFO  r.r.i.s.w.WarehouseServiceImpl - Working method WarehouseService findAll
+07-04-2021 11:21:29 [SpringContextShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

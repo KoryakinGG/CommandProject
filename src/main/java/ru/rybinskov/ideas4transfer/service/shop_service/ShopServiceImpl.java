@@ -36,14 +36,6 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
-    public void updateShop(ShopDto shopDto) throws ResourceNotFoundException {
-        ShopDto shop = findById(shopDto.getId());
-        shop.updateAllFieldsWithoutId(shopDto);
-        shopRepository.save(new Shop(shop));
-        log.info("Working method ShopService updateShop {}", shop);
-    }
-
-    @Override
     public ShopDto save(ShopDto shopDto) throws ResourceNotFoundException, WarehouseException {
         if (shopDto.getId() == null) {
             log.info("Working method ShopService save {} is null, create new", shopDto.getId());

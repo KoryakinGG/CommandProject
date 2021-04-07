@@ -22,11 +22,11 @@ import java.time.LocalDate;
 public class DeliveryDto {
 
     private Long id;
-    @JsonFormat(
-            shape = JsonFormat.Shape.STRING,
-            pattern = "dd.MM.yyyy")
-    @JsonDeserialize(using = LocalDateDeserializer.class)
-    @JsonSerialize(using = LocalDateSerializer.class)
+//    @JsonFormat(
+//            shape = JsonFormat.Shape.STRING,
+//            pattern = "dd.MM.yyyy")
+//    @JsonDeserialize(using = LocalDateDeserializer.class)
+//    @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate deliveryDate;
 
     private DeliveryTime deliveryTime;
@@ -76,21 +76,4 @@ public class DeliveryDto {
         this.warehouse = new WarehouseDto(delivery.getWarehouse());
     }
 
-//    public void updateAllFieldsWithoutId(DeliveryDto updatedDelivery) {
-//        this.deliveryDate = updatedDelivery.getDeliveryDate();
-//        this.deliveryTime = updatedDelivery.getDeliveryTime();
-//        this.carInfo = updatedDelivery.getCarInfo();
-//        this.driverInfo = updatedDelivery.getDriverInfo();
-//        this.brand = updatedDelivery.getBrand();
-//        this.orderNumber = updatedDelivery.getOrderNumber();
-//        this.deliveryType = updatedDelivery.getDeliveryType();
-//        this.sender = updatedDelivery.getSender();
-//        this.comment = updatedDelivery.getComment();
-//        this.shop = updatedDelivery.getShop();
-//        this.numberOfPlaces = updatedDelivery.getNumberOfPlaces();
-//        this.torgNumber = updatedDelivery.getTorgNumber();
-//        this.invoice = updatedDelivery.getInvoice();
-//        this.user = updatedDelivery.getUser();
-//        this.warehouse = updatedDelivery.getWarehouse();
-//    }
 }

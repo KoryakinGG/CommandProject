@@ -19,7 +19,4 @@ public class DeliveryTypeDto {
         this.type = deliveryType.getType();
     }
 
-    public void updateAllFieldsWithoutId(DeliveryTypeDto deliveryTypeDto){
-        this.type = deliveryTypeDto.getType();
-    }
 }

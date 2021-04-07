@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +18,7 @@ import ru.rybinskov.ideas4transfer.repository.UserRepository;
 import ru.rybinskov.ideas4transfer.security.principal.UserPrincipal;
 
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,11 +28,7 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService, UserDetailsService {
 
     private final UserRepository userRepository;
-//
-//    @Autowired
-//    public void setUserRepository(UserRepository userRepository) {
-//        this.userRepository = userRepository;
-//    }
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     public UserDto getById(Long id) throws ResourceNotFoundException {
@@ -53,6 +51,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public UserDto save(UserDto userDto) throws ResourceNotFoundException, WarehouseException {
+        String password = userDto.getPassword();
+        if (password != null && (!password.trim().equals(""))) {
+            userDto.setPassword(bCryptPasswordEncoder.encode(password));
+        }
 
         String username = userDto.getUsername();
         // Вот тут я не знаю, есть ли смысл проверять username на null
@@ -64,6 +66,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         {
             if(username == null || username.equals("")) {
                 throw new WarehouseException("Ошибка при создании пользователя: логин не указан или он пустой");
+            }
+
+            if (password == null || password.trim().equals("")) {
+                throw new WarehouseException("Ошибка при создании пользователя: Пароль не указан или он пустой");
             }
 
             // пользователя не должно быть в БД
@@ -95,7 +101,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         log.info("Working method UserService loadUserByUsername");
         return UserPrincipal.build(user);
     }
-
 
 //    @Override
 //    @Transactional

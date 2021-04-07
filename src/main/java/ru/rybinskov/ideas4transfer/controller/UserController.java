@@ -55,5 +55,11 @@ public class UserController {
         return ResponseEntity.ok("Deleted");
     }
 
+//    @PostMapping("/users/set-pass")
+//    public ResponseEntity<String> setUserPassword(@RequestBody UserDto userDto) throws ResourceNotFoundException, WarehouseException {
+//        userService.assignPassword(userDto);
+//        return ResponseEntity.ok("Еhe password is set");
+//    }
+
 }
 

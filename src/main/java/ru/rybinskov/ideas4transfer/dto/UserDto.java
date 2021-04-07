@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 public class UserDto {
     private Long id;
     private String username;
+    private String password;
     private Collection<RoleDto> roles;
     private String fullName;
     private String email;
@@ -32,14 +33,6 @@ public class UserDto {
         this.brands = user.getBrands().stream().map(BrandDto::new).collect(Collectors.toList());
     }
 
-//    public void updateAllFieldsWithoutId(UserDto userDto) {
-//        this.username = userDto.getUsername();
-//        this.phone = userDto.getPhone();
-//        this.email = userDto.getEmail();
-//        this.fullName = userDto.getFullName();
-//        this.roles = userDto.getRoles();
-//        this.brands = userDto.getBrands();
-//    }
 }
 
 

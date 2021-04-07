@@ -81,7 +81,7 @@ public class DeliveryServiceImpl implements DeliveryService {
         } else {
             throw new WarehouseException("Недопустимая Дата поставки или данные о Brand или Shop отстутствуют в справочнике. " +
                     "Для офромления доставки обновите сведения в справочнике. " +  listNotValidDeliveries);
-        }
+        } // invalidException
     }
 
     private DateTimeFormatter getFormatter() {
