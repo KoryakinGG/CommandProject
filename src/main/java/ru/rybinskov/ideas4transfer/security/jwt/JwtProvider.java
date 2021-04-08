@@ -34,33 +34,12 @@ public class JwtProvider {
     public String generateJwtToken(Authentication authentication) {
 
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
-        jwts = Jwts.builder()
-		                .setSubject((userPrincipal.getUsername()))
-		                .setIssuedAt(new Date())
-		                .setExpiration(new Date((new Date()).getTime() + jwtExpiration*1000))
-		                .signWith(SignatureAlgorithm.HS512, jwtSecret)
-		                .compact();
-        return  jwts;
-    }
-
-    // для работы swagger
-    @Bean
-    public OpenAPI customOpenAPI() {
-        final String securitySchemeName = "bearerAuth";
-        final String apiTitle = String.format("%s API", StringUtils.capitalize(jwts));
-        return new OpenAPI()
-                .addSecurityItem(new SecurityRequirement().addList(securitySchemeName))
-                .components(
-                        new Components()
-                                .addSecuritySchemes(securitySchemeName,
-                                        new SecurityScheme()
-                                                .name(securitySchemeName)
-                                                .type(SecurityScheme.Type.HTTP)
-                                                .scheme("bearer")
-                                                .bearerFormat("JWT")
-                                )
-                )
-                .info(new Info().title(apiTitle));
+        return  Jwts.builder()
+                .setSubject((userPrincipal.getUsername()))
+                .setIssuedAt(new Date())
+                .setExpiration(new Date((new Date()).getTime() + jwtExpiration*1000))
+                .signWith(SignatureAlgorithm.HS512, jwtSecret)
+                .compact();
     }
 
     public boolean validateJwtToken(String authToken) {

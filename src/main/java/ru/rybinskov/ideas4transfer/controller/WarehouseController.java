@@ -4,15 +4,12 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.rybinskov.ideas4transfer.dto.BrandDto;
 import ru.rybinskov.ideas4transfer.dto.WarehouseDto;
 import ru.rybinskov.ideas4transfer.exception.ResourceNotFoundException;
 import ru.rybinskov.ideas4transfer.exception.WarehouseException;
 import ru.rybinskov.ideas4transfer.service.warehouse_service.WarehouseService;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1")

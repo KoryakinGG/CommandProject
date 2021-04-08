@@ -22,7 +22,6 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/v1")
-@SecurityRequirement(name = "bearerAuth")
 @AllArgsConstructor
 public class AuthController {
 

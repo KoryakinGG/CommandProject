@@ -9,9 +9,7 @@ import ru.rybinskov.ideas4transfer.exception.ResourceNotFoundException;
 import ru.rybinskov.ideas4transfer.exception.WarehouseException;
 import ru.rybinskov.ideas4transfer.service.user_service.UserService;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1")

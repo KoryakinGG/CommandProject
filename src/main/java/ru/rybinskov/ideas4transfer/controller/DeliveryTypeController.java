@@ -1,22 +1,16 @@
 package ru.rybinskov.ideas4transfer.controller;
 
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.rybinskov.ideas4transfer.dto.DeliveryTimeDto;
 import ru.rybinskov.ideas4transfer.dto.DeliveryTypeDto;
 import ru.rybinskov.ideas4transfer.exception.ResourceNotFoundException;
 import ru.rybinskov.ideas4transfer.exception.WarehouseException;
 import ru.rybinskov.ideas4transfer.service.deleviry_type_service.DeliveryTypeService;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1")
-@SecurityRequirement(name = "bearerAuth")
 public class DeliveryTypeController {
 
     private final DeliveryTypeService deliveryTypeService;
