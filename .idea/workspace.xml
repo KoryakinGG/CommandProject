@@ -5,24 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="62ca60c5-994a-44ce-b9bf-73ba6b1e6b63" name="Default Changelist" comment="1. проблема с подключением логов в БД">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/dev_app.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/dev_app.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/controller/DeliveryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/controller/DeliveryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/controller/DeliveryTimeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/controller/DeliveryTimeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/controller/DeliveryTypeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/controller/DeliveryTypeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/domain/Delivery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/domain/Delivery.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/domain/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/domain/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/dto/BrandDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/dto/BrandDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/exception/WarehouseException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/exception/WarehouseException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/security/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/security/jwt/JwtAuthTokenFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/security/jwt/JwtAuthTokenFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/security/jwt/JwtProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/security/jwt/JwtProvider.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/excel_report_service/ExcelReportView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/excel_report_service/ExcelReportView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -283,7 +267,7 @@
       <workItem from="1617868900547" duration="4184000" />
       <workItem from="1617886690319" duration="1290000" />
       <workItem from="1617891541127" duration="11741000" />
-      <workItem from="1617976764444" duration="1188000" />
+      <workItem from="1617976764444" duration="3203000" />
     </task>
     <task id="LOCAL-00001" summary="1. Дописал класс UserDto остальными полями&#10;&#10;2. Создал папку Utils и создал в ней класс UserUtils, в котором прописал методы по переводу объектов из User в UserDto и обратно&#10;&#10;3. Переписал методы в UserService и UserController">
       <created>1616153374963</created>

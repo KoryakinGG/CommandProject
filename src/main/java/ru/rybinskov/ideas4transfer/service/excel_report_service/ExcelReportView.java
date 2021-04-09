@@ -24,6 +24,11 @@ public class ExcelReportView extends AbstractXlsView {
 
         CellStyle style = workbook.createCellStyle();
 
+        // стиль для даты
+        CellStyle dateCell = workbook.createCellStyle();
+        CreationHelper createHelper = workbook.getCreationHelper();
+        dateCell.setDataFormat(createHelper.createDataFormat().getFormat("dd.MM.yyyy"));
+
         Sheet sheet = workbook.createSheet("Delivery");
 
         // Задаем область печати
@@ -49,22 +54,34 @@ public class ExcelReportView extends AbstractXlsView {
         style.setBorderBottom(BorderStyle.THIN);
         style.setBorderLeft(BorderStyle.THIN);
 
-        // Определение цвета граничных значений стиля
+        dateCell.setBorderTop(BorderStyle.THIN);
+        dateCell.setBorderRight(BorderStyle.THIN);
+        dateCell.setBorderBottom(BorderStyle.THIN);
+        dateCell.setBorderLeft(BorderStyle.THIN);
+
+      // Определение цвета граничных значений стиля
         style.setTopBorderColor(IndexedColors.BLACK.getIndex());
         style.setRightBorderColor(IndexedColors.BLACK.getIndex());
         style.setBottomBorderColor(IndexedColors.BLACK.getIndex());
         style.setLeftBorderColor(IndexedColors.BLACK.getIndex());
 
+        dateCell.setTopBorderColor(IndexedColors.BLACK.getIndex());
+        dateCell.setRightBorderColor(IndexedColors.BLACK.getIndex());
+        dateCell.setBottomBorderColor(IndexedColors.BLACK.getIndex());
+        dateCell.setLeftBorderColor(IndexedColors.BLACK.getIndex());
+
         style.setWrapText(true);
         style.setAlignment(HorizontalAlignment.CENTER);
         style.setVerticalAlignment(VerticalAlignment.CENTER);
+
+        dateCell.setWrapText(true);
+        dateCell.setAlignment(HorizontalAlignment.CENTER);
+        dateCell.setVerticalAlignment(VerticalAlignment.CENTER);
 
         Font font = workbook.createFont();
         font.setFontHeightInPoints((short) 11);
         font.setFontName("Calibri");
         font.setColor(IndexedColors.BLACK.getIndex());
-        CellStyle cellStyle = workbook.createCellStyle();
-        cellStyle.setFont(font);
 
         int width = (int) (14 * 1.14388) * 256;
 //        sheet.autoSizeColumn(0);
@@ -155,6 +172,7 @@ public class ExcelReportView extends AbstractXlsView {
                         cell.setCellValue(deliveryDto.getId());
                         break;
                     case "deliveryDate":
+                        cell.setCellStyle(dateCell);
                         cell.setCellValue(deliveryDto.getDeliveryDate());
                         break;
                     case "deliveryTime":

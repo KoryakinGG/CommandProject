@@ -1,1 +1,1 @@
-09-04-2021 17:16:49 [http-nio-8189-exec-1] INFO  r.r.i.s.user_service.UserServiceImpl - Working method UserService loadUserByUsername
+09-04-2021 17:56:39 [SpringContextShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
