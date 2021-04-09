@@ -12,7 +12,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="commandProject" target="1.8" />
-      <module name="ideas4transfer" target="1.8" />
+      <module name="ideas4transfer" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

@@ -25,9 +25,9 @@ public class DeliveryTimeController {
     }
 
     @GetMapping(value = "/delivery-times/{id}")
-    public ResponseEntity<DeliveryTimeDto> getDeliveryTimeById(@PathVariable(value = "id") Long DeliveryTimeId)
+    public ResponseEntity<DeliveryTimeDto> getDeliveryTimeById(@PathVariable(value = "id") Long deliveryTimeId)
             throws ResourceNotFoundException {
-        DeliveryTimeDto deliveryTimeDto = deliveryTimeService.findById(DeliveryTimeId);
+        DeliveryTimeDto deliveryTimeDto = deliveryTimeService.findById(deliveryTimeId);
         return ResponseEntity.ok().body(deliveryTimeDto);
     }
 

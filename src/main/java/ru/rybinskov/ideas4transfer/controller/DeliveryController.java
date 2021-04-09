@@ -13,7 +13,10 @@ import ru.rybinskov.ideas4transfer.exception.WarehouseException;
 import ru.rybinskov.ideas4transfer.service.delivery_service.DeliveryService;
 import ru.rybinskov.ideas4transfer.service.excel_report_service.ExcelReportView;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 //@CrossOrigin({"http://localhost:4200","https://mywarehouseapp.herokuapp.com", "http://mywarehouseapp.herokuapp.com"})
 @RestController
@@ -53,7 +56,7 @@ public class DeliveryController {
         return ResponseEntity.ok("Deleted");
     }
 
-    @PostMapping("/grouped-deliveries")
+    @PostMapping("/deliveries/grouped-save")
     public void saveAllDeliveries(@RequestBody List<DeliveryDto> deliveries) throws WarehouseException {
         deliveryService.saveAll(deliveries);
     }
@@ -79,12 +82,15 @@ public class DeliveryController {
     }
 
     @PostMapping("/report")
-    public ModelAndView getExcel(@RequestBody List<DeliveryDto> deliveries){
-        return new ModelAndView(new ExcelReportView(), "reportDeliveries", deliveries);
+    public ModelAndView getExcel(@RequestBody List<DeliveryDto> deliveries, @RequestParam("headers") String[] headers){
+        Map<String, Object> map = new HashMap<>();
+        map.put("reportDeliveries", deliveries);
+        map.put("reportHeaders", headers);
+        return new ModelAndView(new ExcelReportView(), map);
     }
 
     @GetMapping("/deliveries/new")
-    public String createDelivery() throws ExceedingAllowedDateValueException, ResourceNotFoundException, WarehouseException {
+    public String createDelivery() throws ResourceNotFoundException, WarehouseException {
         List<DeliveryDto> deliveryDtoList = deliveryService.findAll();
         DeliveryDto deliveryDto = deliveryDtoList.get(deliveryDtoList.size() - 1);
         deliveryDto.setId(null);

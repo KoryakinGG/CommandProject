@@ -15,8 +15,6 @@ public class BrandDto {
     private String name;
     private String abbr;
 
-//    private List<ShopDto> shopsList;
-
     public BrandDto(Brand brand) {
         this.id = brand.getId();
         this.name = brand.getName();

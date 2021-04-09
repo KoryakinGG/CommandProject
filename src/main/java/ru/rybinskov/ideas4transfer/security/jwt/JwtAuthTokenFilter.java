@@ -1,6 +1,5 @@
 package ru.rybinskov.ideas4transfer.security.jwt;
 
-import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,18 +23,7 @@ public class JwtAuthTokenFilter extends OncePerRequestFilter {
 	@Autowired
 	private UserServiceImpl userService;
 
-	//
-//	@Autowired
-//	public void setTokenProvider(JwtProvider tokenProvider) {
-//		this.tokenProvider = tokenProvider;
-//	}
-//
-//	@Autowired
-//	public void setUserService(UserServiceImpl userService) {
-//		this.userService = userService;
-//	}
-
-	private static final Logger logger = LoggerFactory.getLogger(JwtAuthTokenFilter.class);
+	private static final Logger log = LoggerFactory.getLogger(JwtAuthTokenFilter.class);
 
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -54,7 +42,7 @@ public class JwtAuthTokenFilter extends OncePerRequestFilter {
 				SecurityContextHolder.getContext().setAuthentication(authentication);
 			}
 		} catch (Exception e) {
-			logger.error("Can NOT set user authentication -> Message: {}", e);
+			log.error("Can NOT set user authentication -> Message: {0}", e);
 		}
 
 		filterChain.doFilter(request, response);

@@ -25,9 +25,9 @@ public class DeliveryTypeController {
     }
 
     @GetMapping(value = "/delivery-types/{id}")
-    public ResponseEntity<DeliveryTypeDto> getDeliveryTypeById(@PathVariable(value = "id") Long DeliveryTypeId)
+    public ResponseEntity<DeliveryTypeDto> getDeliveryTypeById(@PathVariable(value = "id") Long deliveryTypeId)
             throws ResourceNotFoundException {
-        DeliveryTypeDto deliveryTypeDto = deliveryTypeService.findById(DeliveryTypeId);
+        DeliveryTypeDto deliveryTypeDto = deliveryTypeService.findById(deliveryTypeId);
         return ResponseEntity.ok().body(deliveryTypeDto);
     }
 
