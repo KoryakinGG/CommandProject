@@ -59,7 +59,7 @@ public class ExcelReportView extends AbstractXlsView {
         dateCell.setBorderBottom(BorderStyle.THIN);
         dateCell.setBorderLeft(BorderStyle.THIN);
 
-      // Определение цвета граничных значений стиля
+        // Определение цвета граничных значений стиля
         style.setTopBorderColor(IndexedColors.BLACK.getIndex());
         style.setRightBorderColor(IndexedColors.BLACK.getIndex());
         style.setBottomBorderColor(IndexedColors.BLACK.getIndex());

@@ -20,7 +20,7 @@ import java.util.Set;
 
 //@CrossOrigin({"http://localhost:4200","https://mywarehouseapp.herokuapp.com", "http://mywarehouseapp.herokuapp.com"})
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/deliveries")
 //@SecurityRequirement(name = "bearerAuth")
 public class DeliveryController {
 
@@ -30,39 +30,39 @@ public class DeliveryController {
         this.deliveryService = deliveryService;
     }
 
-    @GetMapping(value = "/deliveries/{id}")
+    @GetMapping(value = "/{id}")
     public ResponseEntity<DeliveryDto> getDeliveryById(@PathVariable(value = "id") Long deliveryId)
             throws ResourceNotFoundException {
         DeliveryDto delivery = deliveryService.findById(deliveryId);
         return ResponseEntity.ok().body(delivery);
     }
 
-    @PostMapping("/deliveries")
+    @PostMapping
     public ResponseEntity<DeliveryDto> addNewDelivery(@RequestBody DeliveryDto deliveryDto) throws ExceedingAllowedDateValueException, ResourceNotFoundException, WarehouseException {
         deliveryDto.setId(null);
         return ResponseEntity.ok(deliveryService.save(deliveryDto));
     }
 
-    @PutMapping("/deliveries/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<DeliveryDto> updateDelivery(@PathVariable(value = "id") Long deliveryId, @RequestBody DeliveryDto deliveryDto) throws ResourceNotFoundException, ExceedingAllowedDateValueException, WarehouseException {
         deliveryDto.setId(deliveryId);
         deliveryService.save(deliveryDto);
         return ResponseEntity.ok(deliveryDto);
     }
 
-    @DeleteMapping("/deliveries/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteDelivery(@PathVariable(value = "id") Long deliveryId) throws ResourceNotFoundException {
         deliveryService.delete(deliveryId);
         return ResponseEntity.ok("Deleted");
     }
 
-    @PostMapping("/deliveries/grouped-save")
+    @PostMapping("/grouped-save")
     public void saveAllDeliveries(@RequestBody List<DeliveryDto> deliveries) throws WarehouseException {
         deliveryService.saveAll(deliveries);
     }
 
     // http://localhost:8189/api/v1/deliveries?first=2021-04-23&last=2021-12-25
-    @GetMapping(value = "/deliveries")
+    @GetMapping
     public ResponseEntity<List<DeliveryDto>> filterByDate(@RequestParam(required = false, name = "first") String first,
                                @RequestParam(required = false, name = "last") String last){
         List<DeliveryDto> lists;
@@ -82,22 +82,11 @@ public class DeliveryController {
     }
 
     @PostMapping("/report")
-    public ModelAndView getExcel(@RequestBody List<DeliveryDto> deliveries, @RequestParam("headers") String[] headers){
+    public ModelAndView getExcel(@RequestBody List<DeliveryDto> deliveries, @RequestParam("columns") String[] columns){
         Map<String, Object> map = new HashMap<>();
         map.put("reportDeliveries", deliveries);
-        map.put("reportHeaders", headers);
+        map.put("reportHeaders", columns);
         return new ModelAndView(new ExcelReportView(), map);
     }
-
-    @GetMapping("/deliveries/new")
-    public String createDelivery() throws ResourceNotFoundException, WarehouseException {
-        List<DeliveryDto> deliveryDtoList = deliveryService.findAll();
-        DeliveryDto deliveryDto = deliveryDtoList.get(deliveryDtoList.size() - 1);
-        deliveryDto.setId(null);
-        deliveryDto.setDeliveryDate(deliveryDto.getDeliveryDate().plusDays(1L));
-        deliveryService.save(deliveryDto);
-        return "Congratulation, delivery created";
-    }
-
 
 }

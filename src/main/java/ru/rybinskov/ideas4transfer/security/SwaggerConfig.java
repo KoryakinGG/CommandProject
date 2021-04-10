@@ -13,7 +13,7 @@ import org.springframework.util.StringUtils;
 @Configuration
 public class SwaggerConfig {
 
-    @Value("${dreamTeam.app.applicationName}")
+    @Value("${spring.application.name}")
     private String applicationName;
 
     @Bean
