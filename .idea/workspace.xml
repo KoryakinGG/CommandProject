@@ -7,10 +7,8 @@
     <list default="true" id="62ca60c5-994a-44ce-b9bf-73ba6b1e6b63" name="Default Changelist" comment="1. проблема с подключением логов в БД">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/dev_app.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/dev_app.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/controller/DeliveryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/controller/DeliveryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/security/SwaggerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/security/SwaggerConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/additional-spring-configuration-metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/additional-spring-configuration-metadata.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/domain/Delivery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/domain/Delivery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/dto/DeliveryDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/dto/DeliveryDto.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -273,7 +271,8 @@
       <workItem from="1617976764444" duration="3728000" />
       <workItem from="1617993964690" duration="1493000" />
       <workItem from="1617996267955" duration="578000" />
-      <workItem from="1618035615026" duration="2127000" />
+      <workItem from="1618035615026" duration="2721000" />
+      <workItem from="1618038745725" duration="298000" />
     </task>
     <task id="LOCAL-00001" summary="1. Дописал класс UserDto остальными полями&#10;&#10;2. Создал папку Utils и создал в ней класс UserUtils, в котором прописал методы по переводу объектов из User в UserDto и обратно&#10;&#10;3. Переписал методы в UserService и UserController">
       <created>1616153374963</created>

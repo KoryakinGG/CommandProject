@@ -1,1 +1,1 @@
-10-04-2021 09:52:41 [SpringContextShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+10-04-2021 10:17:14 [http-nio-8189-exec-5] INFO  r.r.i.s.d.DeliveryTypeServiceImpl - Working method DeliveryType findAll

@@ -29,7 +29,7 @@ public class DeliveryDto {
 //    @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate deliveryDate;
 
-    private DeliveryTime deliveryTime;
+    private DeliveryTimeDto deliveryTime;
 
     private String carInfo;
 
@@ -39,7 +39,7 @@ public class DeliveryDto {
 
     private String orderNumber;
 
-    private DeliveryType deliveryType;
+    private DeliveryTypeDto deliveryType;
 
     private String sender;
 
@@ -60,12 +60,12 @@ public class DeliveryDto {
     public DeliveryDto(Delivery delivery) {
         this.id = delivery.getId();
         this.deliveryDate = delivery.getDeliveryDate();
-        this.deliveryTime = delivery.getDeliveryTime();
+        this.deliveryTime = new DeliveryTimeDto(delivery.getDeliveryTime());
         this.carInfo = delivery.getCarInfo();
         this.driverInfo = delivery.getDriverInfo();
         this.brand = new BrandDto(delivery.getBrand());
         this.orderNumber = delivery.getOrderNumber();
-        this.deliveryType = delivery.getDeliveryType();
+        this.deliveryType = new DeliveryTypeDto(delivery.getDeliveryType());
         this.sender = delivery.getSender();
         this.comment = delivery.getComment();
         this.shop = new ShopDto(delivery.getShop());

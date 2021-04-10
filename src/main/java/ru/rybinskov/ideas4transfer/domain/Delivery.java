@@ -79,12 +79,12 @@ public class Delivery {
     public void updateFields(DeliveryDto deliveryDto) {
         this.id = deliveryDto.getId();
         this.deliveryDate = deliveryDto.getDeliveryDate();
-        this.deliveryTime = deliveryDto.getDeliveryTime();
+        this.deliveryTime = new DeliveryTime(deliveryDto.getDeliveryTime());
         this.carInfo = deliveryDto.getCarInfo();
         this.driverInfo = deliveryDto.getDriverInfo();
         this.brand = new Brand(deliveryDto.getBrand());
         this.orderNumber = deliveryDto.getOrderNumber();
-        this.deliveryType = deliveryDto.getDeliveryType();
+        this.deliveryType = new DeliveryType(deliveryDto.getDeliveryType());
         this.sender = deliveryDto.getSender();
         this.comment = deliveryDto.getComment();
         this.shop = new Shop(deliveryDto.getShop());
