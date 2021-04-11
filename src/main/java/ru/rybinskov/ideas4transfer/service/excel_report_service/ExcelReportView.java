@@ -6,8 +6,6 @@ import ru.rybinskov.ideas4transfer.dto.DeliveryDto;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import java.util.List;
 import java.util.Map;
 
@@ -23,9 +21,8 @@ public class ExcelReportView extends AbstractXlsView {
         String[] headers =(String[]) model.get("reportHeaders");
 
         CellStyle style = workbook.createCellStyle();
+        CellStyle dateCell = workbook.createCellStyle(); // стиль для даты
 
-        // стиль для даты
-        CellStyle dateCell = workbook.createCellStyle();
         CreationHelper createHelper = workbook.getCreationHelper();
         dateCell.setDataFormat(createHelper.createDataFormat().getFormat("dd.MM.yyyy"));
 
@@ -88,6 +85,7 @@ public class ExcelReportView extends AbstractXlsView {
 
         Row row = sheet.createRow((short) 0); // задаем номер исходной строки
         Cell cell;
+
 //        row.setHeightInPoints(30.0f);
         for(int i = 0; i < headers.length; i++) {
             cell = row.createCell(i);
@@ -154,6 +152,15 @@ public class ExcelReportView extends AbstractXlsView {
                     cell.setCellValue("Счет-фактура");
                     break;
 
+                case "user" :
+                    sheet.setColumnWidth(i, width);
+                    cell.setCellValue("Пользователь системы");
+                    break;
+                case "warehouse" :
+                    sheet.setColumnWidth(i, width);
+                    cell.setCellValue("Склад");
+                    break;
+
             }
             sheet.setColumnWidth(i, width);
         }
@@ -211,6 +218,14 @@ public class ExcelReportView extends AbstractXlsView {
                     case "invoice":
                         cell.setCellValue(deliveryDto.getInvoice());
                         break;
+                    case "user" :
+                        cell.setCellValue(deliveryDto.getUser().getUsername());
+                        break;
+                    case "warehouse" :
+                        sheet.setColumnWidth(i, width);
+                        cell.setCellValue(deliveryDto.getWarehouse().getName());
+                        break;
+
                 }
             }
         }

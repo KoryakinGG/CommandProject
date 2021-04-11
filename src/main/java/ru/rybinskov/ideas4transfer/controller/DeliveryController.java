@@ -1,8 +1,7 @@
 package ru.rybinskov.ideas4transfer.controller;
 
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
-import org.springframework.http.MediaType;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -81,8 +80,8 @@ public class DeliveryController {
         return ResponseEntity.ok().body(lists);
     }
 
-    @PostMapping("/report")
-    public ModelAndView getExcel(@RequestBody List<DeliveryDto> deliveries, @RequestParam("columns") String[] columns){
+    @PostMapping(value = "/report", produces = "application/vnd.ms-excel") // produces = "application/vnd.ms-excel"
+    public ModelAndView exportDeliveriesToExcel(@RequestBody List<DeliveryDto> deliveries, @RequestParam("columns") String[] columns){
         Map<String, Object> map = new HashMap<>();
         map.put("reportDeliveries", deliveries);
         map.put("reportHeaders", columns);
