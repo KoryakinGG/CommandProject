@@ -160,6 +160,7 @@ public class DeliveryServiceImpl implements DeliveryService {
         });
         List<UniqueReportObject> uniqueReportObject = new ArrayList<>();
         map.forEach((key, value) -> uniqueReportObject.add(new UniqueReportObject(key, value)));
+        uniqueReportObject.sort(Comparator.comparing(UniqueReportObject::getName));
 
         return uniqueReportObject;
 
