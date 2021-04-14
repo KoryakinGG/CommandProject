@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.rybinskov.ideas4transfer.domain.Brand;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,5 +22,11 @@ public class BrandDto {
         this.name = brand.getName();
         this.abbr = brand.getAbbr();
     }
-
+    public void updateAllFieldsWithoutId(BrandDto brandDto) {
+        this.id = brandDto.getId();
+        this.name = brandDto.getName();
+        this.abbr = brandDto.getAbbr();
+    }
 }
+
+

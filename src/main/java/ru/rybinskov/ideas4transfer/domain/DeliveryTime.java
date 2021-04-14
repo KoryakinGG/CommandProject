@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import ru.rybinskov.ideas4transfer.dto.DeliveryTimeDto;
 
 import javax.persistence.*;
+import java.lang.reflect.Array;
+import java.util.*;
 
 @Data
 @NoArgsConstructor

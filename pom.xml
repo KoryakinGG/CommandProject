@@ -83,7 +83,6 @@
             <version>RELEASE</version>
         </dependency>
         <!-- APACHE POI -->
-
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -111,7 +110,19 @@
             <artifactId>sentry-logback</artifactId>
             <version>4.3.0</version>
         </dependency>
-        <!-- Sentry -->
+
+        <!-- H2 database-->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.200</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>
