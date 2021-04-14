@@ -29,7 +29,6 @@ public class Brand {
 
     public Brand(BrandDto brandDto) {
         updateFields(brandDto);
-
     }
 
     public void updateFields(BrandDto brandDto) {
@@ -37,7 +36,4 @@ public class Brand {
         this.name = brandDto.getName();
         this.abbr = brandDto.getAbbr();
     }
-
-
-
 }

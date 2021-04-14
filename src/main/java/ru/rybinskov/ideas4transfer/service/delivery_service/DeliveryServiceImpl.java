@@ -103,21 +103,23 @@ public class DeliveryServiceImpl implements DeliveryService {
     @Override
     public List<DeliveryDto> findByDeliveryDateGreaterThanEqual(String date) {
         LocalDate localDate = LocalDate.parse(date, getFormatter());
-        log.info("Working method DeliveryService findByDeliveryDateGreaterThanEqual: {}", localDate);
-        return deliveryRepository.findByDeliveryDateGreaterThanEqual(localDate)
+        List<DeliveryDto> deliveryDtos = deliveryRepository.findByDeliveryDateGreaterThanEqual(localDate)
                 .stream().map(DeliveryDto::new)
                 .sorted(Comparator.comparing(DeliveryDto::getDeliveryDate))
                 .collect(Collectors.toList());
+        log.info("Working method DeliveryService findByDeliveryDateGreaterThanEqual: {}", deliveryDtos);
+        return deliveryDtos;
     }
 
     @Override
     public List<DeliveryDto> findByDeliveryDateLessThanEqual(String date) {
         LocalDate localDate = LocalDate.parse(date, getFormatter());
-        log.info("Working method DeliveryService findByDeliveryDateLessThanEqual: {}", localDate);
-        return deliveryRepository.findByDeliveryDateLessThanEqual(localDate)
+        List<DeliveryDto> deliveryDtos = deliveryRepository.findByDeliveryDateLessThanEqual(localDate)
                 .stream().map(DeliveryDto::new)
                 .sorted(Comparator.comparing(DeliveryDto::getDeliveryDate))
                 .collect(Collectors.toList());
+        log.info("Working method DeliveryService findByDeliveryDateLessThanEqual: {}", deliveryDtos);
+        return deliveryDtos;
     }
 
     public List<DeliveryDto> getByDate(String first, String last){

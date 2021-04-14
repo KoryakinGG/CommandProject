@@ -21,7 +21,8 @@ public class BrandServiceImpl implements BrandService{
 
     @Override
     public List<BrandDto> findAll() {
-        return brandRepository.findAll().stream().map(BrandDto::new).collect(Collectors.toList());
+        List<BrandDto> brandDtoList = brandRepository.findAll().stream().map(BrandDto::new).collect(Collectors.toList());
+        return brandDtoList;
     }
 
     @Override
@@ -29,20 +30,24 @@ public class BrandServiceImpl implements BrandService{
         Brand brand = brandRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Поставка по указанному id не найдена:  id = " + id));
         log.info("Working method findById {}",brand);
-        return new BrandDto(brand);
+        BrandDto brandDto = new BrandDto(brand);
+        return brandDto;
     }
 
     @Override
     public BrandDto save(BrandDto brandDto) throws ResourceNotFoundException, WarehouseException {
         if (brandDto.getId() == null) {
             log.info("{} is null", brandDto.getId());
-            return new BrandDto(brandRepository.save(new Brand(brandDto)));
+            BrandDto brandDto1 = new BrandDto(brandRepository.save(new Brand(brandDto)));
+            return brandDto1;
         }
         Brand brand = brandRepository.findById(brandDto.getId())
                 .orElseThrow(()-> new ResourceNotFoundException("Бренд с id = " + brandDto.getId() + " не найден"));
         brand.updateFields(brandDto);
         log.info("Working method save {}",brand);
-        return new BrandDto(brandRepository.save(brand));
+        brandRepository.save(brand);
+        BrandDto brandDto1 = new BrandDto(brand);
+        return brandDto1;
     }
 
     @Override
@@ -52,8 +57,8 @@ public class BrandServiceImpl implements BrandService{
     }
 
     @Override
-    public void saveAll(List<BrandDto> brandDtos) {
-        List<Brand> brands = brandDtos.stream().map(Brand::new).collect(Collectors.toList());
+    public void saveAll(List<BrandDto> brandDto) {
+        List<Brand> brands = brandDto.stream().map(Brand::new).collect(Collectors.toList());
         log.info("Brand list is save{}", brands);
         brandRepository.saveAll(brands);
     }

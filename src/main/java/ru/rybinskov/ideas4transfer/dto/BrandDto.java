@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.rybinskov.ideas4transfer.domain.Brand;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
