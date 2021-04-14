@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ru.rybinskov.ideas4transfer.dto.DeliveryDto;
+import ru.rybinskov.ideas4transfer.dto.UniqueReportObject;
 import ru.rybinskov.ideas4transfer.exception.ExceedingAllowedDateValueException;
 import ru.rybinskov.ideas4transfer.exception.ResourceNotFoundException;
 import ru.rybinskov.ideas4transfer.exception.WarehouseException;
@@ -86,6 +87,12 @@ public class DeliveryController {
         map.put("reportDeliveries", deliveries);
         map.put("reportHeaders", columns);
         return new ModelAndView(new ExcelReportView(), map);
+    }
+
+    @GetMapping("/uniqueDeliveriesReport")
+    public List<UniqueReportObject> getUniqueDeliveriesByRange(@RequestParam(required = false, name = "first") String first,
+                                                               @RequestParam(required = false, name = "last") String last) {
+        return  deliveryService.getUniqueDeliveriesByRange(first, last);
     }
 
 }

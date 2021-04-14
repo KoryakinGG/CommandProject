@@ -14,6 +14,7 @@ import ru.rybinskov.ideas4transfer.domain.DeliveryTime;
 import ru.rybinskov.ideas4transfer.domain.DeliveryType;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Data
 @NoArgsConstructor
@@ -76,4 +77,22 @@ public class DeliveryDto {
         this.warehouse = new WarehouseDto(delivery.getWarehouse());
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof DeliveryDto)) return false;
+        DeliveryDto that = (DeliveryDto) o;
+        return deliveryDate.equals(that.deliveryDate)
+                && deliveryTime.equals(that.deliveryTime)
+                && carInfo.equals(that.carInfo)
+                && driverInfo.equals(that.driverInfo)
+                && brand.equals(that.brand)
+                && deliveryType.equals(that.deliveryType)
+                && warehouse.equals(that.warehouse);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(deliveryDate, deliveryTime, carInfo, driverInfo, brand, deliveryType, warehouse);
+    }
 }
