@@ -1,24 +1,27 @@
 package ru.rybinskov.ideas4transfer.controller;
 
-import org.springframework.http.MediaType;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import ru.rybinskov.ideas4transfer.dto.DeliveryDto;
-import ru.rybinskov.ideas4transfer.dto.UserDto;
+import ru.rybinskov.ideas4transfer.dto.UniqueReportObject;
 import ru.rybinskov.ideas4transfer.exception.ExceedingAllowedDateValueException;
 import ru.rybinskov.ideas4transfer.exception.ResourceNotFoundException;
 import ru.rybinskov.ideas4transfer.exception.WarehouseException;
 import ru.rybinskov.ideas4transfer.service.delivery_service.DeliveryService;
+import ru.rybinskov.ideas4transfer.service.excel_report_service.ExcelReportView;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 //@CrossOrigin({"http://localhost:4200","https://mywarehouseapp.herokuapp.com", "http://mywarehouseapp.herokuapp.com"})
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/deliveries")
+//@SecurityRequirement(name = "bearerAuth")
 public class DeliveryController {
 
     private final DeliveryService deliveryService;
@@ -27,39 +30,39 @@ public class DeliveryController {
         this.deliveryService = deliveryService;
     }
 
-    @GetMapping(value = "/deliveries/{id}")
+    @GetMapping(value = "/{id}")
     public ResponseEntity<DeliveryDto> getDeliveryById(@PathVariable(value = "id") Long deliveryId)
             throws ResourceNotFoundException {
         DeliveryDto delivery = deliveryService.findById(deliveryId);
         return ResponseEntity.ok().body(delivery);
     }
 
-    @PostMapping("/deliveries")
+    @PostMapping
     public ResponseEntity<DeliveryDto> addNewDelivery(@RequestBody DeliveryDto deliveryDto) throws ExceedingAllowedDateValueException, ResourceNotFoundException, WarehouseException {
         deliveryDto.setId(null);
         return ResponseEntity.ok(deliveryService.save(deliveryDto));
     }
 
-    @PutMapping("/deliveries/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<DeliveryDto> updateDelivery(@PathVariable(value = "id") Long deliveryId, @RequestBody DeliveryDto deliveryDto) throws ResourceNotFoundException, ExceedingAllowedDateValueException, WarehouseException {
         deliveryDto.setId(deliveryId);
         deliveryService.save(deliveryDto);
         return ResponseEntity.ok(deliveryDto);
     }
 
-    @DeleteMapping("/deliveries/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteDelivery(@PathVariable(value = "id") Long deliveryId) throws ResourceNotFoundException {
         deliveryService.delete(deliveryId);
         return ResponseEntity.ok("Deleted");
     }
 
-    @PostMapping("/grouped-deliveries")
+    @PostMapping("/grouped-save")
     public void saveAllDeliveries(@RequestBody List<DeliveryDto> deliveries) throws WarehouseException {
         deliveryService.saveAll(deliveries);
     }
 
     // http://localhost:8189/api/v1/deliveries?first=2021-04-23&last=2021-12-25
-    @GetMapping(value = "/deliveries")
+    @GetMapping
     public ResponseEntity<List<DeliveryDto>> filterByDate(@RequestParam(required = false, name = "first") String first,
                                @RequestParam(required = false, name = "last") String last){
         List<DeliveryDto> lists;
@@ -78,16 +81,18 @@ public class DeliveryController {
         return ResponseEntity.ok().body(lists);
     }
 
-
-    @GetMapping("/deliveries/new")
-    public String createDelivery() throws ExceedingAllowedDateValueException, ResourceNotFoundException, WarehouseException {
-        List<DeliveryDto> deliveryDtoList = deliveryService.findAll();
-        DeliveryDto deliveryDto = deliveryDtoList.get(deliveryDtoList.size() - 1);
-        deliveryDto.setId(null);
-        deliveryDto.setDeliveryDate(deliveryDto.getDeliveryDate().plusDays(1L));
-        deliveryService.save(deliveryDto);
-        return "Congratulation, delivery created";
+    @PostMapping(value = "/report", produces = "application/vnd.ms-excel") // produces = "application/vnd.ms-excel"
+    public ModelAndView exportDeliveriesToExcel(@RequestBody List<DeliveryDto> deliveries, @RequestParam("columns") String[] columns){
+        Map<String, Object> map = new HashMap<>();
+        map.put("reportDeliveries", deliveries);
+        map.put("reportHeaders", columns);
+        return new ModelAndView(new ExcelReportView(), map);
     }
 
+    @GetMapping("/uniqueDeliveriesReport")
+    public List<UniqueReportObject> getUniqueDeliveriesByRange(@RequestParam(required = false, name = "first") String first,
+                                                               @RequestParam(required = false, name = "last") String last) {
+        return  deliveryService.getUniqueDeliveriesByRange(first, last);
+    }
 
 }

@@ -4,23 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62ca60c5-994a-44ce-b9bf-73ba6b1e6b63" name="Default Changelist" comment="подключен Сентри">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application-test.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/db/testdata/V1__Initialize.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/ru/rybinskov/ideas4transfer/repository_test/RepositoryBrandTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/ru/rybinskov/ideas4transfer/service/brand_service/BrandServiceImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_13_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_vintage_junit_vintage_engine_5_6_3.xml" beforeDir="false" />
+
+    <list default="true" id="62ca60c5-994a-44ce-b9bf-73ba6b1e6b63" name="Default Changelist" comment="Добавлен метод для поиска уникальных поставок.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/dev_app.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/dev_app.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/domain/Brand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/domain/Brand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/domain/DeliveryTime.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/domain/DeliveryTime.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/dto/BrandDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/dto/BrandDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/repository/BrandRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/repository/BrandRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/brand_service/BrandServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/brand_service/BrandServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/delivery_service/DeliveryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/delivery_service/DeliveryServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/role_service/RoleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/role_service/RoleServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,11 +29,20 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Dev5" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="MIXED" />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -80,16 +77,21 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/dto" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="database.main" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -109,10 +111,13 @@
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="ru.rybinskov.ideas4transfer.common" />
     </key>
-    <key name="CreateTestDialog.RecentsKey">
-      <recent name="ru.rybinskov.ideas4transfer.service.brand_service" />
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="ru.rybinskov.ideas4transfer" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ru.rybinskov.ideas4transfer.security" />
+      <recent name="ru.rybinskov.ideas4transfer.common" />
+      <recent name="ru.rybinskov.ideas4transfer.service.excel_report_service" />
       <recent name="ru.rybinskov.ideas4transfer.repository" />
       <recent name="ru.rybinskov.ideas4transfer.controller" />
     </key>
@@ -142,6 +147,7 @@
       </method>
     </configuration>
     <configuration name="BrandServiceImplTest.findAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+
       <module name="ideas4transfer" />
       <extension name="coverage">
         <pattern>
@@ -158,6 +164,7 @@
       </method>
     </configuration>
     <configuration name="BrandServiceImplTest.findById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+
       <module name="ideas4transfer" />
       <extension name="coverage">
         <pattern>
@@ -225,6 +232,7 @@
       <item itemvalue="JUnit.BrandServiceImplTest.findById" />
       <item itemvalue="JUnit.BrandServiceImplTest.delete" />
       <item itemvalue="JUnit.BrandServiceImplTest.save1" />
+
       <item itemvalue="Spring Boot.Ideas4transferApplication (1)" />
       <item itemvalue="Spring Boot.Ideas4transferApplication" />
     </list>
@@ -309,6 +317,7 @@
       <workItem from="1617262240317" duration="891000" />
       <workItem from="1617279279512" duration="6291000" />
       <workItem from="1617289471892" duration="9165000" />
+
       <workItem from="1617299825091" duration="892000" />
       <workItem from="1617812820743" duration="2552000" />
       <workItem from="1617888015006" duration="3339000" />
@@ -319,6 +328,7 @@
       <workItem from="1618245089765" duration="4923000" />
       <workItem from="1618300996910" duration="14134000" />
       <workItem from="1618387284951" duration="5841000" />
+
     </task>
     <task id="LOCAL-00001" summary="1. Дописал класс UserDto остальными полями&#10;&#10;2. Создал папку Utils и создал в ней класс UserUtils, в котором прописал методы по переводу объектов из User в UserDto и обратно&#10;&#10;3. Переписал методы в UserService и UserController">
       <created>1616153374963</created>
@@ -362,6 +372,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="1. Дописал класс UserDto остальными полями&#10;&#10;2. Создал папку Utils и создал в ней класс UserUtils, в котором прописал методы по переводу объектов из User в UserDto и обратно&#10;&#10;3. Переписал методы в UserService и UserController" />
     <MESSAGE value="1. Забыл добавить файлик текстовый с изменениями" />
+
     <MESSAGE value="подключен Сентри" />
     <option name="LAST_COMMIT_MESSAGE" value="подключен Сентри" />
   </component>

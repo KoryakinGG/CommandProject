@@ -37,14 +37,6 @@ public class WarehouseServiceImpl implements WarehouseService{
     }
 
     @Override
-    public void updateWarehouse(WarehouseDto warehouseDto) throws ResourceNotFoundException {
-        WarehouseDto warehouse = findById(warehouseDto.getId());
-        warehouse.updateAllFieldsWithoutId(warehouseDto);
-        warehouseRepository.save(new Warehouse(warehouse));
-        log.info("Working method WarehouseService updateWarehouse: {}", warehouse);
-    }
-
-    @Override
     public WarehouseDto save(WarehouseDto warehouseDto) throws ResourceNotFoundException, WarehouseException {
         if (warehouseDto.getId() == null) {
             log.info("Working method WarehouseService save: {} is null, create new", warehouseDto.getId());

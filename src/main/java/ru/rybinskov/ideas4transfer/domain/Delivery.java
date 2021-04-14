@@ -1,10 +1,5 @@
 package ru.rybinskov.ideas4transfer.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,7 +9,6 @@ import ru.rybinskov.ideas4transfer.dto.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-
 
 @Data
 @NoArgsConstructor
@@ -27,12 +21,12 @@ public class Delivery {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonFormat(
-            shape = JsonFormat.Shape.STRING,
-//            pattern = "yyyy.MM.dd")
-            pattern = "dd.MM.yyyy")
-    @JsonDeserialize(using = LocalDateDeserializer.class)
-    @JsonSerialize(using = LocalDateSerializer.class)
+//    @JsonFormat(
+//            shape = JsonFormat.Shape.STRING,
+////            pattern = "yyyy.MM.dd")
+//            pattern = "dd.MM.yyyy")
+//    @JsonDeserialize(using = LocalDateDeserializer.class)
+//    @JsonSerialize(using = LocalDateSerializer.class)
     @Column
     private LocalDate deliveryDate;
 
@@ -85,12 +79,12 @@ public class Delivery {
     public void updateFields(DeliveryDto deliveryDto) {
         this.id = deliveryDto.getId();
         this.deliveryDate = deliveryDto.getDeliveryDate();
-        this.deliveryTime = deliveryDto.getDeliveryTime();
+        this.deliveryTime = new DeliveryTime(deliveryDto.getDeliveryTime());
         this.carInfo = deliveryDto.getCarInfo();
         this.driverInfo = deliveryDto.getDriverInfo();
         this.brand = new Brand(deliveryDto.getBrand());
         this.orderNumber = deliveryDto.getOrderNumber();
-        this.deliveryType = deliveryDto.getDeliveryType();
+        this.deliveryType = new DeliveryType(deliveryDto.getDeliveryType());
         this.sender = deliveryDto.getSender();
         this.comment = deliveryDto.getComment();
         this.shop = new Shop(deliveryDto.getShop());

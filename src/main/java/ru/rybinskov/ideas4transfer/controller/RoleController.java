@@ -3,14 +3,11 @@ package ru.rybinskov.ideas4transfer.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.rybinskov.ideas4transfer.dto.RoleDto;
-import ru.rybinskov.ideas4transfer.dto.WarehouseDto;
 import ru.rybinskov.ideas4transfer.exception.ResourceNotFoundException;
 import ru.rybinskov.ideas4transfer.exception.WarehouseException;
 import ru.rybinskov.ideas4transfer.service.role_service.RoleService;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1")

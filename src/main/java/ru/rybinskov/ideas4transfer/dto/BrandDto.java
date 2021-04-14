@@ -17,17 +17,16 @@ public class BrandDto {
     private String name;
     private String abbr;
 
-//    private List<ShopDto> shopsList;
-
     public BrandDto(Brand brand) {
         this.id = brand.getId();
         this.name = brand.getName();
         this.abbr = brand.getAbbr();
     }
-
     public void updateAllFieldsWithoutId(BrandDto brandDto) {
         this.id = brandDto.getId();
         this.name = brandDto.getName();
         this.abbr = brandDto.getAbbr();
     }
 }
+
+

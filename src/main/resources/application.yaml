@@ -16,7 +16,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres?currentSchema=command_project
     username: postgres
-    password: admin
+    password: password
     flyway:
       baseline-on-migrate: true
   jackson:
@@ -54,3 +54,5 @@ logging:
     max-size: 100
     max-history: 40
     name: logs/production_app.log
+
+#### resource server configuration properties

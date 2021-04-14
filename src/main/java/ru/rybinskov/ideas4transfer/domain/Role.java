@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.rybinskov.ideas4transfer.dto.RoleDto;
-import ru.rybinskov.ideas4transfer.dto.ShopDto;
 
 import javax.persistence.*;
 
