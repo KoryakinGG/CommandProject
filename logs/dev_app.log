@@ -1,1 +1,1 @@
-14-04-2021 19:09:16 [SpringContextShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+19-04-2021 22:20:07 [main] INFO  r.r.i.Ideas4transferApplication - Started Ideas4transferApplication in 6.45 seconds (JVM running for 7.341)
