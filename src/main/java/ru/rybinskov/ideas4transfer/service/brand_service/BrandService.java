@@ -13,5 +13,5 @@ public interface BrandService {
     BrandDto findById(Long id) throws ResourceNotFoundException;
     void delete(Long id);
     void saveAll(List<BrandDto> brandDtos);
-    BrandDto save(BrandDto brandDto) throws ResourceNotFoundException, WarehouseException;
+    BrandDto save(BrandDto brandDto) throws ResourceNotFoundException;
 }

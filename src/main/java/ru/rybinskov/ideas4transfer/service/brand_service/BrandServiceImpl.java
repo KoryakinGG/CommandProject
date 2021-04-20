@@ -35,7 +35,7 @@ public class BrandServiceImpl implements BrandService{
     }
 
     @Override
-    public BrandDto save(BrandDto brandDto) throws ResourceNotFoundException, WarehouseException {
+    public BrandDto save(BrandDto brandDto) throws ResourceNotFoundException {
         if (brandDto.getId() == null) {
             log.info("{} is null", brandDto.getId());
             BrandDto brandDto1 = new BrandDto(brandRepository.save(new Brand(brandDto)));

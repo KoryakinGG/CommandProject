@@ -36,7 +36,7 @@ public class DeliveryTypeServiceImpl implements DeliveryTypeService{
     }
 
     @Override
-    public DeliveryTypeDto save(DeliveryTypeDto deliveryTypeDto) throws ResourceNotFoundException, WarehouseException {
+    public DeliveryTypeDto save(DeliveryTypeDto deliveryTypeDto) throws ResourceNotFoundException {
         if (deliveryTypeDto.getId() == null) {
             log.info("Working method DeliveryType save: {} is null, create new", deliveryTypeDto.getId());
             return new DeliveryTypeDto(deliveryTypeRepository.save(new DeliveryType(deliveryTypeDto)));

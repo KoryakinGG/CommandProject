@@ -1,5 +1,6 @@
 package ru.rybinskov.ideas4transfer.controller;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,6 +18,7 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/api/v1")
 @AllArgsConstructor
+@SecurityRequirement(name = "bearerAuth")
 public class AuthController {
 
     private final AuthenticationManager authenticationManager;

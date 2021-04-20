@@ -28,9 +28,6 @@ public class JwtProvider {
     @Value("${dreamTeam.app.jwtExpiration}")
     private int jwtExpiration;
 
-    private String jwts;
-
-
     public String generateJwtToken(Authentication authentication) {
 
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
@@ -47,15 +44,15 @@ public class JwtProvider {
             Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
             return true;
         } catch (SignatureException e) {
-            logger.error("Invalid JWT signature -> Message: {0} ", e);
+            logger.error("Invalid JWT signature -> Message: {} ", e);
         } catch (MalformedJwtException e) {
-            logger.error("Invalid JWT token -> Message: {0}", e);
+            logger.error("Invalid JWT token -> Message: {}", e);
         } catch (ExpiredJwtException e) {
-            logger.error("Expired JWT token -> Message: {0}", e);
+            logger.error("Expired JWT token -> Message: {}", e);
         } catch (UnsupportedJwtException e) {
-            logger.error("Unsupported JWT token -> Message: {0}", e);
+            logger.error("Unsupported JWT token -> Message: {}", e);
         } catch (IllegalArgumentException e) {
-            logger.error("JWT claims string is empty -> Message: {0}", e);
+            logger.error("JWT claims string is empty -> Message: {}", e);
         }
         
         return false;

@@ -36,7 +36,7 @@ public class DeliveryTimeServiceImpl implements DeliveryTimeService{
     }
 
     @Override
-    public DeliveryTimeDto save(DeliveryTimeDto deliveryTimeDto) throws ResourceNotFoundException, WarehouseException {
+    public DeliveryTimeDto save(DeliveryTimeDto deliveryTimeDto) throws ResourceNotFoundException {
         if (deliveryTimeDto.getId() == null) {
             log.info("Working method DeliveryTime save: {} is null, create new", deliveryTimeDto.getId());
             return new DeliveryTimeDto(deliveryTimeRepository.save(new DeliveryTime(deliveryTimeDto)));

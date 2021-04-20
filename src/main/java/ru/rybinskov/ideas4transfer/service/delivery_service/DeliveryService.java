@@ -18,7 +18,7 @@ public interface DeliveryService {
     List<DeliveryDto> findByDeliveryDateGreaterThanEqual(String date);
     List<DeliveryDto> findByDeliveryDateLessThanEqual(String date);
     List<DeliveryDto> getByDate(String first, String last);
-    DeliveryDto save(DeliveryDto deliveryDto) throws ResourceNotFoundException, WarehouseException;
+    DeliveryDto save(DeliveryDto deliveryDto) throws ResourceNotFoundException;
     List<UniqueReportObject> getUniqueDeliveriesByRange(String first, String last);
 
 }

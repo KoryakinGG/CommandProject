@@ -10,7 +10,7 @@ public interface ShopService {
 
     ShopDto findById(Long id) throws ResourceNotFoundException;
     List<ShopDto> findAll();
-    ShopDto save(ShopDto shopDto) throws ResourceNotFoundException, WarehouseException;
+    ShopDto save(ShopDto shopDto) throws ResourceNotFoundException;
     void delete(Long id);
     void saveAll(List<ShopDto> shopDtos);
 }

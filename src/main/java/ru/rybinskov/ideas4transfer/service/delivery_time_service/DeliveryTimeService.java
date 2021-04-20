@@ -12,7 +12,7 @@ public interface DeliveryTimeService {
     DeliveryTimeDto findById(Long id) throws ResourceNotFoundException;
 //    void createDeliveryTime(DeliveryTimeDto deliveryTimeDto);
 //    void updateDeliveryTime(DeliveryTimeDto deliveryTimeDto) throws ResourceNotFoundException;
-    DeliveryTimeDto save(DeliveryTimeDto deliveryTimeDto) throws ResourceNotFoundException, WarehouseException;
+    DeliveryTimeDto save(DeliveryTimeDto deliveryTimeDto) throws ResourceNotFoundException;
     void delete(Long id);
     void saveAll(List<DeliveryTimeDto> deliveryTimeDto);
 }

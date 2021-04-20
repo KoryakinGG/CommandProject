@@ -33,4 +33,12 @@ public class SwaggerConfig {
                 )
                 .info(new Info().title(String.format("%s API", StringUtils.capitalize(applicationName))));
     }
+
+//    @Bean
+//    public OpenAPI customOpenAPI() {
+//        return new OpenAPI()
+//                .components(new Components().addSecuritySchemes("bearerAuth",
+//                        new SecurityScheme().type(SecurityScheme.Type.HTTP).scheme("bearer")))
+//                .info(new Info().title(String.format("%s API", StringUtils.capitalize(applicationName))));
+//    }
 }

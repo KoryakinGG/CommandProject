@@ -9,9 +9,7 @@ import java.util.List;
 public interface UserService {
     UserDto getById(Long id) throws ResourceNotFoundException;
     List<UserDto> findAll();
-    UserDto findByName(String name);
     UserDto save(UserDto userDto) throws ResourceNotFoundException, WarehouseException;
     void delete(Long id) throws ResourceNotFoundException;
-//    void assignPassword(UserDto userDto) throws ResourceNotFoundException, WarehouseException;
 
 }
