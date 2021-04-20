@@ -66,7 +66,7 @@ class BrandServiceImplTest {
         brandList.clear();
         brandDtoList.clear();
     }
-    //TestMethod_Condition_ExpectedResult
+//TestMethod_Condition_ExpectedResult
     @Test
     void givenAllBrandDto_whenBrandServiceFindAll_thenOk() {
         Mockito.doReturn(brandList)
@@ -101,15 +101,27 @@ class BrandServiceImplTest {
     }
 
     @Test
+    void givenDeleteBrandById_whenBrandServiceDeleteById_thenOk() {
+        Mockito.doReturn(Optional.of(brand))
+                .when(brandRepository)
+                .findById(1L);
+        brandDto.setId(3L);
+        assertThrows(ResourceNotFoundException.class, () -> {
+            brandServiceImpl.save(brandDto);
+        });
+    }
+
+    @Test
     void deleteBrandById_whenBrandServiceDeleteById_thenOk() {
         Mockito.doNothing().when(brandRepository).deleteById(1L);
 
         brandServiceImpl.delete(1L);
-        Mockito.verify(brandRepository, Mockito.times(1)).deleteById(ArgumentMatchers.eq(1L));
+        assertEquals(0, brandRepository.findAll().size());
+        Mockito.verify(brandRepository, Mockito.times(1)).deleteById(brand.getId());
     }
 
     @Test
-    void saveAllBrands_whenBrandServiceSaveAll_thenOk() {
+    void givenSaveAllBrands_whenBrandServiceSaveAll_thenOk() {
         List<Brand> brands = brandDtoList.stream().map(Brand::new).collect(Collectors.toList());
 
         Mockito.doReturn(brands)

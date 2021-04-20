@@ -22,6 +22,7 @@ public class BrandServiceImpl implements BrandService{
     @Override
     public List<BrandDto> findAll() {
         List<BrandDto> brandDtoList = brandRepository.findAll().stream().map(BrandDto::new).collect(Collectors.toList());
+        log.info("Working method findAll {}",brandDtoList);
         return brandDtoList;
     }
 
