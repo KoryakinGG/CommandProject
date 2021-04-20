@@ -5,22 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="62ca60c5-994a-44ce-b9bf-73ba6b1e6b63" name="Default Changelist" comment="подключен Сентри">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application-test.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/db/testdata/V1__Initialize.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/ru/rybinskov/ideas4transfer/repository_test/RepositoryBrandTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/ru/rybinskov/ideas4transfer/service/brand_service/BrandServiceImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_13_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_vintage_junit_vintage_engine_5_6_3.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/dev_app.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/dev_app.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/domain/Brand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/domain/Brand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/domain/DeliveryTime.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/domain/DeliveryTime.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/dto/BrandDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/dto/BrandDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/repository/BrandRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/repository/BrandRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/brand_service/BrandServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/brand_service/BrandServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/delivery_service/DeliveryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/delivery_service/DeliveryServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/role_service/RoleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/role_service/RoleServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/rybinskov/ideas4transfer/service/brand_service/BrandServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/rybinskov/ideas4transfer/service/brand_service/BrandServiceImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +29,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Dev5" />
+        <entry key="$PROJECT_DIR$" value="8945b918ce20cb9198dbd4f1955a1e851c2982dd" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -124,8 +112,19 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.BrandServiceImplTest.findAll">
-    <configuration name="BrandServiceImplTest.delete" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.BrandServiceImplTest">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BrandServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ideas4transfer" />
       <extension name="coverage">
         <pattern>
@@ -135,13 +134,28 @@
       </extension>
       <option name="PACKAGE_NAME" value="ru.rybinskov.ideas4transfer.service.brand_service" />
       <option name="MAIN_CLASS_NAME" value="ru.rybinskov.ideas4transfer.service.brand_service.BrandServiceImplTest" />
-      <option name="METHOD_NAME" value="delete" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BrandServiceImplTest.givenBrandDto_whenBrandServiceFindById_thenOk" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ideas4transfer" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.rybinskov.ideas4transfer.service.brand_service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.rybinskov.ideas4transfer.service.brand_service" />
+      <option name="MAIN_CLASS_NAME" value="ru.rybinskov.ideas4transfer.service.brand_service.BrandServiceImplTest" />
+      <option name="METHOD_NAME" value="givenBrandDto_whenBrandServiceFindById_thenOk" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BrandServiceImplTest.findAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="BrandServiceImplTest.givenDeleteBrandById_whenBrandServiceDeleteById_thenOk" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ideas4transfer" />
       <extension name="coverage">
         <pattern>
@@ -151,13 +165,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="ru.rybinskov.ideas4transfer.service.brand_service" />
       <option name="MAIN_CLASS_NAME" value="ru.rybinskov.ideas4transfer.service.brand_service.BrandServiceImplTest" />
-      <option name="METHOD_NAME" value="findAll" />
+      <option name="METHOD_NAME" value="givenDeleteBrandById_whenBrandServiceDeleteById_thenOk" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BrandServiceImplTest.findById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="BrandServiceImplTest.givenSaveAllBrands_whenBrandServiceSaveAll_thenOk" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ideas4transfer" />
       <extension name="coverage">
         <pattern>
@@ -167,13 +181,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="ru.rybinskov.ideas4transfer.service.brand_service" />
       <option name="MAIN_CLASS_NAME" value="ru.rybinskov.ideas4transfer.service.brand_service.BrandServiceImplTest" />
-      <option name="METHOD_NAME" value="findById" />
+      <option name="METHOD_NAME" value="givenSaveAllBrands_whenBrandServiceSaveAll_thenOk" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BrandServiceImplTest.save" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="BrandServiceImplTest.saveAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ideas4transfer" />
       <extension name="coverage">
         <pattern>
@@ -183,23 +197,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="ru.rybinskov.ideas4transfer.service.brand_service" />
       <option name="MAIN_CLASS_NAME" value="ru.rybinskov.ideas4transfer.service.brand_service.BrandServiceImplTest" />
-      <option name="METHOD_NAME" value="save" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="BrandServiceImplTest.save1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ideas4transfer" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ru.rybinskov.ideas4transfer.service.brand_service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ru.rybinskov.ideas4transfer.service.brand_service" />
-      <option name="MAIN_CLASS_NAME" value="ru.rybinskov.ideas4transfer.service.brand_service.BrandServiceImplTest" />
-      <option name="METHOD_NAME" value="save1" />
+      <option name="METHOD_NAME" value="saveAll" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -220,21 +218,21 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.BrandServiceImplTest.findAll" />
-      <item itemvalue="JUnit.BrandServiceImplTest.save" />
-      <item itemvalue="JUnit.BrandServiceImplTest.findById" />
-      <item itemvalue="JUnit.BrandServiceImplTest.delete" />
-      <item itemvalue="JUnit.BrandServiceImplTest.save1" />
       <item itemvalue="Spring Boot.Ideas4transferApplication (1)" />
       <item itemvalue="Spring Boot.Ideas4transferApplication" />
+      <item itemvalue="JUnit.BrandServiceImplTest.givenBrandDto_whenBrandServiceFindById_thenOk" />
+      <item itemvalue="JUnit.BrandServiceImplTest.saveAll" />
+      <item itemvalue="JUnit.BrandServiceImplTest.givenSaveAllBrands_whenBrandServiceSaveAll_thenOk" />
+      <item itemvalue="JUnit.BrandServiceImplTest.givenDeleteBrandById_whenBrandServiceDeleteById_thenOk" />
+      <item itemvalue="JUnit.BrandServiceImplTest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.BrandServiceImplTest.findAll" />
-        <item itemvalue="JUnit.BrandServiceImplTest.delete" />
-        <item itemvalue="JUnit.BrandServiceImplTest.save1" />
-        <item itemvalue="JUnit.BrandServiceImplTest.save" />
-        <item itemvalue="JUnit.BrandServiceImplTest.findById" />
+        <item itemvalue="JUnit.BrandServiceImplTest" />
+        <item itemvalue="JUnit.BrandServiceImplTest.givenDeleteBrandById_whenBrandServiceDeleteById_thenOk" />
+        <item itemvalue="JUnit.BrandServiceImplTest.givenSaveAllBrands_whenBrandServiceSaveAll_thenOk" />
+        <item itemvalue="JUnit.BrandServiceImplTest.saveAll" />
+        <item itemvalue="JUnit.BrandServiceImplTest.givenBrandDto_whenBrandServiceFindById_thenOk" />
       </list>
     </recent_temporary>
   </component>
@@ -352,7 +350,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="Dev5.7" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>

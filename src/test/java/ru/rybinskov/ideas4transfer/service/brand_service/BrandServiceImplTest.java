@@ -1,14 +1,7 @@
 package ru.rybinskov.ideas4transfer.service.brand_service;
 
-import org.aspectj.weaver.patterns.IVerificationRequired;
-import org.checkerframework.checker.units.qual.A;
-import org.junit.Before;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentMatcher;
+import org.junit.jupiter.api.*;
 import org.mockito.ArgumentMatchers;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,7 +16,6 @@ import ru.rybinskov.ideas4transfer.repository.BrandRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.BooleanSupplier;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -31,21 +23,22 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class BrandServiceImplTest {
 
-    private static List<Brand> brandList;
-    private static List<BrandDto> brandDtoList;
-    private static Brand brandMock;
+    List<Brand> brandList;
+    List<BrandDto> brandDtoList;
+    Brand brand;
+    BrandDto brandDto;
 
     @Autowired
-    private BrandServiceImpl brandServiceImpl;
+    BrandServiceImpl brandServiceImpl;
 
     @MockBean
-    private BrandRepository brandRepository;
+    BrandRepository brandRepository;
 
     @MockBean
-    private static List<Shop> shops;
+    List<Shop> shops;
 
-    @BeforeAll
-    static void initAll() {
+    @BeforeEach
+    void init() {
         brandList = new ArrayList<>();
         brandList.add(new Brand(1L,"GoodBeer", "GB", shops));
         brandList.add(new Brand(2L,"BadBeer", "BB", shops));
@@ -56,54 +49,70 @@ class BrandServiceImplTest {
         brandDtoList.add(new BrandDto(2L,"BadBeer", "BB"));
         brandDtoList.add(new BrandDto(3L,"GreatBeer", "GRB"));
 
-        brandMock = new Brand();
-        brandMock.setId(1L);
-        brandMock.setName("GoodBeer");
-        brandMock.setAbbr("GB");
-        brandMock.setShops(shops);
+        brand = Brand.builder()
+                .id(1L)
+                .name("GoodBeer")
+                .abbr("GB")
+                .build();
+
+        brandDto = BrandDto.builder()
+                .name("BadBeer")
+                .abbr("BB")
+                .build();
     }
 
+    @AfterEach
+    void close() {
+        brandList.clear();
+        brandDtoList.clear();
+    }
+//TestMethod_Condition_ExpectedResult
     @Test
-    void findAll() {
+    void givenAllBrandDto_whenBrandServiceFindAll_thenOk() {
         Mockito.doReturn(brandList)
                 .when(brandRepository)
                 .findAll();
 
         List<BrandDto> brandDto = brandServiceImpl.findAll();
-        Assertions.assertEquals(brandList.size(),brandDto.size());
+        assertEquals(brandList.size(),brandDto.size());
         Mockito.verify(brandRepository, Mockito.times(1)).findAll();
     }
 
     @Test
-    void findById() throws ResourceNotFoundException {
-        Mockito.doReturn(Optional.of(brandMock))
+    void givenBrandDto_whenBrandServiceFindById_thenOk() throws ResourceNotFoundException {
+        Mockito.doReturn(Optional.of(brand))
                 .when(brandRepository)
                 .findById(1L);
 
         BrandDto brandDto = brandServiceImpl.findById(1L);
-        Assertions.assertNotNull(brandDto);
+        assertNotNull(brandDto);
         Mockito.verify(brandRepository, Mockito.times(1)).findById(ArgumentMatchers.eq(1L));
     }
 
     @Test
-    void findByIdError() throws ResourceNotFoundException {
-        Exception exception = assertThrows(ResourceNotFoundException.class, () -> {
+    void givenResourceNotFoundException_whenBrandIdIsNotFound() {
+        Mockito.doReturn(Optional.of(brand))
+                .when(brandRepository)
+                .findById(1L);
+        brandDto.setId(3L);
+        assertThrows(ResourceNotFoundException.class, () -> {
+            brandServiceImpl.save(brandDto);
         });
     }
 
     @Test
-    void delete() {
-        Mockito.doReturn(Optional.of(brandMock))
+    void givenDeleteBrandById_whenBrandServiceDeleteById_thenOk() {
+        Mockito.doReturn(Optional.of(brand))
                 .when(brandRepository)
                 .findById(1L);
 
         brandServiceImpl.delete(1L);
-        Assertions.assertEquals(0, brandRepository.findAll().size());
-        Mockito.verify(brandRepository, Mockito.times(1)).deleteById(brandMock.getId());
+        assertEquals(0, brandRepository.findAll().size());
+        Mockito.verify(brandRepository, Mockito.times(1)).deleteById(brand.getId());
     }
 
     @Test
-    void saveAll() {
+    void givenSaveAllBrands_whenBrandServiceSaveAll_thenOk() {
         List<Brand> brands = brandDtoList.stream().map(Brand::new).collect(Collectors.toList());
 
         Mockito.doReturn(brands)
@@ -111,30 +120,22 @@ class BrandServiceImplTest {
                 .findAll();
 
         brandServiceImpl.saveAll(brandDtoList);
-        Assertions.assertEquals(brands.size(), brandRepository.findAll().size());
+        assertEquals(brands.size(), brandRepository.findAll().size());
         Mockito.verify(brandRepository, Mockito.times(1)).saveAll(ArgumentMatchers.eq(brands));
     }
 
     @Test
     void save() throws ResourceNotFoundException, WarehouseException {
 
-        Brand brand = Brand.builder()
-                .id(1L)
-                .name("GoodBeer")
-                .abbr("GB")
-                .build();
-
-        BrandDto brandDto = BrandDto.builder()
-                .name("BadBeer")
-                .abbr("BB")
-                .build();
-
         Mockito.doReturn(Optional.of(brand))
                 .when(brandRepository)
-                .findById(1L);
+                .findById(Mockito.any());
 
-        BrandDto brandDto1 = new BrandDto(1L,"BadBeer", " BB");
+        Mockito.doReturn(brand)
+                .when(brandRepository)
+                .save(Mockito.any());
+
         brandServiceImpl.save(brandDto);
-        Assertions.assertNotNull(brandRepository.findAll());
+        assertNotNull(brandRepository.findAll());
     }
 }
