@@ -2,12 +2,10 @@ package ru.rybinskov.ideas4transfer.service.delivery_service;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.rybinskov.ideas4transfer.domain.*;
 import ru.rybinskov.ideas4transfer.dto.DeliveryDto;
 import ru.rybinskov.ideas4transfer.dto.UniqueReportObject;
-import ru.rybinskov.ideas4transfer.exception.ExceedingAllowedDateValueException;
 import ru.rybinskov.ideas4transfer.exception.ResourceNotFoundException;
 import ru.rybinskov.ideas4transfer.exception.WarehouseException;
 import ru.rybinskov.ideas4transfer.repository.BrandRepository;
@@ -18,7 +16,6 @@ import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -150,7 +147,7 @@ public class DeliveryServiceImpl implements DeliveryService {
             lists = findByDeliveryDateIsBetween(first, last);
         }
 
-        Set<DeliveryDto> set = new HashSet(lists);
+        Set<DeliveryDto> set = new HashSet<>(lists);
         Map<LocalDate, Integer> map = new HashMap<>();
         set.forEach(v -> {
             if (map.containsKey(v.getDeliveryDate())) {

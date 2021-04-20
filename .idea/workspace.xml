@@ -4,22 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62ca60c5-994a-44ce-b9bf-73ba6b1e6b63" name="Default Changelist" comment="Обновлены тесты">
-      <change afterPath="$PROJECT_DIR$/src/test/java/ru/rybinskov/ideas4transfer/service/warehouse_service/WarehouseServiceImplTest.java" afterDir="false" />
+    <list default="true" id="62ca60c5-994a-44ce-b9bf-73ba6b1e6b63" name="Default Changelist" comment="Добавлены тесты к WarehouseServiceImpl,&#10;убрал лишние throws WarehouseException из сервисов.">
+      <change afterPath="$PROJECT_DIR$/src/test/java/ru/rybinskov/ideas4transfer/service/delivery_service/DeliveryServiceImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/dev_app.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/dev_app.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/security/SwaggerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/security/SwaggerConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/security/jwt/JwtAuthTokenFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/security/jwt/JwtAuthTokenFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/security/jwt/JwtProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/security/jwt/JwtProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/brand_service/BrandServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/brand_service/BrandServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/deleviry_type_service/DeliveryTypeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/deleviry_type_service/DeliveryTypeServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/domain/Brand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/domain/Brand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/delivery_service/DeliveryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/delivery_service/DeliveryServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/delivery_time_service/DeliveryTimeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/delivery_time_service/DeliveryTimeServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/role_service/RoleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/role_service/RoleServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/shop_service/ShopServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/shop_service/ShopServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/warehouse_service/WarehouseServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/warehouse_service/WarehouseServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/rybinskov/ideas4transfer/service/brand_service/BrandServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/rybinskov/ideas4transfer/service/brand_service/BrandServiceImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/user_service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/user_service/UserServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +86,7 @@
     <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="database.main" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -119,6 +111,7 @@
       <recent name="ru.rybinskov.ideas4transfer" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="ru.rybinskov.ideas4transfer.service.delivery_service" />
       <recent name="ru.rybinskov.ideas4transfer.service.warehouse_service" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -136,18 +129,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.WarehouseServiceImplTest.saveAll">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.DeliveryServiceImplTest.givenAllDeliveryDto_whenWDeliveryServiceFindAll_thenOk">
     <configuration name="BrandServiceImplTest.save" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ideas4transfer" />
       <extension name="coverage">
@@ -164,17 +146,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="WarehouseServiceImplTest.givenDeleteWarehouseById_whenWarehouseServiceDeleteById_thenOk" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DeliveryServiceImplTest.givenAllDeliveryDto_whenWDeliveryServiceFindAll_thenOk" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ideas4transfer" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ru.rybinskov.ideas4transfer.service.warehouse_service.*" />
+          <option name="PATTERN" value="ru.rybinskov.ideas4transfer.service.delivery_service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="ru.rybinskov.ideas4transfer.service.warehouse_service" />
-      <option name="MAIN_CLASS_NAME" value="ru.rybinskov.ideas4transfer.service.warehouse_service.WarehouseServiceImplTest" />
-      <option name="METHOD_NAME" value="givenDeleteWarehouseById_whenWarehouseServiceDeleteById_thenOk" />
+      <option name="PACKAGE_NAME" value="ru.rybinskov.ideas4transfer.service.delivery_service" />
+      <option name="MAIN_CLASS_NAME" value="ru.rybinskov.ideas4transfer.service.delivery_service.DeliveryServiceImplTest" />
+      <option name="METHOD_NAME" value="givenAllDeliveryDto_whenWDeliveryServiceFindAll_thenOk" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -243,21 +225,21 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Spring Boot.Ideas4transferApplication (1)" />
-      <item itemvalue="Spring Boot.Ideas4transferApplication" />
-      <item itemvalue="JUnit.WarehouseServiceImplTest.givenDeleteWarehouseById_whenWarehouseServiceDeleteById_thenOk" />
       <item itemvalue="JUnit.WarehouseServiceImplTest.save" />
       <item itemvalue="JUnit.BrandServiceImplTest.save" />
       <item itemvalue="JUnit.WarehouseServiceImplTest.givenWarehouseDto_whenWarehouseServiceSave_thenOk" />
       <item itemvalue="JUnit.WarehouseServiceImplTest.saveAll" />
+      <item itemvalue="JUnit.DeliveryServiceImplTest.givenAllDeliveryDto_whenWDeliveryServiceFindAll_thenOk" />
+      <item itemvalue="Spring Boot.Ideas4transferApplication (1)" />
+      <item itemvalue="Spring Boot.Ideas4transferApplication" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.DeliveryServiceImplTest.givenAllDeliveryDto_whenWDeliveryServiceFindAll_thenOk" />
         <item itemvalue="JUnit.WarehouseServiceImplTest.saveAll" />
         <item itemvalue="JUnit.WarehouseServiceImplTest.givenWarehouseDto_whenWarehouseServiceSave_thenOk" />
         <item itemvalue="JUnit.BrandServiceImplTest.save" />
         <item itemvalue="JUnit.WarehouseServiceImplTest.save" />
-        <item itemvalue="JUnit.WarehouseServiceImplTest.givenDeleteWarehouseById_whenWarehouseServiceDeleteById_thenOk" />
       </list>
     </recent_temporary>
   </component>
@@ -349,7 +331,8 @@
       <workItem from="1618915657544" duration="749000" />
       <workItem from="1618919172266" duration="3275000" />
       <workItem from="1618922497612" duration="105000" />
-      <workItem from="1618922823533" duration="9304000" />
+      <workItem from="1618922823533" duration="10257000" />
+      <workItem from="1618939726638" duration="5016000" />
     </task>
     <task id="LOCAL-00001" summary="1. Дописал класс UserDto остальными полями&#10;&#10;2. Создал папку Utils и создал в ней класс UserUtils, в котором прописал методы по переводу объектов из User в UserDto и обратно&#10;&#10;3. Переписал методы в UserService и UserController">
       <created>1616153374963</created>
@@ -428,7 +411,14 @@
       <option name="project" value="LOCAL" />
       <updated>1618915734148</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Добавлены тесты к WarehouseServiceImpl,&#10;убрал лишние throws WarehouseException из сервисов.">
+      <created>1618932777445</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1618932777445</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -452,7 +442,8 @@
     <MESSAGE value="подключен Сентри" />
     <MESSAGE value="Добавил описание в файл README.MD" />
     <MESSAGE value="Обновлены тесты" />
-    <option name="LAST_COMMIT_MESSAGE" value="Обновлены тесты" />
+    <MESSAGE value="Добавлены тесты к WarehouseServiceImpl,&#10;убрал лишние throws WarehouseException из сервисов." />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлены тесты к WarehouseServiceImpl,&#10;убрал лишние throws WarehouseException из сервисов." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -44,12 +44,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public UserDto findByName(String name) {
-        log.info("Working method UserService findByName");
-        return null;
-    }
-
-    @Override
     public UserDto save(UserDto userDto) throws ResourceNotFoundException, WarehouseException {
         String password = userDto.getPassword();
         if (password != null && (!password.trim().equals(""))) {
