@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62ca60c5-994a-44ce-b9bf-73ba6b1e6b63" name="Default Changelist" comment="Добавил описание в файл README.MD">
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/rybinskov/ideas4transfer/service/brand_service/BrandServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/rybinskov/ideas4transfer/brand_service/BrandServiceImplTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="62ca60c5-994a-44ce-b9bf-73ba6b1e6b63" name="Default Changelist" comment="Обновлены тесты" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -84,11 +82,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Dell-PC\IdeaProjects\commandProject\src\test\java\ru\rybinskov\ideas4transfer" />
       <recent name="C:\Users\Dell-PC\IdeaProjects\commandProject" />
       <recent name="C:\Users\Dell-PC\IdeaProjects\commandProject\src\main\resources\images" />
       <recent name="C:\Users\Dell-PC\Desktop\Новая папка (2)\commandProject\src\main\java\ru\rybinskov\ideas4transfer\dto" />
       <recent name="C:\Users\Dell-PC\Desktop\Новая папка (2)\commandProject\src\main\java\ru\rybinskov\ideas4transfer\service" />
-      <recent name="C:\Users\Dell-PC\Desktop\Новая папка (2)\commandProject\src\main\java\ru\rybinskov\ideas4transfer\repository" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Dell-PC\IdeaProjects\commandProject\src\main\resources\db" />
@@ -120,15 +118,13 @@
     </option>
   </component>
   <component name="RunManager" selected="JUnit.BrandServiceImplTest">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -231,9 +227,9 @@
       <item itemvalue="JUnit.BrandServiceImplTest.save" />
       <item itemvalue="JUnit.BrandServiceImplTest.delete" />
       <item itemvalue="JUnit.BrandServiceImplTest.save1" />
+      <item itemvalue="JUnit.BrandServiceImplTest" />
       <item itemvalue="Spring Boot.Ideas4transferApplication (1)" />
       <item itemvalue="Spring Boot.Ideas4transferApplication" />
-      <item itemvalue="JUnit.BrandServiceImplTest" />
     </list>
     <recent_temporary>
       <list>
@@ -329,7 +325,7 @@
       <workItem from="1618427543328" duration="745000" />
       <workItem from="1618520304725" duration="800000" />
       <workItem from="1618843354969" duration="14904000" />
-      <workItem from="1618912610785" duration="2805000" />
+      <workItem from="1618912610785" duration="2989000" />
     </task>
     <task id="LOCAL-00001" summary="1. Дописал класс UserDto остальными полями&#10;&#10;2. Создал папку Utils и создал в ней класс UserUtils, в котором прописал методы по переводу объектов из User в UserDto и обратно&#10;&#10;3. Переписал методы в UserService и UserController">
       <created>1616153374963</created>
@@ -394,7 +390,14 @@
       <option name="project" value="LOCAL" />
       <updated>1618915273519</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Обновлены тесты">
+      <created>1618915569037</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1618915569037</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -417,7 +420,8 @@
     <MESSAGE value="1. Забыл добавить файлик текстовый с изменениями" />
     <MESSAGE value="подключен Сентри" />
     <MESSAGE value="Добавил описание в файл README.MD" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавил описание в файл README.MD" />
+    <MESSAGE value="Обновлены тесты" />
+    <option name="LAST_COMMIT_MESSAGE" value="Обновлены тесты" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
