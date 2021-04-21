@@ -2,14 +2,10 @@ package ru.rybinskov.ideas4transfer.service.shop_service;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.rybinskov.ideas4transfer.domain.Brand;
 import ru.rybinskov.ideas4transfer.domain.Shop;
-import ru.rybinskov.ideas4transfer.dto.BrandDto;
 import ru.rybinskov.ideas4transfer.dto.ShopDto;
 import ru.rybinskov.ideas4transfer.exception.ResourceNotFoundException;
-import ru.rybinskov.ideas4transfer.exception.WarehouseException;
 import ru.rybinskov.ideas4transfer.repository.ShopRepository;
 
 import java.util.List;
@@ -26,13 +22,22 @@ public class ShopServiceImpl implements ShopService {
     public ShopDto findById(Long id) throws ResourceNotFoundException {
         Shop shop = shopRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Магазин по указанному id не найден: id = " + id));
         log.info("Working method ShopService findById {}", shop);
-        return new ShopDto(shop);
+        ShopDto shopDto = new ShopDto(shop);
+        return shopDto;
     }
 
     @Override
     public List<ShopDto> findAll() {
         log.info("Working method ShopService findAll");
         return shopRepository.findAll().stream().map(ShopDto::new).collect(Collectors.toList());
+    }
+
+    @Override
+    public void updateShop(ShopDto shopDto) throws ResourceNotFoundException {
+        ShopDto shop = findById(shopDto.getId());
+        shop.updateAllFieldsWithoutId(shopDto);
+        shopRepository.save(new Shop(shop));
+        log.info("Working method ShopService updateShop {}", shop);
     }
 
     @Override

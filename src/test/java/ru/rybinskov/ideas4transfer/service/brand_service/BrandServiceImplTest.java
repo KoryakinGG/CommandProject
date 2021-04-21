@@ -66,7 +66,7 @@ class BrandServiceImplTest {
         brandList.clear();
         brandDtoList.clear();
     }
-//TestMethod_Condition_ExpectedResult
+    //TestMethod_Condition_ExpectedResult
     @Test
     void givenAllBrandDto_whenBrandServiceFindAll_thenOk() {
         Mockito.doReturn(brandList)
@@ -86,7 +86,7 @@ class BrandServiceImplTest {
 
         BrandDto brandDto = brandServiceImpl.findById(1L);
         assertNotNull(brandDto);
-        Mockito.verify(brandRepository, Mockito.times(1)).findById(ArgumentMatchers.eq(1L));
+        Mockito.verify(brandRepository, Mockito.times(1)).findById(1L);
     }
 
     @Test
@@ -115,9 +115,9 @@ class BrandServiceImplTest {
     void deleteBrandById_whenBrandServiceDeleteById_thenOk() {
         Mockito.doNothing().when(brandRepository).deleteById(1L);
 
+        Mockito.doNothing().when(brandRepository).deleteById(1L);
         brandServiceImpl.delete(1L);
-        assertEquals(0, brandRepository.findAll().size());
-        Mockito.verify(brandRepository, Mockito.times(1)).deleteById(brand.getId());
+        Mockito.verify(brandRepository, Mockito.times(1)).deleteById(1L);
     }
 
     @Test
@@ -130,11 +130,12 @@ class BrandServiceImplTest {
 
         brandServiceImpl.saveAll(brandDtoList);
         assertEquals(brands.size(), brandRepository.findAll().size());
-        Mockito.verify(brandRepository, Mockito.times(1)).saveAll(ArgumentMatchers.eq(brands));
+        Mockito.verify(brandRepository, Mockito.times(1)).saveAll(brands);
     }
 
     @Test
-    void givenBrandDto_whenBrandServiceSave_thenOk() throws ResourceNotFoundException, WarehouseException {
+    void givenWarehouseDto_whenWarehouseServiceSave_thenOk() throws ResourceNotFoundException, WarehouseException {
+
         Mockito.doReturn(brand)
                 .when(brandRepository)
                 .save(Mockito.any());
