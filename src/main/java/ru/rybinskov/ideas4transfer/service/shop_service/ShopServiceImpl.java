@@ -2,14 +2,10 @@ package ru.rybinskov.ideas4transfer.service.shop_service;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.rybinskov.ideas4transfer.domain.Brand;
 import ru.rybinskov.ideas4transfer.domain.Shop;
-import ru.rybinskov.ideas4transfer.dto.BrandDto;
 import ru.rybinskov.ideas4transfer.dto.ShopDto;
 import ru.rybinskov.ideas4transfer.exception.ResourceNotFoundException;
-import ru.rybinskov.ideas4transfer.exception.WarehouseException;
 import ru.rybinskov.ideas4transfer.repository.ShopRepository;
 
 import java.util.List;
@@ -26,7 +22,8 @@ public class ShopServiceImpl implements ShopService {
     public ShopDto findById(Long id) throws ResourceNotFoundException {
         Shop shop = shopRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Магазин по указанному id не найден: id = " + id));
         log.info("Working method ShopService findById {}", shop);
-        return new ShopDto(shop);
+        ShopDto shopDto = new ShopDto(shop);
+        return shopDto;
     }
 
     @Override
@@ -44,7 +41,7 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
-    public ShopDto save(ShopDto shopDto) throws ResourceNotFoundException, WarehouseException {
+    public ShopDto save(ShopDto shopDto) throws ResourceNotFoundException {
         if (shopDto.getId() == null) {
             log.info("Working method ShopService save {} is null, create new", shopDto.getId());
             return new ShopDto(shopRepository.save(new Shop(shopDto)));
