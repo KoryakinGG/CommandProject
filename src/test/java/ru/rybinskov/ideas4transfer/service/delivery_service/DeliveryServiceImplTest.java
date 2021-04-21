@@ -3,12 +3,15 @@ package ru.rybinskov.ideas4transfer.service.delivery_service;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import ru.rybinskov.ideas4transfer.domain.*;
 import ru.rybinskov.ideas4transfer.dto.*;
+import ru.rybinskov.ideas4transfer.exception.ResourceNotFoundException;
+import ru.rybinskov.ideas4transfer.exception.WarehouseException;
 import ru.rybinskov.ideas4transfer.repository.BrandRepository;
 import ru.rybinskov.ideas4transfer.repository.DeliveryRepository;
 import ru.rybinskov.ideas4transfer.repository.ShopRepository;
@@ -16,10 +19,7 @@ import ru.rybinskov.ideas4transfer.repository.WarehouseRepository;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -35,12 +35,6 @@ class DeliveryServiceImplTest {
     DeliveryServiceImpl deliveryService;
     @MockBean
     DeliveryRepository deliveryRepository;
-    @MockBean
-    BrandRepository brandRepository;
-    @MockBean
-    ShopRepository shopRepository;
-    @MockBean
-    WarehouseRepository warehouseRepository;
 
     List<Delivery> deliveries;
     List<DeliveryDto> deliveriesDtos;
@@ -243,20 +237,54 @@ class DeliveryServiceImplTest {
     }
 
     @Test
-    void givenDeliveryDto_whenDeliveryServiceFindById_thenOk() {
-
+    void givenDeliveryDto_whenDeliveryServiceFindById_thenOk() throws ResourceNotFoundException {
+        Mockito.doReturn(Optional.of(delivery))
+                .when(deliveryRepository)
+                .findById(1L);
+        DeliveryDto deliveryDto = deliveryService.findById(1L);
+        assertNotNull(deliveryDto);
+        Mockito.verify(deliveryRepository, Mockito.times(1)).findById(ArgumentMatchers.eq(1L));
     }
 
     @Test
-    void givenDeliveryDto_whenDeliveryServiceSave_thenOk() {
+    void givenResourceNotFoundException_whenWarehouseIdIsNotFound() {
+        Mockito.doReturn(Optional.of(delivery))
+                .when(deliveryRepository)
+                .findById(1L);
+        deliveryDto.setId(3L);
+        assertThrows(ResourceNotFoundException.class, () -> {
+            deliveryService.save(deliveryDto);
+        });
+    }
+
+    @Test
+    void givenDeliveryDto_whenDeliveryServiceSave_thenOk() throws ResourceNotFoundException {
+
+        Mockito.doReturn(Optional.of(delivery))
+                .when(deliveryRepository)
+                .findById(1L);
+        Mockito.doReturn(delivery)
+                .when(deliveryRepository)
+                .save(Mockito.any());
+        DeliveryDto report = deliveryService.save(deliveryDto);
+        assertNotNull(report);
+        Mockito.verify(deliveryRepository, Mockito.times(1)).save(delivery);
     }
 
     @Test
     void deleteDeliveryById_whenDeliveryServiceDeleteById_thenOk() {
+        Mockito.doNothing().when(deliveryRepository).deleteById(1L);
+        deliveryService.delete(1L);
+        Mockito.verify(deliveryRepository, Mockito.times(1)).deleteById(ArgumentMatchers.eq(1L));
     }
 
     @Test
-    void saveAllDeliveryDto_whenDeliveryServiceSaveAll_thenOk() {
+    void saveAllDeliveryDto_whenDeliveryServiceSaveAll_thenOk() throws WarehouseException {
+        Mockito.doReturn(deliveries)
+                .when(deliveryRepository)
+                .saveAll(Mockito.any());
+        deliveryService.saveAll(deliveriesDtos);
+        Mockito.verify(deliveryRepository, Mockito.times(1)).saveAll(deliveries);
     }
 
 
