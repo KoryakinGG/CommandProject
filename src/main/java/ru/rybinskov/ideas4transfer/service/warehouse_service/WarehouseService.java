@@ -10,8 +10,7 @@ public interface WarehouseService {
 
     WarehouseDto findById(Long id) throws ResourceNotFoundException;
     List<WarehouseDto> findAll();
-    void updateWarehouse(WarehouseDto warehouseDto) throws ResourceNotFoundException;
-    WarehouseDto save(WarehouseDto warehouseDto) throws ResourceNotFoundException, WarehouseException;
+    WarehouseDto save(WarehouseDto warehouseDto) throws ResourceNotFoundException;
     void delete(Long id);
     public void saveAll(List<WarehouseDto> warehouseDtos);
 }

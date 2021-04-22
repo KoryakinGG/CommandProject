@@ -2,11 +2,10 @@ package ru.rybinskov.ideas4transfer.service.delivery_service;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.rybinskov.ideas4transfer.domain.*;
 import ru.rybinskov.ideas4transfer.dto.DeliveryDto;
-import ru.rybinskov.ideas4transfer.exception.ExceedingAllowedDateValueException;
+import ru.rybinskov.ideas4transfer.dto.UniqueReportObject;
 import ru.rybinskov.ideas4transfer.exception.ResourceNotFoundException;
 import ru.rybinskov.ideas4transfer.exception.WarehouseException;
 import ru.rybinskov.ideas4transfer.repository.BrandRepository;
@@ -17,7 +16,6 @@ import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -44,7 +42,7 @@ public class DeliveryServiceImpl implements DeliveryService {
     }
 
     @Override
-    public DeliveryDto save(DeliveryDto deliveryDto) throws ResourceNotFoundException, WarehouseException {
+    public DeliveryDto save(DeliveryDto deliveryDto) throws ResourceNotFoundException {
         if (deliveryDto.getId() == null)
         {
             log.info("Working method DeliveryType save: {} is null, create new", deliveryDto.getId());
@@ -71,8 +69,7 @@ public class DeliveryServiceImpl implements DeliveryService {
     public void saveAll(List<DeliveryDto> deliveryDtos) throws WarehouseException {
 
         List<DeliveryDto> listNotValidDeliveries = deliveryDtos.stream().filter(
-                d -> d.getDeliveryDate().compareTo(LocalDate.now().plusDays(21)) >= 0
-                        || !(brandRepository.findById(d.getBrand().getId())).isPresent()
+                d -> !(brandRepository.findById(d.getBrand().getId())).isPresent()
                         || !(shopRepository.findById(d.getShop().getId())).isPresent()).collect(Collectors.toList());
 
         if (listNotValidDeliveries.isEmpty()) {
@@ -81,7 +78,7 @@ public class DeliveryServiceImpl implements DeliveryService {
         } else {
             throw new WarehouseException("Недопустимая Дата поставки или данные о Brand или Shop отстутствуют в справочнике. " +
                     "Для офромления доставки обновите сведения в справочнике. " +  listNotValidDeliveries);
-        }
+        } // invalidException
     }
 
     private DateTimeFormatter getFormatter() {
@@ -133,5 +130,38 @@ public class DeliveryServiceImpl implements DeliveryService {
                 .compareTo(lastDate) <= 0)
                 .sorted(Comparator.comparing(DeliveryDto::getDeliveryDate))
                 .collect(Collectors.toList());
+    }
+
+    public List<UniqueReportObject> getUniqueDeliveriesByRange(String first, String last) {
+        List<DeliveryDto> lists;
+        if (first == null && last == null) {
+            lists =findAll();
+        }
+        else if (first != null && last == null) {
+            lists = findByDeliveryDateGreaterThanEqual(first);
+        }
+        else if (first == null) {
+            lists = findByDeliveryDateLessThanEqual(last);
+        }
+        else {
+            lists = findByDeliveryDateIsBetween(first, last);
+        }
+
+        Set<DeliveryDto> set = new HashSet<>(lists);
+        Map<LocalDate, Integer> map = new HashMap<>();
+        set.forEach(v -> {
+            if (map.containsKey(v.getDeliveryDate())) {
+                int count = map.get(v.getDeliveryDate());
+                map.put(v.getDeliveryDate(), count + 1);
+            } else {
+                map.put(v.getDeliveryDate(), 1);
+            }
+        });
+        List<UniqueReportObject> uniqueReportObject = new ArrayList<>();
+        map.forEach((key, value) -> uniqueReportObject.add(new UniqueReportObject(key, value)));
+        uniqueReportObject.sort(Comparator.comparing(UniqueReportObject::getName));
+
+        return uniqueReportObject;
+
     }
 }

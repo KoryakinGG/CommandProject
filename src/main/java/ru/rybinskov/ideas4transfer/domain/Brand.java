@@ -31,6 +31,12 @@ public class Brand {
         updateFields(brandDto);
     }
 
+    public Brand(Long id, String name, String abbr) {
+        this.id = id;
+        this.name = name;
+        this.abbr = abbr;
+    }
+
     public void updateFields(BrandDto brandDto) {
         this.id = brandDto.getId();
         this.name = brandDto.getName();

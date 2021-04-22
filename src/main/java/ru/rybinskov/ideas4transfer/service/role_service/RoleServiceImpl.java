@@ -36,7 +36,7 @@ public class RoleServiceImpl implements RoleService{
     }
 
     @Override
-    public RoleDto save(RoleDto roleDto) throws ResourceNotFoundException, WarehouseException {
+    public RoleDto save(RoleDto roleDto) throws ResourceNotFoundException {
         if (roleDto.getId() == null) {
             log.info("Working method RoleService save: {} is null, create new", roleDto.getId());
             RoleDto roleDto1 = new RoleDto(roleRepository.save(new Role(roleDto)));

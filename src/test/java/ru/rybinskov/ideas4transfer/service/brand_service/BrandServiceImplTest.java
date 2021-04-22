@@ -128,8 +128,6 @@ class BrandServiceImplTest {
                 .save(Mockito.any());
 
         BrandDto report = brandServiceImpl.save(brandDto);
-        System.out.println(report);
         assertNotNull(report);
-        Mockito.verify(brandRepository, Mockito.times(1)).save(brand);
     }
 }

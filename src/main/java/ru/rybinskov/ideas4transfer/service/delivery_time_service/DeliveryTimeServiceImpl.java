@@ -25,18 +25,20 @@ public class DeliveryTimeServiceImpl implements DeliveryTimeService{
     @Override
     public List<DeliveryTimeDto> findAll() {
         log.info("Working method DeliveryTime findAll");
-        return deliveryTimeRepository.findAll().stream().map(DeliveryTimeDto::new).collect(Collectors.toList());
+        List<DeliveryTimeDto> deliveryTimeDto = deliveryTimeRepository.findAll().stream().map(DeliveryTimeDto::new).collect(Collectors.toList());
+        return deliveryTimeDto;
     }
 
     @Override
     public DeliveryTimeDto findById(Long id) throws ResourceNotFoundException {
         DeliveryTime deliveryTime = deliveryTimeRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Дата по указанному id не найдена:  id = " + id));
         log.info("Working method DeliveryTime findById: {}", id);
-        return new DeliveryTimeDto(deliveryTime);
+        DeliveryTimeDto deliveryTimeDto = new DeliveryTimeDto(deliveryTime);
+        return deliveryTimeDto;
     }
 
     @Override
-    public DeliveryTimeDto save(DeliveryTimeDto deliveryTimeDto) throws ResourceNotFoundException, WarehouseException {
+    public DeliveryTimeDto save(DeliveryTimeDto deliveryTimeDto) throws ResourceNotFoundException {
         if (deliveryTimeDto.getId() == null) {
             log.info("Working method DeliveryTime save: {} is null, create new", deliveryTimeDto.getId());
             return new DeliveryTimeDto(deliveryTimeRepository.save(new DeliveryTime(deliveryTimeDto)));

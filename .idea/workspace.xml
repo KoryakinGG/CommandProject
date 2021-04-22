@@ -4,13 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62ca60c5-994a-44ce-b9bf-73ba6b1e6b63" name="Default Changelist" comment="Обновлены тесты BrandServiceImpl">
-      <change afterPath="$PROJECT_DIR$/src/test/java/ru/rybinskov/ideas4transfer/service/user_service/UserServiceImplTest.java" afterDir="false" />
+    <list default="true" id="62ca60c5-994a-44ce-b9bf-73ba6b1e6b63" name="Default Changelist" comment="Добавил описание в файл README.MD">
+      <change afterPath="$PROJECT_DIR$/src/test/java/ru/rybinskov/ideas4transfer/service/delivery_time_service/DeliveryTimeServiceImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/dev_app.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/dev_app.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/user_service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/user_service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/user_service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/user_service/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/dto/ShopDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/dto/ShopDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/delivery_time_service/DeliveryTimeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/delivery_time_service/DeliveryTimeServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/shop_service/ShopService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rybinskov/ideas4transfer/service/shop_service/ShopService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/rybinskov/ideas4transfer/service/user_service/UserServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/rybinskov/ideas4transfer/service/user_service/UserServiceImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,9 +101,11 @@
       <recent name="" />
     </key>
     <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="ru.rybinskov.ideas4transfer.service.shop_service" />
       <recent name="ru.rybinskov.ideas4transfer.common" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="ru.rybinskov.ideas4transfer.service.delivery_time_service" />
       <recent name="ru.rybinskov.ideas4transfer.service.user_service" />
       <recent name="ru.rybinskov.ideas4transfer.service.shop_service" />
       <recent name="ru.rybinskov.ideas4transfer.service.brand_service" />
@@ -117,7 +122,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.UserServiceImplTest.deleteUserMethod_whenUserServiceGetLongId_thenOk">
+  <component name="RunManager" selected="JUnit.DeliveryTimeServiceImplTest">
     <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -131,80 +136,80 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ShopServiceImplTest.updateShop" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DeliveryTimeServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ideas4transfer" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ru.rybinskov.ideas4transfer.service.shop_service.*" />
+          <option name="PATTERN" value="ru.rybinskov.ideas4transfer.service.delivery_time_service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="ru.rybinskov.ideas4transfer.service.shop_service" />
-      <option name="MAIN_CLASS_NAME" value="ru.rybinskov.ideas4transfer.service.shop_service.ShopServiceImplTest" />
-      <option name="METHOD_NAME" value="updateShop" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ideas4transfer" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ru.rybinskov.ideas4transfer.service.user_service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ru.rybinskov.ideas4transfer.service.user_service" />
-      <option name="MAIN_CLASS_NAME" value="ru.rybinskov.ideas4transfer.service.user_service.UserServiceImplTest" />
+      <option name="PACKAGE_NAME" value="ru.rybinskov.ideas4transfer.service.delivery_time_service" />
+      <option name="MAIN_CLASS_NAME" value="ru.rybinskov.ideas4transfer.service.delivery_time_service.DeliveryTimeServiceImplTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserServiceImplTest.deleteUserMethod_whenUserServiceGetLongId_thenOk" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DeliveryTimeServiceImplTest.SaveDeliveryTime_whenDeliveryTimeServiSave_thenOk" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ideas4transfer" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ru.rybinskov.ideas4transfer.service.user_service.*" />
+          <option name="PATTERN" value="ru.rybinskov.ideas4transfer.service.delivery_time_service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="ru.rybinskov.ideas4transfer.service.user_service" />
-      <option name="MAIN_CLASS_NAME" value="ru.rybinskov.ideas4transfer.service.user_service.UserServiceImplTest" />
-      <option name="METHOD_NAME" value="deleteUserMethod_whenUserServiceGetLongId_thenOk" />
+      <option name="PACKAGE_NAME" value="ru.rybinskov.ideas4transfer.service.delivery_time_service" />
+      <option name="MAIN_CLASS_NAME" value="ru.rybinskov.ideas4transfer.service.delivery_time_service.DeliveryTimeServiceImplTest" />
+      <option name="METHOD_NAME" value="SaveDeliveryTime_whenDeliveryTimeServiSave_thenOk" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserServiceImplTest.loadUserByUsername" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DeliveryTimeServiceImplTest.deleteByIdMethod_whenDeliveryTimeServiceDelete_thenOk" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ideas4transfer" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ru.rybinskov.ideas4transfer.service.user_service.*" />
+          <option name="PATTERN" value="ru.rybinskov.ideas4transfer.service.delivery_time_service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="ru.rybinskov.ideas4transfer.service.user_service" />
-      <option name="MAIN_CLASS_NAME" value="ru.rybinskov.ideas4transfer.service.user_service.UserServiceImplTest" />
-      <option name="METHOD_NAME" value="loadUserByUsername" />
+      <option name="PACKAGE_NAME" value="ru.rybinskov.ideas4transfer.service.delivery_time_service" />
+      <option name="MAIN_CLASS_NAME" value="ru.rybinskov.ideas4transfer.service.delivery_time_service.DeliveryTimeServiceImplTest" />
+      <option name="METHOD_NAME" value="deleteByIdMethod_whenDeliveryTimeServiceDelete_thenOk" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserServiceImplTest.saveUserMethod_whenUserServiceGetUserDto_thenOk" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DeliveryTimeServiceImplTest.givenResourceNotFoundException_whenDeliveryTimeIdIsNotFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ideas4transfer" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ru.rybinskov.ideas4transfer.service.user_service.*" />
+          <option name="PATTERN" value="ru.rybinskov.ideas4transfer.service.delivery_time_service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="ru.rybinskov.ideas4transfer.service.user_service" />
-      <option name="MAIN_CLASS_NAME" value="ru.rybinskov.ideas4transfer.service.user_service.UserServiceImplTest" />
-      <option name="METHOD_NAME" value="saveUserMethod_whenUserServiceGetUserDto_thenOk" />
+      <option name="PACKAGE_NAME" value="ru.rybinskov.ideas4transfer.service.delivery_time_service" />
+      <option name="MAIN_CLASS_NAME" value="ru.rybinskov.ideas4transfer.service.delivery_time_service.DeliveryTimeServiceImplTest" />
+      <option name="METHOD_NAME" value="givenResourceNotFoundException_whenDeliveryTimeIdIsNotFound" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DeliveryTimeServiceImplTest.saveAllMethod_whenDeliveryTimeServiceSaveAll_thenOk" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ideas4transfer" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.rybinskov.ideas4transfer.service.delivery_time_service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.rybinskov.ideas4transfer.service.delivery_time_service" />
+      <option name="MAIN_CLASS_NAME" value="ru.rybinskov.ideas4transfer.service.delivery_time_service.DeliveryTimeServiceImplTest" />
+      <option name="METHOD_NAME" value="saveAllMethod_whenDeliveryTimeServiceSaveAll_thenOk" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -225,21 +230,21 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.ShopServiceImplTest.updateShop" />
       <item itemvalue="Spring Boot.Ideas4transferApplication (1)" />
       <item itemvalue="Spring Boot.Ideas4transferApplication" />
-      <item itemvalue="JUnit.UserServiceImplTest.loadUserByUsername" />
-      <item itemvalue="JUnit.UserServiceImplTest.saveUserMethod_whenUserServiceGetUserDto_thenOk" />
-      <item itemvalue="JUnit.UserServiceImplTest" />
-      <item itemvalue="JUnit.UserServiceImplTest.deleteUserMethod_whenUserServiceGetLongId_thenOk" />
+      <item itemvalue="JUnit.DeliveryTimeServiceImplTest.deleteByIdMethod_whenDeliveryTimeServiceDelete_thenOk" />
+      <item itemvalue="JUnit.DeliveryTimeServiceImplTest.saveAllMethod_whenDeliveryTimeServiceSaveAll_thenOk" />
+      <item itemvalue="JUnit.DeliveryTimeServiceImplTest.givenResourceNotFoundException_whenDeliveryTimeIdIsNotFound" />
+      <item itemvalue="JUnit.DeliveryTimeServiceImplTest.SaveDeliveryTime_whenDeliveryTimeServiSave_thenOk" />
+      <item itemvalue="JUnit.DeliveryTimeServiceImplTest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.UserServiceImplTest.deleteUserMethod_whenUserServiceGetLongId_thenOk" />
-        <item itemvalue="JUnit.UserServiceImplTest" />
-        <item itemvalue="JUnit.UserServiceImplTest.saveUserMethod_whenUserServiceGetUserDto_thenOk" />
-        <item itemvalue="JUnit.UserServiceImplTest.loadUserByUsername" />
-        <item itemvalue="JUnit.ShopServiceImplTest.updateShop" />
+        <item itemvalue="JUnit.DeliveryTimeServiceImplTest" />
+        <item itemvalue="JUnit.DeliveryTimeServiceImplTest.SaveDeliveryTime_whenDeliveryTimeServiSave_thenOk" />
+        <item itemvalue="JUnit.DeliveryTimeServiceImplTest.givenResourceNotFoundException_whenDeliveryTimeIdIsNotFound" />
+        <item itemvalue="JUnit.DeliveryTimeServiceImplTest.saveAllMethod_whenDeliveryTimeServiceSaveAll_thenOk" />
+        <item itemvalue="JUnit.DeliveryTimeServiceImplTest.deleteByIdMethod_whenDeliveryTimeServiceDelete_thenOk" />
       </list>
     </recent_temporary>
   </component>
@@ -392,16 +397,6 @@
     <MESSAGE value="подключен Сентри" />
     <MESSAGE value="сделал тесты ServiceShopImpl" />
     <option name="LAST_COMMIT_MESSAGE" value="сделал тесты ServiceShopImpl" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.lang.NullPointerException" package="java.lang" />
-          <option name="timeStamp" value="2" />
-        </breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

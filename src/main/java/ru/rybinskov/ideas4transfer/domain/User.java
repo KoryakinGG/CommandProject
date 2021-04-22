@@ -54,10 +54,18 @@ public class User {
     public void updateAllFieldsWithoutId(UserDto userDto) {
         this.id = userDto.getId();
         this.username = userDto.getUsername();
+        if (userDto.getPassword() != null && (!userDto.getPassword().trim().equals(""))) {
+            this.password = userDto.getPassword();
+        }
         this.phone = userDto.getPhone();
         this.email = userDto.getEmail();
         this.fullName = userDto.getFullName();
         this.roles = userDto.getRoles().stream().map(Role::new).collect(Collectors.toList()); // stream
         this.brands = userDto.getBrands().stream().map(Brand::new).collect(Collectors.toList());
+    }
+
+    public void setPassword(UserDto userDto){
+        this.id = userDto.getId();
+        this.password = userDto.getPassword();
     }
 }

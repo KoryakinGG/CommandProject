@@ -1,7 +1,6 @@
 package ru.rybinskov.ideas4transfer.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
@@ -14,8 +13,8 @@ import ru.rybinskov.ideas4transfer.domain.Delivery;
 import ru.rybinskov.ideas4transfer.domain.DeliveryTime;
 import ru.rybinskov.ideas4transfer.domain.DeliveryType;
 
-import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Data
 @NoArgsConstructor
@@ -24,14 +23,14 @@ import java.time.LocalDate;
 public class DeliveryDto {
 
     private Long id;
-    @JsonFormat(
-            shape = JsonFormat.Shape.STRING,
-            pattern = "dd.MM.yyyy")
-    @JsonDeserialize(using = LocalDateDeserializer.class)
-    @JsonSerialize(using = LocalDateSerializer.class)
+//    @JsonFormat(
+//            shape = JsonFormat.Shape.STRING,
+//            pattern = "dd.MM.yyyy")
+//    @JsonDeserialize(using = LocalDateDeserializer.class)
+//    @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate deliveryDate;
 
-    private DeliveryTime deliveryTime;
+    private DeliveryTimeDto deliveryTime;
 
     private String carInfo;
 
@@ -41,7 +40,7 @@ public class DeliveryDto {
 
     private String orderNumber;
 
-    private DeliveryType deliveryType;
+    private DeliveryTypeDto deliveryType;
 
     private String sender;
 
@@ -62,12 +61,12 @@ public class DeliveryDto {
     public DeliveryDto(Delivery delivery) {
         this.id = delivery.getId();
         this.deliveryDate = delivery.getDeliveryDate();
-        this.deliveryTime = delivery.getDeliveryTime();
+        this.deliveryTime = new DeliveryTimeDto(delivery.getDeliveryTime());
         this.carInfo = delivery.getCarInfo();
         this.driverInfo = delivery.getDriverInfo();
         this.brand = new BrandDto(delivery.getBrand());
         this.orderNumber = delivery.getOrderNumber();
-        this.deliveryType = delivery.getDeliveryType();
+        this.deliveryType = new DeliveryTypeDto(delivery.getDeliveryType());
         this.sender = delivery.getSender();
         this.comment = delivery.getComment();
         this.shop = new ShopDto(delivery.getShop());
@@ -78,21 +77,22 @@ public class DeliveryDto {
         this.warehouse = new WarehouseDto(delivery.getWarehouse());
     }
 
-    public void updateAllFieldsWithoutId(DeliveryDto updatedDelivery) {
-        this.deliveryDate = updatedDelivery.getDeliveryDate();
-        this.deliveryTime = updatedDelivery.getDeliveryTime();
-        this.carInfo = updatedDelivery.getCarInfo();
-        this.driverInfo = updatedDelivery.getDriverInfo();
-        this.brand = updatedDelivery.getBrand();
-        this.orderNumber = updatedDelivery.getOrderNumber();
-        this.deliveryType = updatedDelivery.getDeliveryType();
-        this.sender = updatedDelivery.getSender();
-        this.comment = updatedDelivery.getComment();
-        this.shop = updatedDelivery.getShop();
-        this.numberOfPlaces = updatedDelivery.getNumberOfPlaces();
-        this.torgNumber = updatedDelivery.getTorgNumber();
-        this.invoice = updatedDelivery.getInvoice();
-        this.user = updatedDelivery.getUser();
-        this.warehouse = updatedDelivery.getWarehouse();
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof DeliveryDto)) return false;
+        DeliveryDto that = (DeliveryDto) o;
+        return deliveryDate.equals(that.deliveryDate)
+                && deliveryTime.equals(that.deliveryTime)
+                && carInfo.equals(that.carInfo)
+                && driverInfo.equals(that.driverInfo)
+                && brand.equals(that.brand)
+                && deliveryType.equals(that.deliveryType)
+                && warehouse.equals(that.warehouse);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(deliveryDate, deliveryTime, carInfo, driverInfo, brand, deliveryType, warehouse);
     }
 }

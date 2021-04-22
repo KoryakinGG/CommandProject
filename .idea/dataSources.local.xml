@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="dctoqm1sn5730f@ec2-54-220-53-223.eu-west-1.compute.amazonaws.com" uuid="93cce7f1-c1ff-4877-9559-77b89691ceb6">
+    <data-source name="d22i26t4mne5th@ec2-52-208-221-89.eu-west-1.compute.amazonaws.com" uuid="22a57fb4-8127-4eae-89b3-497cba913db5">
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="POSTGRES" exact-version="0" />
       <schema-mapping />
     </data-source>

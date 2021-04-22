@@ -9,7 +9,7 @@ import java.util.List;
 public interface DeliveryTypeService {
     List<DeliveryTypeDto> findAll();
     DeliveryTypeDto findById(Long id) throws ResourceNotFoundException;
-    DeliveryTypeDto save(DeliveryTypeDto deliveryTypeDto) throws ResourceNotFoundException, WarehouseException;
+    DeliveryTypeDto save(DeliveryTypeDto deliveryTypeDto) throws ResourceNotFoundException;
     void delete(Long id);
     void saveAll(List<DeliveryTypeDto> deliveryTypeDto);
 }

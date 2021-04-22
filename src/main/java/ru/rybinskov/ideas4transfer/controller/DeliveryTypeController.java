@@ -2,15 +2,12 @@ package ru.rybinskov.ideas4transfer.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.rybinskov.ideas4transfer.dto.DeliveryTimeDto;
 import ru.rybinskov.ideas4transfer.dto.DeliveryTypeDto;
 import ru.rybinskov.ideas4transfer.exception.ResourceNotFoundException;
 import ru.rybinskov.ideas4transfer.exception.WarehouseException;
 import ru.rybinskov.ideas4transfer.service.deleviry_type_service.DeliveryTypeService;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -28,9 +25,9 @@ public class DeliveryTypeController {
     }
 
     @GetMapping(value = "/delivery-types/{id}")
-    public ResponseEntity<DeliveryTypeDto> getDeliveryTypeById(@PathVariable(value = "id") Long DeliveryTypeId)
+    public ResponseEntity<DeliveryTypeDto> getDeliveryTypeById(@PathVariable(value = "id") Long deliveryTypeId)
             throws ResourceNotFoundException {
-        DeliveryTypeDto deliveryTypeDto = deliveryTypeService.findById(DeliveryTypeId);
+        DeliveryTypeDto deliveryTypeDto = deliveryTypeService.findById(deliveryTypeId);
         return ResponseEntity.ok().body(deliveryTypeDto);
     }
 

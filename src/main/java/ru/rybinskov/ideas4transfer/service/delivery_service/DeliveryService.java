@@ -1,6 +1,7 @@
 package ru.rybinskov.ideas4transfer.service.delivery_service;
 
 import ru.rybinskov.ideas4transfer.dto.DeliveryDto;
+import ru.rybinskov.ideas4transfer.dto.UniqueReportObject;
 import ru.rybinskov.ideas4transfer.exception.ExceedingAllowedDateValueException;
 import ru.rybinskov.ideas4transfer.exception.ResourceNotFoundException;
 import ru.rybinskov.ideas4transfer.exception.WarehouseException;
@@ -17,6 +18,7 @@ public interface DeliveryService {
     List<DeliveryDto> findByDeliveryDateGreaterThanEqual(String date);
     List<DeliveryDto> findByDeliveryDateLessThanEqual(String date);
     List<DeliveryDto> getByDate(String first, String last);
-    DeliveryDto save(DeliveryDto deliveryDto) throws ResourceNotFoundException, WarehouseException;
+    DeliveryDto save(DeliveryDto deliveryDto) throws ResourceNotFoundException;
+    List<UniqueReportObject> getUniqueDeliveriesByRange(String first, String last);
 
 }

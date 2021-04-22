@@ -54,3 +54,5 @@ logging:
     max-size: 100
     max-history: 40
     name: logs/production_app.log
+
+#### resource server configuration properties
