@@ -26,29 +26,20 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService, UserDetailsService {
 
     private final UserRepository userRepository;
-//
-//    @Autowired
-//    public void setUserRepository(UserRepository userRepository) {
-//        this.userRepository = userRepository;
-//    }
 
     @Override
     public UserDto getById(Long id) throws ResourceNotFoundException {
         User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Пользователь по указанному id не найден: id = " + id));
         log.info("Working method UserService getById {}", id);
-        return new UserDto(user);
+        UserDto userDto = new UserDto(user);
+        return userDto;
     }
 
     @Override
     public List<UserDto> findAll() {
         log.info("Working method UserService findAll");
-        return userRepository.findAll().stream().map(UserDto::new).collect(Collectors.toList());
-    }
-
-    @Override
-    public UserDto findByName(String name) {
-        log.info("Working method UserService findByName");
-        return null;
+        List <UserDto> list = userRepository.findAll().stream().map(UserDto::new).collect(Collectors.toList());
+        return list;
     }
 
     @Override
@@ -79,7 +70,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         userDto.setUsername(user.getUsername()); // игнорируем изменения в логине, полученном из Dto
         //обновляем поля в user, не затрагивая пароля и Id
         user.updateAllFieldsWithoutId(userDto);
-        return new UserDto(userRepository.save(user));
+        UserDto userDto1 = new UserDto(userRepository.save(user));
+        return userDto1;
     }
 
     public void delete(Long id) throws ResourceNotFoundException {
