@@ -69,6 +69,7 @@ class UserServiceImplTest {
 
         user = new User(1L,"Голум","мояпрелесть","Кольценосец", "golum@shir.mid", "89252546575",role, brand);
         userDto = new UserDto(1L,"Боромир","всехспасуодиностанусь",roleDto, "Гондорский", "boromir@shir.mid", "8974545695", brandDto);
+
     }
 
     @AfterEach

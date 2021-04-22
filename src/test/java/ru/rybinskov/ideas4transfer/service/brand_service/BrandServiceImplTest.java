@@ -102,19 +102,6 @@ class BrandServiceImplTest {
 
     @Test
     void givenDeleteBrandById_whenBrandServiceDeleteById_thenOk() {
-        Mockito.doReturn(Optional.of(brand))
-                .when(brandRepository)
-                .findById(1L);
-        brandDto.setId(3L);
-        assertThrows(ResourceNotFoundException.class, () -> {
-            brandServiceImpl.save(brandDto);
-        });
-    }
-
-    @Test
-    void deleteBrandById_whenBrandServiceDeleteById_thenOk() {
-        Mockito.doNothing().when(brandRepository).deleteById(1L);
-
         Mockito.doNothing().when(brandRepository).deleteById(1L);
         brandServiceImpl.delete(1L);
         Mockito.verify(brandRepository, Mockito.times(1)).deleteById(1L);
@@ -139,6 +126,7 @@ class BrandServiceImplTest {
         Mockito.doReturn(brand)
                 .when(brandRepository)
                 .save(Mockito.any());
+
         BrandDto report = brandServiceImpl.save(brandDto);
         assertNotNull(report);
     }
