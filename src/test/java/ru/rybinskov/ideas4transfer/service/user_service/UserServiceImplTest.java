@@ -68,7 +68,7 @@ class UserServiceImplTest {
         userList.add(new User(3L,"Леголаз","ясамыйкрасивый","Попаду в глаз", "lego@forest.mid", "8965364658",role, brand));
 
         user = new User(1L,"Голум","мояпрелесть","Кольценосец", "golum@shir.mid", "89252546575",role, brand);
-        userDto = new UserDto(1L,"Боромир",roleDto, "Гондорский", "boromir@shir.mid", "8974545695", brandDto);
+        userDto = new UserDto(1L,"Боромир","всехспасуодиностанусь",roleDto, "Гондорский", "boromir@shir.mid", "8974545695", brandDto);
     }
 
     @AfterEach
