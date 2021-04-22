@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +17,6 @@ import ru.rybinskov.ideas4transfer.repository.UserRepository;
 import ru.rybinskov.ideas4transfer.security.principal.UserPrincipal;
 
 
-import javax.annotation.Resource;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,27 +26,24 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService, UserDetailsService {
 
     private final UserRepository userRepository;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     public UserDto getById(Long id) throws ResourceNotFoundException {
         User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Пользователь по указанному id не найден: id = " + id));
         log.info("Working method UserService getById {}", id);
-        return new UserDto(user);
+        UserDto userDto = new UserDto(user);
+        return userDto;
     }
 
     @Override
     public List<UserDto> findAll() {
         log.info("Working method UserService findAll");
-        return userRepository.findAll().stream().map(UserDto::new).collect(Collectors.toList());
+        List <UserDto> list = userRepository.findAll().stream().map(UserDto::new).collect(Collectors.toList());
+        return list;
     }
 
     @Override
     public UserDto save(UserDto userDto) throws ResourceNotFoundException, WarehouseException {
-        String password = userDto.getPassword();
-        if (password != null && (!password.trim().equals(""))) {
-            userDto.setPassword(bCryptPasswordEncoder.encode(password));
-        }
 
         String username = userDto.getUsername();
         // Вот тут я не знаю, есть ли смысл проверять username на null
@@ -60,10 +55,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         {
             if(username == null || username.equals("")) {
                 throw new WarehouseException("Ошибка при создании пользователя: логин не указан или он пустой");
-            }
-
-            if (password == null || password.trim().equals("")) {
-                throw new WarehouseException("Ошибка при создании пользователя: Пароль не указан или он пустой");
             }
 
             // пользователя не должно быть в БД
@@ -79,7 +70,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         userDto.setUsername(user.getUsername()); // игнорируем изменения в логине, полученном из Dto
         //обновляем поля в user, не затрагивая пароля и Id
         user.updateAllFieldsWithoutId(userDto);
-        return new UserDto(userRepository.save(user));
+        UserDto userDto1 = new UserDto(userRepository.save(user));
+        return userDto1;
     }
 
     public void delete(Long id) throws ResourceNotFoundException {
@@ -95,6 +87,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         log.info("Working method UserService loadUserByUsername");
         return UserPrincipal.build(user);
     }
+
 
 //    @Override
 //    @Transactional

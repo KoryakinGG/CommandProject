@@ -11,5 +11,4 @@ public interface UserService {
     List<UserDto> findAll();
     UserDto save(UserDto userDto) throws ResourceNotFoundException, WarehouseException;
     void delete(Long id) throws ResourceNotFoundException;
-
 }
